@@ -1,9 +1,30 @@
-# Vue 3 + TypeScript + Vite
+# MyGo貼圖搜尋器
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+你願意一輩子跟我一起MyGo嗎？
+[網頁連結](https://mygo.miyago9267.com)
 
-## Recommended Setup
+## 使用技術
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+- 前端框架 - `Vite` + `Vue`
+- [API](https://github.com/miyago9267/mygoapi) - `FastAPI`
 
-- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+## 部署指南
+
+1. clone下本專案
+2. 安裝前端dependencies
+```bash
+cd MyGo_Searcher
+npm install # or yarn install
+```
+3. 修改前端
+4. 部署前端
+```bash
+npx vite --port=PORT
+npx vite build
+```
+
+## 使用API
+
+使用自架API，請參考
+[API專案](https://github.com/miyago9267/mygoapi)
+
