@@ -11,11 +11,11 @@ import { defineProps, watch, ref } from 'vue';
 const props = defineProps({
     src: String
 });
-const prefix = 'https://drive.miyago9267.com/d/home/miyago/Pictures/mygo/';
-const altText = ref(props.src?.slice(prefix.length).replace(/\.[^/.]+$/, '') || '無題');
+
+const altText = ref(props.src?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '') || '無題');
 
 watch(() => props.src, (newSrc) => {
-    const alt = newSrc?.slice(prefix.length).replace(/\.[^/.]+$/, '');
+    const alt = newSrc?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '');
     altText.value = alt || '無題';
 }, { immediate: true });
 
