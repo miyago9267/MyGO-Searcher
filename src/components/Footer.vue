@@ -7,6 +7,6 @@
 </template>
 <script setup lang="ts">
 
-const link = 'https://github.com/miyago9267'
+const link = 'https://github.com/miyago9267/MyGo_Searcher'
 
 </script>
