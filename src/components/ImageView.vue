@@ -1,22 +1,25 @@
 <template>
     <div class="mb-2 mx-2 flex flex-col">
-        <img :src="props.src" class="w-full rounded-lg mb-2 outline outline-1 outline-tggray-300" />
-        <span class="font-bold text-gray-100 text-center">{{ altText }}</span>
+        <img :src="props.url" class="w-full rounded-lg mb-2 outline outline-1 outline-tggray-300" />
+        <span class="font-bold text-gray-100 text-center">{{ props.alt }}</span>
     </div>
 </template>
 <script setup lang="ts">
 
-import { defineProps, watch, ref } from 'vue';
+import { defineProps } from 'vue';
 
-const props = defineProps({
-    src: String
-});
+interface img {
+    url: string,
+    alt: string
+}
 
-const altText = ref(props.src?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '') || '無題');
+const props = defineProps<img>();
 
-watch(() => props.src, (newSrc) => {
-    const alt = newSrc?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '');
-    altText.value = alt || '無題';
-}, { immediate: true });
+// const altText = ref(props.src?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '') || '無題');
+
+// watch(() => props.url, (newSrc) => {
+//     const alt = newSrc?.match(/([^\/]+)(?=\.\w+$)/)?.[0].replace(/\.[^/.]+$/, '');
+//     altText.value = alt || '無題';
+// }, { immediate: true });
 
 </script>

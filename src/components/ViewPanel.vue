@@ -1,7 +1,7 @@
 <template>
 <div class="flex w-full justify-center">
     <div class="image-row">
-      <ImageView v-for="image in images" :src="image" class="image" />
+      <ImageView v-for="image in images" :url="image.url" :alt="image.alt" class="image" />
     </div>
 </div>
 </template>
@@ -9,8 +9,12 @@
 import { watch, ref } from 'vue';
 import ImageView from './ImageView.vue';
 
+interface img {
+    url: string,
+    alt: string
+}
 
-const images = ref([
+const images = ref<img[]>([
     // 'https://i.imgur.com/olWo9xr.jpg',
     // 'https://i.imgur.com/83sKGOi.jpg',
     // 'https://i.imgur.com/XSzy1Hq.jpg',
@@ -24,7 +28,7 @@ const props = defineProps({
 
 const getImageList = async (query: string) => {
   try {
-    let url = 'https://mygoapi.miyago9267.com/mygo';
+    let url = 'https://mygotestapi.miyago9267.com/mygo';
     if (query) {
       url = `${url}/img?keyword=${query}`;
     } else {
