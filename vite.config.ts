@@ -11,7 +11,7 @@ export default defineConfig({
   base: './',
   build: {
     // 設定構建輸出目錄
-    outDir: '/data/miyago/Web/MyGo',
+    outDir: 'dist',
     assetsDir: 'assets',
   },
 })
