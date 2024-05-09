@@ -28,7 +28,7 @@ const props = defineProps({
 
 const getImageList = async (query: string) => {
   try {
-    let url = 'https://mygotestapi.miyago9267.com/mygo';
+    let url = 'https://mygoapi.miyago9267.com/mygo';
     if (query) {
       url = `${url}/img?keyword=${query}`;
     } else {
