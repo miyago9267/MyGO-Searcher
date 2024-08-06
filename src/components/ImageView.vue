@@ -1,7 +1,7 @@
 <template>
     <div class="mb-2 mx-2 flex flex-col group">
         <div class="relative">
-            <img :src="encodedUrl" class="w-full rounded-lg mb-2 outline outline-1 outline-tggray-300 group-hover:opacity-50 transition-opacity duration-300" />
+            <img v-lazy="encodedUrl" class="w-full rounded-lg mb-2 outline outline-1 outline-tggray-300 group-hover:opacity-50 transition-opacity duration-300" />
             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <button @click="downloadImage" class="bg-gray-700 text-white rounded-full px-4 py-2 mx-1 opacity-90">下載</button>
                 <button @click="copyToClipboard" class="bg-gray-700 text-white rounded-full px-4 py-2 mx-1 opacity-90">複製</button>

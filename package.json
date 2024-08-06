@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "copy-image-clipboard": "^2.1.2",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-lazyload": "^3.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
