@@ -6,7 +6,7 @@
 </div>
 </template>
 <script setup lang="ts">
-import { watch, ref } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import ImageView from './ImageView.vue';
 import { getAllImageList } from '../apis/base';
 
@@ -33,6 +33,8 @@ const getImageList = async (query: string) => {
   } catch (error) {
     images.value = [];
   }
+  window.scrollBy(0, 1);
+  window.scrollBy(0, -1);
 }
 
 // 監視 searchQuery 變化
@@ -40,7 +42,10 @@ watch(() => props.searchQuery, (newQuery) => {
   getImageList(newQuery || '');
 }, { immediate: true });
 
-getImageList('');
+onMounted(() => {
+  getImageList('');
+  window.scrollBy(0, 1);
+});
 
 </script>
 
@@ -48,7 +53,7 @@ getImageList('');
 .image-row {
   display: grid;
   /* grid-template-columns: repeat(4, 1fr); */
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(4, minmax(16rem, 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -56,6 +61,12 @@ getImageList('');
 @media screen and (max-width: 768px) {
   .image-row {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .image-row {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   }
 }
 </style>
