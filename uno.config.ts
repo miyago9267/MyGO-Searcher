@@ -4,7 +4,10 @@ import { defineConfig } from 'unocss'
 export default defineConfig({
   rules: [
     // Define a custom rule for your Nerd Font
-    ['nerd', { 'font-family': '"FiraCode Nerd Font", monospace' }]
+    ['nerd', { 'font-family': '"FiraCode Nerd Font", monospace' }],
+    // defile custom text color by regex
+    [/^color-([a-z\d]+)$/, ([_, value]) => ({ color: `#${value}` })],
+
   ],
   theme: {
     colors: {
