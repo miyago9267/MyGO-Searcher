@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue';
 import ImageView from './ImageView.vue';
+import { getAllImageList } from '../apis/base';
 
 interface img {
     url: string,
@@ -28,17 +29,7 @@ const props = defineProps({
 
 const getImageList = async (query: string) => {
   try {
-    let url = 'https://mygotestapi.miyago9267.com/mygo';
-    if (query) {
-      url = `${url}/img?keyword=${query}`;
-    } else {
-      url = `${url}/all_img`;
-    }
-    await fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        images.value = data.urls;
-      })
+    images.value = await getAllImageList(query);
   } catch (error) {
     images.value = [];
   }
@@ -56,7 +47,8 @@ getImageList('');
 <style scoped>
 .image-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }

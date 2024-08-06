@@ -44,7 +44,6 @@ const copyToClipboard = async () => {
     const response = await fetch(props.url + '?t=' + new Date().getTime(), {
       method: 'GET',
     });
-    console.log(response)
     const blob = await response.blob();
     const reader = new FileReader();
     reader.onloadend = async () => {
