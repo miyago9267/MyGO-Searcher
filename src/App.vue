@@ -8,6 +8,7 @@
         </div>
         <Footer class=""/>
     </div>
+    <BackToTop class="fixed bottom-5 right-5"/>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +16,9 @@ import Header from './components/Header.vue'
 import SearchBar from './components/SearchBar.vue';
 import Footer from './components/Footer.vue';
 import ViewPanel from './components/ViewPanel.vue';
+import BackToTop from './components/BackToTop.vue';
 
+// import { onMounted, onBeforeUnmount} from 'vue';
 import { ref } from 'vue';
 
 const searchQuery = ref('');
@@ -23,5 +26,15 @@ const searchQuery = ref('');
 const handleSearch = (newSearch: string) => {
     searchQuery.value = newSearch;
 }
+// const disableRightClick = (event: MouseEvent) => {
+//   event.preventDefault();
+// };
 
+// onMounted(() => {
+//   document.addEventListener('contextmenu', disableRightClick);
+// });
+
+// onBeforeUnmount(() => {
+//   document.removeEventListener('contextmenu', disableRightClick);
+// });
 </script>
