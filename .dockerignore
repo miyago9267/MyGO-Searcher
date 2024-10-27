@@ -1,7 +1,17 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node
-# Edit at https://www.toptal.com/developers/gitignore?templates=node
+### Docker ###
+.dockerignore
+docker-build.sh
+docker-build-and-run.sh
+docker-run.sh
+Dockerfile
+
+### Git ###
+.git
+.gitignore
+.gitkeep
 
 ### Node ###
+
 # Logs
 logs
 *.log
@@ -76,13 +86,6 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -96,12 +99,15 @@ out
 .fleet
 .idea
 
-# Nuxt build / generate output
+# Nitro build / generate output
+.nitro
+.output
+
+# Nuxt dev / build / generate output
 .cache
 .data
-.output
-.nitro
 .nuxt
+.output
 dist
 
 # Gatsby files
@@ -149,5 +155,3 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
-
-# End of https://www.toptal.com/developers/gitignore/api/node

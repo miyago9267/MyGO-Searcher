@@ -1,25 +1,35 @@
 {
-  "name": "mygo-searcher",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build --emptyOutDir --mode production",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "copy-image-clipboard": "^2.1.2",
-    "vue": "^3.4.21",
-    "vue-lazyload": "^3.0.0"
+    "build": "nuxt build --dotenv ./.env.production",
+    "dev": "nuxt dev --dotenv ./.env.development",
+    "generate": "nuxt generate --dotenv ./.env.production",
+    "postinstall": "nuxt prepare",
+    "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@types/node": "^22.1.0",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "typescript": "^5.2.2",
-    "unocss": "^0.58.6",
-    "vite": "^5.2.0",
-    "vue-tsc": "^2.0.6"
+    "@element-plus/nuxt": "^1.0.9",
+    "@kikiutils/types": "^1.0.1",
+    "@unocss/nuxt": "^0.58.0",
+    "@vueuse/nuxt": "^10.7.0",
+    "nuxt": "^3.8.2",
+    "nuxt-purgecss": "^2.0.0",
+    "sass": "^1.69.5",
+    "vite-plugin-remove-console": "^2.2.0",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5",
+    "vue-tsc": "^1.8.25"
+  },
+  "dependencies": {
+    "@volar/typescript": "^2.4.5",
+    "add": "^2.0.6",
+    "axios": "^1.6.3",
+    "element-plus": "^2.7.6",
+    "typescript": "^5.6.2",
+    "vite-plugin-checker": "^0.8.0",
+    "vue-lazyload": "^3.0.0",
+    "yarn": "^1.22.22"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
