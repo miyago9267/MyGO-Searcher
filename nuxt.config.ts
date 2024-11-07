@@ -4,7 +4,7 @@ import removeConsole from 'vite-plugin-remove-console';
 export default defineNuxtConfig({
 	app: {
 		head: {
-			link: [{ rel: 'icon', href: '/favicon.ico' }],
+			link: [{ rel: 'icon', type: 'image/svg+xml', href: '/mygo.svg' }],
 			noscript: [{ children: 'Javascript is required.' }],
 			title: ''
 		},
