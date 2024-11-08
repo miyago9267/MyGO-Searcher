@@ -19,7 +19,7 @@
     "vite-plugin-remove-console": "^2.2.0",
     "vue": "^3.3.10",
     "vue-router": "^4.2.5",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^2.1.6"
   },
   "dependencies": {
     "@volar/typescript": "^2.4.5",

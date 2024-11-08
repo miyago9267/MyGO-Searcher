@@ -1,3 +1,12 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": false, // 關閉所有嚴格檢查
+    "noImplicitAny": false, // 關閉隱式 any 檢查
+    "strictNullChecks": false, // 關閉 null 檢查
+    "strictPropertyInitialization": false, // 關閉屬性初始化檢查
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+  }
 }

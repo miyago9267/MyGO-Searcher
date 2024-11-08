@@ -1,5 +1,3 @@
-// distance.ts
-
 export function leven_distance(s1: string, s2: string): number {
     const lenS1 = s1.length;
     const lenS2 = s2.length;
