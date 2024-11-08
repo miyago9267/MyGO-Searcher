@@ -1,5 +1,5 @@
 # Build stage
-FROM kikikanri/node22:base-alpine AS build-stage
+FROM node:18-alpine AS build-stage
 
 ## Set args, envs and workdir
 ARG NPMRC_REGISTRY
@@ -17,7 +17,7 @@ ENV NODE_ENV=production
 COPY ./ ./
 RUN pnpm run build
 
-FROM node:22-alpine
+FROM node:18-alpine
 # ENV NITRO_HOST=0.0.0.0
 # ENV NITRO_PORT=8080
 WORKDIR /app
@@ -27,5 +27,4 @@ RUN apk add -lu --no-cache tzdata && ln -s /usr/share/zoneinfo/Asia/Taipei /etc/
 
 COPY --from=build-stage /app/.output ./
 RUN echo "cd /app/server && node ./index.mjs" >entrypoint.sh
-EXPOSE 3000
 CMD ["sh", "entrypoint.sh"]
