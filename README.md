@@ -1,113 +1,75 @@
-# Base nuxt3 template
+# MyGo貼圖搜尋器
 
-This is a basic nuxt3 template with some modules and packages installed and common settings used.
+你願意一輩子跟我一起MyGO嗎？
+[已部署網頁連結](https://mygo.miyago9267.com)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 使用技術
 
-## Table of contents
+- 前端框架 - `Vue3` with `Nuxt3`
+- 後端框架 - `NuxtAPI` with `Nuxt3`
+  - 獨立後端[API](https://github.com/miyago9267/mygoapi)服務 - `FastAPI`
 
-- [Base nuxt3 template](#base-nuxt3-template)
-  - [Table of contents](#table-of-contents)
-  - [Setup](#setup)
-  - [Env config](#env-config)
-    - [Fields](#fields)
-  - [Installed modules](#installed-modules)
-  - [Vite plugins](#vite-plugins)
-  - [Development Server](#development-server)
-    - [Local](#local)
-    - [With nginx](#with-nginx)
-  - [Production](#production)
+## 部署指南
 
-## Setup
-
-Make sure to install the dependencies:
+1. clone下本專案
+2. 安裝dependencies
 
 ```bash
-npm i  # npm
-pnpm i # pnpm
+cd MyGo_Searcher
+npm install # or yarn install
 ```
-
-## Env config
-
-Copy `.env.development` to `.env.development.local` and edit it.
+3. 設定環境變數(非必要)
+```
+echo "API_BASE_URL=<API_BASE_URL>" >> .env.development
+```
+4. 啟動及部署Nuxt
 
 ```bash
-cp .env.development .env.development.local
-vim .env.development.local
+yarn dev # with devmode
+yarn build # for production
 ```
 
-### Fields
-- `DEV_SERVER_HOST` - Development server host.
-- `DEV_SERVER_PORT` - Development server port.
+## 使用API
 
-## Installed modules
-- [@unocss/nuxt](https://unocss.dev/integrations/nuxt) - The Nuxt module for UnoCSS.
-- [@vueuse/nuxt](https://vueuse.org/nuxt/README.html) - An add-on of VueUse, which provides better Nuxt integration auto-import capabilities.
-- [nuxt-purgecss](https://nuxt.com/modules/purgecss) - Drop superfluous CSS!
+### 內建API
 
-## Vite plugins
-- [vite-plugin-remove-console](https://www.npmjs.com/package/vite-plugin-remove-console) - A vite plugin that remove all the specified console types in the production environment.
+本分支使用Nuxt框架自帶Server系統內建之API路由
 
-## Development Server
+#### 取得所有貼圖
 
-Start the development command is:
-
-```bash
-npm run dev   #npm
-pnpm run dev  #pnpm
+```http
+GET /api/mygo/all_img
 ```
 
-### Local
+#### 查詢關鍵字列表
 
-Start the development server on `http://DEV_SERVER_HOST:DEV_SERVER_PORT`, default is `http://localhost:3000`.
-
-### With nginx
-
-This is a basic nginx configuration with ssl for a development server:
-
-```nginx
-server {
-  listen 443 http2 ssl;
-  server_name SERVER_NAME; # Replace SERVER_NAME with your real domain.
-
-  # Headers
-
-  # If you want to use nuxt-devtools, set the value to SAMEORIGIN.
-  add_header X-Frame-Options "DENY" always;
-
-  # SSL
-  # Load your ssl configuration or setup certificate.
-
-  # Dev server
-  location / {
-    proxy_buffering off;
-    proxy_http_version 1.1;
-    proxy_redirect off;
-    proxy_request_buffering off;
-    proxy_set_header Connection "upgrade";
-    proxy_set_header Host $host;
-    proxy_set_header REMOTE_ADDR $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_pass http://DEV_SERVER_HOST:DEV_SERVER_PORT; # Replace SERVER_HOST and SERVER_PORT with .env.development.local field value.
-  }
-}
+```http
+GET /api/mygo/img?keyword={keyword: string}<&fuzzy={fuzzy: boolean}>
 ```
 
-## Production
+#### 取得隨機貼圖
 
-Build the application for production:
-
-```bash
-npm run build
+```http
+GET /api/mygo/random_img
 ```
 
-Locally preview production build:
+### 獨立API
 
-```bash
-npm run preview
-```
+關於獨立拆分之API，請參考
+[API專案](https://github.com/miyago9267/mygoapi)
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 未來計劃(TodoList)
+
+- [ ] 前端優化
+      - [ ] 增加亮暗色
+      - [ ] 增加排序
+- [ ] 優化後端
+      - [X] 改善api並開放
+      - [ ] 增加標籤(趕工中)
+        - [ ] 以集數作為tag
+        - [ ] 以人物為tag
+      - [ ] 增加敘述(趕工中)
+
+## 更新紀錄
+
+請詳見[CHANGELOG](./CHANGELOG.md)及[RELEASE](https://github.com/miyago9267/MyGo_Searcher/releases)
