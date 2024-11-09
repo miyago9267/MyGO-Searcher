@@ -1,7 +1,7 @@
 #!/bin/bash
 user="mygo"
 name="mygo-searcher"
-port="3000"
+port="4001"
 
 docker build \
     $@ -t $user/$name:latest . || exit
@@ -12,7 +12,7 @@ docker run \
 	-itd \
 	-u $(id -u):$(id -g) \
 	--name $name \
-    --network host \
+    --network bridge \
     -p $port:3000 \
 	--restart=always \
 	$user/$name:latest
