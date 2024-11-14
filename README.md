@@ -2,6 +2,7 @@
 
 你願意一輩子跟我一起MyGO嗎？
 [已部署網頁連結](https://mygo.miyago9267.com)
+[舊版Vite分支](https://github.com/miyago9267/MyGO-Searcher/tree/vite)
 
 ## 使用技術
 
