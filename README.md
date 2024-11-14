@@ -1,7 +1,9 @@
 # MyGo貼圖搜尋器
 
 你願意一輩子跟我一起MyGO嗎？
+
 [已部署網頁連結](https://mygo.miyago9267.com)
+
 [舊版Vite分支](https://github.com/miyago9267/MyGO-Searcher/tree/vite)
 
 ## 使用技術
@@ -62,14 +64,14 @@ GET /api/mygo/random_img
 ## 未來計劃(TodoList)
 
 - [ ] 前端優化
-      - [ ] 增加亮暗色
-      - [ ] 增加排序
+  - [ ] 增加亮暗色
+  - [ ] 增加排序
 - [ ] 優化後端
-      - [X] 改善api並開放
-      - [ ] 增加標籤(趕工中)
-        - [ ] 以集數作為tag
-        - [ ] 以人物為tag
-      - [ ] 增加敘述(趕工中)
+  - [X] 改善api並開放
+  - [ ] 增加標籤(趕工中)
+    - [ ] 以集數作為tag
+    - [ ] 以人物為tag
+  - [ ] 增加敘述(趕工中)
 
 ## 更新紀錄
 
