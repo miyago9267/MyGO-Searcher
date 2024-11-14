@@ -1,9 +1,12 @@
-import { jsonData } from '../../utils/dataLoader';
+import { jsonData, customKeyMap } from '../../utils/dataLoader';
+import { leven_distance }  from '../../algo/levenshtein';
+import * as OpenCC from 'opencc-js';
 import { defineEventHandler } from 'h3';
-import {leven_distance}  from '../../algo/levenshtein';
 
 const baseURL = 'https://drive.miyago9267.com/d/file/img/mygo/';
 const data_mapping = Array.isArray(jsonData) ? jsonData : [];
+const custom_keymap = customKeyMap;
+const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
 
 const fuzzyReplacements: Record<string, string[]> = {
   "你": ["姊"],
@@ -54,14 +57,20 @@ function calculateScore(keyword: string, text: string): number {
   return score;
 }
 
+const convertToTraditional = async (text: string): Promise<string> => {
+  return await converter.convertPromise(text);
+};
+
 export default defineEventHandler((event) => {
   const query = getQuery(event);
-  const keyword: string = query.keyword as string ?? '';
+  const queryKeyword: string = query.keyword as string ?? '';
+  const keyword = converter(queryKeyword)
   const keywords: string[] = keyword.split(' ');
   const fuzzy = query.fuzzy === 'true';
 
   let scoredResults: Array<{ url: string; alt: string; score: number }> = [];
   let fullMatchResults: Array<{ url: string; alt: string; score: number }> = [];
+  const customKeymapResults: Array<{ url: string; alt: string; score: number }> = [];
 
   for (const item of data_mapping) {
     const name = item.name;
@@ -114,13 +123,27 @@ export default defineEventHandler((event) => {
     }
   }
 
+  if (custom_keymap.hasOwnProperty(keyword)) {
+    const keywordValue = custom_keymap[keyword]?.value || [];
+    customKeymapResults.push(
+      ...data_mapping
+        .filter((item) => keywordValue.includes(item.name))
+        .map((item) => ({
+          url: baseURL + item.file_name,
+          alt: item.name,
+          score: 15,
+        }))
+    );
+  }
+
   // Merge scored results and full match results, remove duplicates
   const combinedResultsMap = new Map<string, { url: string; alt: string; score: number }>();
-  [...scoredResults, ...fullMatchResults].forEach((result) => {
+  [...scoredResults, ...fullMatchResults, ...customKeymapResults].forEach((result) => {
     combinedResultsMap.set(result.url, result);
   });
 
   const sortedResults = Array.from(combinedResultsMap.values()).sort((a, b) => b.score - a.score);
 
   return { urls: sortedResults };
+  
 });
