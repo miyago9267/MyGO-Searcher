@@ -76,3 +76,9 @@ GET /api/mygo/random_img
 ## 更新紀錄
 
 請詳見[CHANGELOG](./CHANGELOG.md)及[RELEASE](https://github.com/miyago9267/MyGo_Searcher/releases)
+
+## License
+
+[MIT](./LICENSE)
+
+本專案以MIT規範開源，歡迎大家自由使用、修改及分支開發，但請務必保留原作者署名。
