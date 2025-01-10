@@ -4,6 +4,7 @@
         <Header class="outline outline-offset-0 outline-tggray-300 outline-2" />
         <div class="p-10">
             <SearchBar class="mb-5" @update:search="handleSearch"/>
+            <Filter class="mb-5"/>
             <ViewPanel class="mt-5" :searchQuery="searchQuery"/>
         </div>
         <Footer class=""/>

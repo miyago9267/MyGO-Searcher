@@ -18,6 +18,23 @@ export default defineConfig({
 		'wh-full': 'h-full w-full',
 		'wh-s-screen': 'h-s-screen w-s-screen',
 		'header-content': 'self-center b-unset! mr-2 cursor-pointer hover:color-7194e5'
+	},
+	theme: {
+	  colors: {
+		'tggray': {
+		  50: '#1e1e1e',
+		  75: '#232323',
+		  100: '#2a2a2a',
+		  200: '#2f2f2f',
+		  300: '#3e3e3e',
+		  400: '#505050',
+		  500: '#b4b4b4',
+		  600: '#dcdcdc',
+		  700: '#f5f5f5',
+		  800: '#fafafa',
+		  900: '#fff',
+		}
+	  }
 	}
 });
 
