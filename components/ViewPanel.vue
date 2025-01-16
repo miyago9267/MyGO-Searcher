@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-full justify-center">
         <div class="image-row">
-            <ImageView v-for="image in images" :url="image.url" :alt="image.alt" class="image" />
+            <ImageView v-for="image in filteredImages" :url="image.url" :alt="image.alt" class="image" />
         </div>
     </div>
 </template>
@@ -14,6 +14,8 @@ const config = useRuntimeConfig();
 interface img {
     url: string,
     alt: string
+    author: string
+    episode: string
 }
 
 const images = ref<img[]>([
@@ -25,16 +27,42 @@ const images = ref<img[]>([
 ]);
 
 const props = defineProps({
-    searchQuery: String
+    searchQuery: String,
+    filterQuery: Object
 });
 
 const getImageList = async (query: string, config: any) => {
     try {
-        images.value = await getAllImageList(query, config);
+        // images.value = await getAllImageList(query, config);
+        const allFiles = await getAllImageList(query, config);
+        images.value = allFiles.map((item: img) => ({
+            url: item.url,
+            alt: item.alt,
+            author: item.author,
+            episode: item.episode,
+        }));
+
     } catch (error) {
         images.value = [];
     }
 }
+
+const filteredImages = computed(() => {
+    if (!props.filterQuery.MyGO集數 && !props.filterQuery.AveMujica集數 && !props.filterQuery.MyGO人物) return images.value;
+
+    return images.value.filter((image) => {
+        const filterMyGOEpisodes = props.filterQuery.MyGO集數.length === 0 ||
+            props.filterQuery.MyGO集數.includes(image.episode);
+
+        const filterAveMujicaEpisodes = props.filterQuery.AveMujica集數.length === 0 ||
+            props.filterQuery.AveMujica集數.includes(image.episode);
+
+        const filterMyGOCharacters = props.filterQuery.MyGO人物.length === 0 ||
+            props.filterQuery.MyGO人物.includes(image.author);
+
+        return filterMyGOEpisodes && filterAveMujicaEpisodes && filterMyGOCharacters;
+    });
+});
 
 // 監視 searchQuery 變化
 watch(() => props.searchQuery, (newQuery) => {

@@ -9,6 +9,8 @@ export const getPicList = () => {
 		const allFiles = data_mapping.map((item: any) => ({
 			url: baseURL + item.file_name,
 			alt: item.name,
+			author: item.author,
+			episode: item.episode,
 		}));
 		return { statusCode: 200, urls: allFiles };
 	} catch (error) {

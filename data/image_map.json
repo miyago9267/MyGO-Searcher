@@ -13,9 +13,11 @@
         "name": "因為我很想要嘛",
         "file_name": "因為我很想要嘛.jpg",
         "description": "出自第11集，愛音和團員去看效果器時表示很想要",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "每次想著想著就會感到很厭世",
@@ -26,9 +28,11 @@
         "name": "妳誤會了",
         "file_name": "妳誤會了.jpg",
         "description": "出自第8集，爽世和祥子談判時的否認",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "我想應該不是",
@@ -59,9 +63,11 @@
         "name": "也沒有啦",
         "file_name": "也沒有啦.jpg",
         "description": "出自第5集，愛音在回憶中被同學稱讚時的回應",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 5
+        "episode": "mygo_5"
     },
     {
         "name": "妳是來找我吵架的嗎",
@@ -77,9 +83,12 @@
         "name": "妳在開玩笑嗎",
         "file_name": "妳在開玩笑嗎.jpg",
         "description": "出自第4集，愛音對於樂團亂出主意時，立希的質疑",
-        "tags": ["立希","愛音"],
+        "tags": [
+            "立希",
+            "愛音"
+        ],
         "author": "立希",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "為什麼不行",
@@ -95,9 +104,13 @@
         "name": "又來了一個新人",
         "file_name": "又來了一個新人.jpg",
         "description": "出自第13集，ave_mujica初次公演時的劇情",
-        "tags": ["mujica", "喵夢", "若麥"],
+        "tags": [
+            "mujica",
+            "喵夢",
+            "若麥"
+        ],
         "author": "喵夢",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "是一輩子喔 一輩子",
@@ -113,9 +126,12 @@
         "name": "不要逃啦",
         "file_name": "不要逃啦.jpg",
         "description": "出自第6集，立希躲在學校逃避被愛音和燈堵門時愛音說的話",
-        "tags": ["立希", "愛音"],
+        "tags": [
+            "立希",
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 6
+        "episode": "mygo_6"
     },
     {
         "name": "謝謝妳",
@@ -151,17 +167,23 @@
         "name": "一輩子跟我一起組樂團嗎",
         "file_name": "一輩子跟我一起組樂團嗎.jpg",
         "description": "出自第1集，燈在KTV中對愛音說出的話",
-        "tags": ["燈", "一輩子", "第1集"],
+        "tags": [
+            "燈",
+            "一輩子",
+            "第1集"
+        ],
         "author": "燈",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "原來妳是這麼想的呀",
         "file_name": "原來妳是這麼想的呀.jpg",
         "description": "出自第4集，舊團員溝通時爽世假意敷衍燈的台詞",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "為什麼都不回答我啊",
@@ -217,9 +239,11 @@
         "name": "來，開始溝通吧",
         "file_name": "來，開始溝通吧.jpg",
         "description": "出自第4集，愛音把舊Crichic成員全部拖出來叫他們好好溝通",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "我考慮一下吧",
@@ -240,9 +264,12 @@
         "name": "不錯吧",
         "file_name": "不錯吧.jpg",
         "description": "出自第12集，愛音在表演完將團名確定為MyGO!!!!!",
-        "tags": ["愛音", "Crichic"],
+        "tags": [
+            "愛音",
+            "Crichic"
+        ],
         "author": "愛音",
-        "episode": 12
+        "episode": "mygo_12"
     },
     {
         "name": "爽世大小眼",
@@ -258,9 +285,12 @@
         "name": "只要是我能做的，我什麼都願意做",
         "file_name": "只要是我能做的，我什麼都願意做.jpg",
         "description": "出自第8集，爽世跪地的名場面(學狗叫，三回啊三回)",
-        "tags": ["爽世", "祥子"],
+        "tags": [
+            "爽世",
+            "祥子"
+        ],
         "author": "爽世",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "我都會全力以赴的",
@@ -276,9 +306,12 @@
         "name": "爽世：別這樣啦",
         "file_name": "別這樣啦2.jpg",
         "description": "出自第11集，爽世和愛音講開之後叫爽世soyorin，爽世：別這樣啦",
-        "tags": ["爽世", "愛音"],
+        "tags": [
+            "爽世",
+            "愛音"
+        ],
         "author": "爽世",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "祥子：是這樣嗎",
@@ -329,9 +362,12 @@
         "name": "什麼意思",
         "file_name": "什麼意思.jpg",
         "description": "出自第10集，愛音到爽世家直球對決時，爽世的質疑",
-        "tags": ["爽世","愛音"],
+        "tags": [
+            "爽世",
+            "愛音"
+        ],
         "author": "爽世",
-        "episode": 10
+        "episode": "mygo_10"
     },
     {
         "name": "我沒說過那種話",
@@ -342,9 +378,12 @@
         "name": "不讓我們看看我們怎麼知道",
         "file_name": "不讓我們看看怎麼知道.jpg",
         "description": "出自第3集，祥子表示燈有作詞時，其他人的反應，這句話出自立希之口",
-        "tags": ["立希", "Crichic"],
+        "tags": [
+            "立希",
+            "Crichic"
+        ],
         "author": "立希",
-        "episode": 3
+        "episode": "mygo_3"
     },
     {
         "name": "我愛慕虛榮啦",
@@ -355,9 +394,12 @@
         "name": "不行",
         "file_name": "不行.jpg",
         "description": "出自第3集，Crichic去唱KTV時爽世說的話",
-        "tags": ["爽世", "Crichic"],
+        "tags": [
+            "爽世",
+            "Crichic"
+        ],
         "author": "爽世",
-        "episode": 3
+        "episode": "mygo_3"
     },
     {
         "name": "真的嗎",
@@ -373,9 +415,12 @@
         "name": "味道醇香，我很喜歡",
         "file_name": "味道純香，我很喜歡.jpg",
         "description": "出自第2集，愛音和爽世問推薦的飲料，爽世對紅茶的評價",
-        "tags": ["爽世", "愛音"],
+        "tags": [
+            "爽世",
+            "愛音"
+        ],
         "author": "爽世",
-        "episode": 2
+        "episode": "mygo_2"
     },
     {
         "name": "感謝您讓我佔用的寶貴時間",
@@ -386,9 +431,11 @@
         "name": "太過分了",
         "file_name": "太過分了.jpg",
         "description": "出自第8集，在春日影演奏之後的爽世的崩潰",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "我都說一直有在看了啊",
@@ -404,9 +451,12 @@
         "name": "喵夢：別這樣啦",
         "file_name": "別這樣啦.jpg",
         "description": "出自第13集，喵夢跑去偷拍舞台被抓包，手機被祥子沒收的抗拒",
-        "tags": ["喵夢","若麥"],
+        "tags": [
+            "喵夢",
+            "若麥"
+        ],
         "author": "喵夢",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "真的很莫名其妙",
@@ -417,9 +467,11 @@
         "name": "交給我吧",
         "file_name": "交給我吧.jpg",
         "description": "出自第1集，睦拒絕和爽世去找祥子之後爽世說的話",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 1
+        "episode": "mygo_1"
     },
     {
         "name": "她是我朋友",
@@ -435,9 +487,12 @@
         "name": "因為春日影是一首好歌",
         "file_name": "因為春日影是一首好歌.jpg",
         "description": "出自第4集，開頭愛音對燈所說的鼓勵話語",
-        "tags": ["愛音", "燈"],
+        "tags": [
+            "愛音",
+            "燈"
+        ],
         "author": "愛音",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "真的毫無品味",
@@ -458,9 +513,12 @@
         "name": "不是這樣的",
         "file_name": "不是這樣的.jpg",
         "description": "出自第8集，爽世試探祥子有沒有考慮的意願，睦的否認",
-        "tags": ["爽世", "睦"],
+        "tags": [
+            "爽世",
+            "睦"
+        ],
         "author": "睦",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "好硬派",
@@ -476,9 +534,11 @@
         "name": "不爽世",
         "file_name": "不爽世.jpg",
         "description": "出自第11集，不爽世對愛音決定要做衣服卻拖其他人一起幫忙感到不耐煩",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "真的是很不容易呢",
@@ -519,17 +579,22 @@
         "name": "在這裡想叫都沒問題",
         "file_name": "在這裡想叫都沒問題.jpg",
         "description": "出自第3集，祥子在天橋上大喊",
-        "tags": ["祥子", "燈"],
+        "tags": [
+            "祥子",
+            "燈"
+        ],
         "author": "祥子",
-        "episode": 3
+        "episode": "mygo_3"
     },
     {
         "name": "不要講這種話",
         "file_name": "不要講這種話.jpg",
         "description": "出自第6集，立希要其他人不要抱怨",
-        "tags": ["立希"],
+        "tags": [
+            "立希"
+        ],
         "author": "立希",
-        "episode": 6
+        "episode": "mygo_6"
     },
     {
         "name": "沒有人那樣拜託妳",
@@ -575,17 +640,22 @@
         "name": "天啊，大發現欸",
         "file_name": "天啊，大發現欸.jpg",
         "description": "出自第12集，愛音登台前對爛雙關感到意外",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 12
+        "episode": "mygo_12"
     },
     {
         "name": "不是很可愛嗎",
         "file_name": "不是很可愛嗎.jpg",
         "description": "出自第11集，在爽世家時愛音對爽世表示soyorin這個暱稱很可愛",
-        "tags": ["愛音", "第11集"],
+        "tags": [
+            "愛音",
+            "第11集"
+        ],
         "author": "愛音",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "妳想幹嘛",
@@ -641,9 +711,12 @@
         "name": "來",
         "file_name": "來.jpg",
         "description": "出自第6集，樂奈交出手機給mygo成員加好友",
-        "tags": ["樂奈", "貓貓"],
+        "tags": [
+            "樂奈",
+            "貓貓"
+        ],
         "author": "樂奈",
-        "episode": 6
+        "episode": "mygo_6"
     },
     {
         "name": "我看妳只是在逃避吧",
@@ -654,9 +727,12 @@
         "name": "太先入為主了喔",
         "file_name": "太先入為主了喔.jpg",
         "description": "出自第4集，愛音對於立希駁回想法的反應",
-        "tags": ["愛音", "立希"],
+        "tags": [
+            "愛音",
+            "立希"
+        ],
         "author": "愛音",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "妳先再稍微等一下吧",
@@ -667,9 +743,12 @@
         "name": "坦白說我都聽得一頭霧水",
         "file_name": "坦白說我都聽得一頭霧水.jpg",
         "description": "出自第13集，爽世和燈在天橋上的對話",
-        "tags": ["爽世", "燈"],
+        "tags": [
+            "爽世",
+            "燈"
+        ],
         "author": "爽世",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "它沒有結束",
@@ -685,9 +764,12 @@
         "name": "事情都搞砸了",
         "file_name": "事情都搞砸了.jpg",
         "description": "出自第2集，睦跑到羽丘找祥子，讓祥子覺得事情差點砸了",
-        "tags": ["睦", "祥子"],
+        "tags": [
+            "睦",
+            "祥子"
+        ],
         "author": "祥子",
-        "episode": 2
+        "episode": "mygo_2"
     },
     {
         "name": "我想妳心裡多少也有些想法吧",
@@ -703,9 +785,12 @@
         "name": "不要",
         "file_name": "不要.jpg",
         "description": "出自第8集，祥子嚴厲拒絕並警告爽世時，爽世的崩潰台詞",
-        "tags": ["爽世", "祥子"],
+        "tags": [
+            "爽世",
+            "祥子"
+        ],
         "author": "爽世",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "愛音愛心",
@@ -751,9 +836,12 @@
         "name": "不是這樣",
         "file_name": "不是這樣.jpg",
         "description": "出自第9集，立希在練習室和大家坦白時，燈的反駁詞",
-        "tags": ["燈", "第9集"],
+        "tags": [
+            "燈",
+            "第9集"
+        ],
         "author": "燈",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "爽世驚訝",
@@ -769,17 +857,22 @@
         "name": "人生這麼漫長會撐不住的喔",
         "file_name": "人生這麼漫長會撐不住的喔.jpg",
         "description": "出自第1集，愛音在KTV敷衍燈時的鼓勵詞",
-        "tags": ["愛音", "人生"],
+        "tags": [
+            "愛音",
+            "人生"
+        ],
         "author": "愛音",
-        "episode": 1
+        "episode": "mygo_1"
     },
     {
         "name": "到現在還執著於過去，真難看",
         "file_name": "到現在還執著於過去，真難看.jpg",
         "description": "出自第8集，祥子和爽世的談判中祥子對爽世的攻擊",
-        "tags": ["祥子"],
+        "tags": [
+            "祥子"
+        ],
         "author": "祥子",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "是啊，到底為什麼呢",
@@ -820,9 +913,12 @@
         "name": "一旦加入就無法回頭了喔",
         "file_name": "一旦加入就無法回頭了喔.jpg",
         "description": "出自第13集，睦表示要加入ave_mujica，祥子說出的對白",
-        "tags": ["祥子", "睦"],
+        "tags": [
+            "祥子",
+            "睦"
+        ],
         "author": "祥子",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "怎麼這麼問",
@@ -838,9 +934,12 @@
         "name": "可以請妳別提起那件事嗎",
         "file_name": "可以請妳別提起那件事嗎.jpg",
         "description": "出自第8集，初華踩雷時祥子的防禦",
-        "tags": ["祥子", "初華"],
+        "tags": [
+            "祥子",
+            "初華"
+        ],
         "author": "祥子",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "妳不是不需要我了嗎",
@@ -871,17 +970,21 @@
         "name": "太棒了，爽世同學LOVE",
         "file_name": "太棒了，爽世同學LOVE.jpg",
         "description": "出自第2集，愛音對於爽世答應組樂團的喜悅反應",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 2
+        "episode": "mygo_2"
     },
     {
         "name": "大家真沒品味",
         "file_name": "大家真沒品味.jpg",
         "description": "出自第11集，愛音出的主意被眾人駁回後的反應",
-        "tags": ["愛音"],
+        "tags": [
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "真是會虛情假意呢",
@@ -892,17 +995,24 @@
         "name": "可以請妳刪除剛才的影片嗎",
         "file_name": "可以請妳刪除剛才的影片嗎.jpg",
         "description": "出自第13集，喵夢跑去偷拍舞台被抓包，祥子要求刪除影片",
-        "tags": ["祥子","喵夢","若麥"],
+        "tags": [
+            "祥子",
+            "喵夢",
+            "若麥"
+        ],
         "author": "祥子",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "全是一些無趣的女人",
         "file_name": "全是一些無趣的女人.jpg",
         "description": "出自第5集，貓貓擅自跑進去練習室後，mygo成員們問話，貓貓的反應",
-        "tags": ["樂奈", "貓貓"],
+        "tags": [
+            "樂奈",
+            "貓貓"
+        ],
         "author": "樂奈",
-        "episode": 5
+        "episode": "mygo_5"
     },
     {
         "name": "燈：我不知道",
@@ -923,17 +1033,23 @@
         "name": "妳這話是認真的嗎",
         "file_name": "妳這話是認真的嗎.jpg",
         "description": "出自第9集，立希到爽世學校堵人質疑爽世的話",
-        "tags": ["爽世", "立希"],
+        "tags": [
+            "爽世",
+            "立希"
+        ],
         "author": "立希",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "不要這樣",
         "file_name": "不要這樣.jpg",
         "description": "出自第13集，ave_mujica初次公演時的台詞",
-        "tags": ["mujica", "祥子"],
+        "tags": [
+            "mujica",
+            "祥子"
+        ],
         "author": "祥子",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "態度好差喔",
@@ -994,113 +1110,151 @@
         "name": "這種事不重要吧",
         "file_name": "這種事不重要吧.jpg",
         "description": "出自第10集，愛音在天台上被燈追問加入樂團的理由時說的話",
-        "tags": ["愛音", "愛慕虛榮"],
+        "tags": [
+            "愛音",
+            "愛慕虛榮"
+        ],
         "author": "愛音",
-        "episode": 10
+        "episode": "mygo_10"
     },
     {
         "name": "妳有好好看訊息嗎",
         "file_name": "妳有好好看訊息嗎.jpg",
         "description": "出自第8集，凜凜子對都不看訊息的樂奈說的台詞",
-        "tags": ["凜凜子", "樂奈", "看訊息"],
+        "tags": [
+            "凜凜子",
+            "樂奈",
+            "看訊息"
+        ],
         "author": "凜凜子",
-        "episode": 8
+        "episode": "mygo_8"
     },
     {
         "name": "是啊",
         "file_name": "是啊.jpg",
         "description": "出自第9集，爽世和立希直球談判時說的Sodayo",
-        "tags": ["立希", "爽世"],
+        "tags": [
+            "立希",
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "那當然是騙人的啊",
         "file_name": "那當然是騙人的啊.jpg",
         "description": "出自第9集，爽世表示一開始的誓言都是為了重建Crichic的謊言",
-        "tags": ["立希", "爽世", "騙人"],
+        "tags": [
+            "立希",
+            "爽世",
+            "騙人"
+        ],
         "author": "爽世",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "還真是高高在上呢",
         "file_name": "還真是高高在上呢.jpg",
         "description": "出自第13集，睦表示覺得祥子快壞掉了，祥子對睦說的台詞",
-        "tags": ["祥子", "睦"],
+        "tags": [
+            "祥子",
+            "睦"
+        ],
         "author": "祥子",
-        "episode": 13
+        "episode": "mygo_13"
     },
     {
         "name": "不要吼我啦",
         "file_name": "不要吼我啦.jpg",
         "description": "出自第6集，立希兇愛音被爆發的愛音回嘴",
-        "tags": ["立希", "愛音"],
+        "tags": [
+            "立希",
+            "愛音"
+        ],
         "author": "愛音",
-        "episode": 6
+        "episode": "mygo_6"
     },
     {
         "name": "是嗎",
         "file_name": "是嗎2.jpg",
         "description": "出自第11集，爽世說的是嗎",
-        "tags": ["爽世"],
+        "tags": [
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 11
+        "episode": "mygo_11"
     },
     {
         "name": "不知道",
         "file_name": "爽世_不知道.jpg",
         "description": "出自第9集，爽世與立希直球對決，對要不要樂團的處置表示不知道",
-        "tags": ["立希", "爽世"],
+        "tags": [
+            "立希",
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "初華看手機",
         "file_name": "初華看手機.jpg",
         "description": "出自第4集，片尾初華和真奈講完話之後拿出手機",
-        "tags": ["初華"],
+        "tags": [
+            "初華"
+        ],
         "author": "初華",
-        "episode": 4
+        "episode": "mygo_4"
     },
     {
         "name": "祥子看手機",
         "file_name": "祥子看手機.jpg",
         "description": "出自第3集，在Crichic初次live後祥子收到噩耗時的表情",
-        "tags": ["祥子"],
+        "tags": [
+            "祥子"
+        ],
         "author": "祥子",
-        "episode": 3
+        "episode": "mygo_3"
     },
     {
         "name": "騙人是什麼意思",
         "file_name": "騙人是什麼意思.jpg",
         "description": "出自第9集，立希講出爽世是在騙人時眾人的反應",
-        "tags": ["愛音", "立希"],
+        "tags": [
+            "愛音",
+            "立希"
+        ],
         "author": "愛音",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "需要我待會再過來嗎",
         "file_name": "需要我待會再過來嗎.jpg",
         "description": "出自第9集，海鈴見到mygo成員正在爭吵時說出的話",
-        "tags": ["海鈴"],
+        "tags": [
+            "海鈴"
+        ],
         "author": "海鈴",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "那傢伙已經不行了",
         "file_name": "那傢伙已經不行了.jpg",
         "description": "出自第9集，立希和團員說有找海鈴時說爽世不會不行了",
-        "tags": ["立希"],
+        "tags": [
+            "立希"
+        ],
         "author": "立希",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "那傢伙不會回來了",
         "file_name": "那傢伙不會回來了.jpg",
         "description": "出自第9集，立希講出爽世是在騙人之後說的話",
-        "tags": ["立希"],
+        "tags": [
+            "立希"
+        ],
         "author": "立希",
-        "episode": 9
+        "episode": "mygo_9"
     },
     {
         "name": "妳怎麼不找我們去",
@@ -1108,7 +1262,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳這話是認真的嗎",
@@ -1116,7 +1270,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "為什麼",
@@ -1124,7 +1278,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "相信也不會有人責怪我的",
@@ -1132,7 +1286,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "痛痛啊痛痛啊快飛走吧",
@@ -1140,7 +1294,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "做事笨拙總是徒勞",
@@ -1148,7 +1302,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "差勁2",
@@ -1156,7 +1310,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這麼快等一下啦",
@@ -1164,7 +1318,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳對組樂團有興趣嗎",
@@ -1172,7 +1326,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "貴安",
@@ -1180,7 +1334,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真是讓人活得難受的世界啊",
@@ -1188,7 +1342,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "要做什麼",
@@ -1196,7 +1350,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "感覺不錯",
@@ -1204,7 +1358,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真的嗎太好了",
@@ -1212,7 +1366,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "但可能只是我們會錯意啊",
@@ -1220,7 +1374,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那我也要",
@@ -1228,7 +1382,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我有安排了",
@@ -1236,7 +1390,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "只要有小燈在就夠了吧",
@@ -1244,7 +1398,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "冒昧請教妳一件事",
@@ -1252,7 +1406,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那些全都是騙人的",
@@ -1260,7 +1414,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "過來吧",
@@ -1268,7 +1422,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "是這個意思嗎",
@@ -1276,7 +1430,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我受夠了所以我才",
@@ -1284,7 +1438,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這裡就是我們的新家喔",
@@ -1292,7 +1446,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "已經和我沒有關係了",
@@ -1300,7 +1454,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "讓妳們久等了",
@@ -1308,7 +1462,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "已經不可能了",
@@ -1316,7 +1470,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們沒辦法再重新開始嗎",
@@ -1324,7 +1478,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳在做甚麼",
@@ -1332,7 +1486,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "媽媽很棒對不對",
@@ -1340,7 +1494,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "就表示不需要這傢伙了吧",
@@ -1348,7 +1502,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "等一下",
@@ -1356,7 +1510,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那個誓言呢",
@@ -1364,7 +1518,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "樂團不需要我了吧",
@@ -1372,7 +1526,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "等一下啦",
@@ -1380,7 +1534,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "畏畏縮縮哭哭啼啼的我",
@@ -1388,7 +1542,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "就算稍稍喘口氣休息一下",
@@ -1396,7 +1550,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "再繼續四分五裂下去",
@@ -1404,7 +1558,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "到底是哪個",
@@ -1412,7 +1566,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不行了",
@@ -1420,7 +1574,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我是因為要利用她才表現得很溫柔",
@@ -1428,7 +1582,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳今天有空嗎",
@@ -1436,7 +1590,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我都會盡可能參加",
@@ -1444,7 +1598,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我一直非常期待能和各位見面1",
@@ -1452,7 +1606,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "請多多指教",
@@ -1460,7 +1614,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我和那傢伙談過了",
@@ -1468,7 +1622,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這一切的一切全都是我",
@@ -1476,7 +1630,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "什麼叫不是這樣",
@@ -1484,7 +1638,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "走吧",
@@ -1492,7 +1646,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳要不要先去洗澡",
@@ -1500,7 +1654,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我會繼續做自己的夥伴",
@@ -1508,7 +1662,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "可以和我一起過去看看嗎",
@@ -1516,7 +1670,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不想組什麼樂團的",
@@ -1524,7 +1678,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "沒有不可能",
@@ -1532,7 +1686,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "誓言",
@@ -1540,7 +1694,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那些妳全都知道卻一直在背叛她嗎",
@@ -1548,7 +1702,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "原來如此",
@@ -1556,7 +1710,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真是稀奇呢",
@@ -1564,7 +1718,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "所以妳要問什麼",
@@ -1572,7 +1726,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我也很想去喔",
@@ -1580,7 +1734,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這邊這邊",
@@ -1588,7 +1742,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "要是沒有小祥妳們的話我就",
@@ -1596,7 +1750,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "要不要過去看看",
@@ -1604,7 +1758,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "只有我這麼想嗎",
@@ -1612,7 +1766,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "有辦法背負其他人的人生嗎",
@@ -1620,7 +1774,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們一定傷害到妳了吧",
@@ -1628,7 +1782,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "因為我也有點在意",
@@ -1636,7 +1790,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "甚麼都願意做就是這麼沉重的話",
@@ -1644,7 +1798,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我不論如何都想向妳道歉",
@@ -1652,7 +1806,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我實在沒有辦法",
@@ -1660,7 +1814,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "做不來的事就別隨便說出口",
@@ -1668,7 +1822,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "今後不要再和我扯上關係了",
@@ -1676,7 +1830,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這是最後的警告",
@@ -1684,7 +1838,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "沒有人那樣拜託妳",
@@ -1692,7 +1846,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "求求妳",
@@ -1700,7 +1854,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "謝謝妳今天願意來見我",
@@ -1708,7 +1862,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我有哪裡有誤會了",
@@ -1716,7 +1870,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳為什麼要我忘記呢",
@@ -1724,7 +1878,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳是抱著多大的覺悟說出這種話的",
@@ -1732,7 +1886,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "放開我",
@@ -1740,7 +1894,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們本來真的沒有要演奏春日影的",
@@ -1748,7 +1902,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "可是我真的",
@@ -1756,7 +1910,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不要走",
@@ -1764,7 +1918,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "絕對不可能再復活了",
@@ -1772,7 +1926,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那又怎麼樣",
@@ -1780,7 +1934,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳講的話和做的事全都互相矛盾",
@@ -1788,7 +1942,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們以前感情明明那麼好",
@@ -1796,7 +1950,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳也差不多該忘記了吧",
@@ -1804,7 +1958,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真的很對不起",
@@ -1812,7 +1966,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "大家每天都快樂地相處在一起",
@@ -1820,7 +1974,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "可是",
@@ -1828,7 +1982,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳這個人",
@@ -1836,7 +1990,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳們就請便吧",
@@ -1844,7 +1998,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那些跟現在有關係嗎",
@@ -1852,7 +2006,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "什麼跟什麼啊",
@@ -1860,7 +2014,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那個",
@@ -1868,7 +2022,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "也不是這樣",
@@ -1876,7 +2030,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我在這裡再次感謝大家今天願意參加集會",
@@ -1884,7 +2038,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "動機太不單純了",
@@ -1892,7 +2046,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我沒聽過這首歌",
@@ -1900,7 +2054,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳好",
@@ -1908,7 +2062,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "普通和理所當然到底是什麼呢",
@@ -1916,7 +2070,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳不記得了嗎",
@@ -1924,7 +2078,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "理想不會放得太高了嗎",
@@ -1932,7 +2086,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我也會努力看看的",
@@ -1940,7 +2094,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不是按那邊啦",
@@ -1948,7 +2102,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "等一下再來聽聽看吧",
@@ -1956,7 +2110,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這問題問得好",
@@ -1964,7 +2118,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我家裡有",
@@ -1972,7 +2126,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "她和我約好要一輩子組樂團了",
@@ -1980,7 +2134,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳在幹嘛啊",
@@ -1988,7 +2142,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "Soyorin",
@@ -1996,7 +2150,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不是不是",
@@ -2004,7 +2158,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "她笑了",
@@ -2012,7 +2166,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "光是會寫就很厲害了",
@@ -2020,7 +2174,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我",
@@ -2028,7 +2182,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不可能吧",
@@ -2036,7 +2190,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "可以請妳做個自我介紹嗎",
@@ -2044,7 +2198,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我就是有認真想才提這個的啊",
@@ -2052,7 +2206,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "一起共同演奏音樂的命運共同體了",
@@ -2060,7 +2214,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "有人回覆嗎",
@@ -2068,7 +2222,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳說什麼？",
@@ -2076,7 +2230,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "他沒有說要退出",
@@ -2084,7 +2238,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "對不起",
@@ -2092,7 +2246,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "唱得很棒喔",
@@ -2100,7 +2254,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "請慢慢享用",
@@ -2108,7 +2262,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "好厲害喔",
@@ -2116,7 +2270,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "畢竟我們不過是群一丘之貂罷了",
@@ -2124,7 +2278,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我就不用了",
@@ -2132,7 +2286,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "是沒關係沒錯",
@@ -2140,7 +2294,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "她也會緊張吧",
@@ -2148,15 +2302,18 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真讓人期待",
         "file_name": "真讓人期待.jpg",
         "description": "出自第3集，祥子表示要給眾人聽demo的鋼琴曲，此時的畫面帶到祥子，但說話的是爽世",
-        "tags": ["祥子", "爽世"],
+        "tags": [
+            "祥子",
+            "爽世"
+        ],
         "author": "爽世",
-        "episode": 3
+        "episode": "mygo_3"
     },
     {
         "name": "麻煩妳了",
@@ -2164,7 +2321,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "以前時有耳聞",
@@ -2172,7 +2329,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "好可以了",
@@ -2180,7 +2337,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "一起加油吧",
@@ -2188,7 +2345,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳叫什麼名字",
@@ -2196,7 +2353,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這首是我的",
@@ -2204,7 +2361,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不知道",
@@ -2212,7 +2369,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "讓人說不出話來了",
@@ -2220,7 +2377,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "請妳不要生小睦的氣喔",
@@ -2228,7 +2385,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "全都失敗了",
@@ -2236,7 +2393,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那首歌真的很棒呢",
@@ -2244,7 +2401,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "可以吃了嗎",
@@ -2252,7 +2409,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "太棒了",
@@ -2260,7 +2417,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不是啊",
@@ -2268,7 +2425,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "現在的我們像是一盤散沙",
@@ -2276,7 +2433,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "看完了",
@@ -2284,7 +2441,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我一直非常期待能和各位見面",
@@ -2292,7 +2449,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我也好想看看喔",
@@ -2300,7 +2457,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我要封鎖他",
@@ -2308,7 +2465,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不會有問題的",
@@ -2316,7 +2473,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "想喝什麼都可以自己拿",
@@ -2324,7 +2481,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不會吧",
@@ -2332,7 +2489,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "讓我深深受到感動",
@@ -2340,7 +2497,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "畢竟這是一輩子的事",
@@ -2348,7 +2505,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "沒在開玩笑我是認真的",
@@ -2356,7 +2513,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這布局可說是堅若磐石",
@@ -2364,7 +2521,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我會為妳加油的",
@@ -2372,7 +2529,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "好好說明清楚",
@@ -2380,7 +2537,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "是這樣嗎",
@@ -2388,7 +2545,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們是MyGO",
@@ -2396,7 +2553,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "已經算跨出一大步了喔",
@@ -2404,7 +2561,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "爽世：太好了",
@@ -2412,7 +2569,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "就說我不用了啦",
@@ -2420,7 +2577,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "It's my go耶, it's my go",
@@ -2428,7 +2585,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "祥子是這樣嗎",
@@ -2436,7 +2593,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那是歌詞嗎",
@@ -2444,7 +2601,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我先去一下洗手間",
@@ -2452,7 +2609,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "祝妳幸福",
@@ -2460,7 +2617,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我都還沒好好告訴過妳",
@@ -2468,7 +2625,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "要演奏什麼音樂",
@@ -2476,7 +2633,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那個誓言是騙人的",
@@ -2484,7 +2641,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳唱得簡直太棒了",
@@ -2492,7 +2649,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我可以用嗎",
@@ -2500,7 +2657,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "是這種感覺啊",
@@ -2508,7 +2665,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真不愧是人氣寵兒",
@@ -2516,7 +2673,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "真恐怖",
@@ -2524,7 +2681,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "現在正是復權的時刻",
@@ -2532,7 +2689,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這樣太奇怪了吧",
@@ -2540,7 +2697,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我好想成為人類啊",
@@ -2548,7 +2705,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "人類真是殘酷",
@@ -2556,7 +2713,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們一起叫吧",
@@ -2564,7 +2721,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "這些該不會都是歌詞吧",
@@ -2572,7 +2729,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "妳只不過是一個學生",
@@ -2580,7 +2737,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "盯...",
@@ -2588,7 +2745,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我看看",
@@ -2596,7 +2753,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "好溫柔",
@@ -2604,7 +2761,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "或許也不是真的不可能吧",
@@ -2612,7 +2769,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我都說一直都有在看了啊",
@@ -2620,7 +2777,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "一丘之貂",
@@ -2628,7 +2785,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "我們大家都很受傷",
@@ -2636,7 +2793,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "不是這樣的2",
@@ -2644,7 +2801,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "是啊(開心版)",
@@ -2652,7 +2809,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "等一下妳是認真的嗎",
@@ -2660,7 +2817,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "難道妳是第一次來嗎",
@@ -2668,7 +2825,7 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "能不能也教我用呢",
@@ -2676,38 +2833,41 @@
         "description": "",
         "tags": [],
         "author": "",
-        "episode": 0
+        "episode": "mygo_0"
     },
     {
         "name": "那傢伙根本就不打算組新樂團",
         "file_name": "那傢伙根本就不打算組新樂團.jpg",
         "description": "",
         "tags": [],
-        "author": "",
-        "episode": 0
+        "author": "立希",
+        "episode": "mygo_0"
     },
     {
         "name": "初華：太好了",
         "file_name": "太好了3.jpg",
         "description": "",
         "tags": [],
-        "author": "",
-        "episode": 0
+        "author": "初華",
+        "episode": "mygo_0"
     },
     {
         "name": "貓貓喝水",
         "file_name": "貓貓喝水.jpg",
         "description": "",
         "tags": [],
-        "author": "",
-        "episode": 0
+        "author": "樂奈",
+        "episode": "mygo_0"
     },
     {
         "name": "那傢伙竟敢無視燈",
         "file_name": "那傢伙竟敢無視燈.jpg",
         "description": "出自第9集，Rikki知道爽世無視燈之後的反應。",
-        "tags": ["立希", "燈"],
+        "tags": [
+            "立希",
+            "燈"
+        ],
         "author": "立希",
-        "episode": 9
+        "episode": "mygo_9"
     }
 ]
