@@ -13,8 +13,8 @@ const fuzzyReplacements: Record<string, string[]> = {
   "姊": ["你"],
   "他": ["她"],
   "她": ["他"],
-  "欽": ["耶"],
-  "耶": ["欽"],
+  "欸": ["耶"],
+  "耶": ["欸"],
 };
 
 function generateFuzzyVariants(keyword: string): Set<string> {
@@ -31,36 +31,6 @@ function generateFuzzyVariants(keyword: string): Set<string> {
   return variants;
 }
 
-function calculateScore(keyword: string, text: string): number {
-  if (keyword === text) {
-    return 15; // High score for exact match
-  }
-
-  let score = 0;
-  if (text.includes(keyword)) {
-    score += 5; // Lower base score for containing substring, especially for short keywords
-  }
-
-  let maxContinuousMatch = 0;
-  for (let i = 0; i < keyword.length; i++) {
-    for (let j = i + 1; j <= keyword.length; j++) {
-      if (text.includes(keyword.substring(i, j))) {
-        maxContinuousMatch = Math.max(maxContinuousMatch, j - i);
-      }
-    }
-  }
-
-  if (maxContinuousMatch > 1) {
-    score += maxContinuousMatch;
-  }
-
-  return score;
-}
-
-const convertToTraditional = async (text: string): Promise<string> => {
-  return await converter.convertPromise(text);
-};
-
 export default defineEventHandler((event) => {
   const query = getQuery(event);
   const queryKeyword: string = query.keyword as string ?? '';
@@ -75,38 +45,31 @@ export default defineEventHandler((event) => {
   for (const item of data_mapping) {
     const name = item.name;
     let totalScore = 0;
-    let keywordFullyMatched = true;
 
     for (const keyword of keywords) {
-      const fuzzyVariants = fuzzy ? generateFuzzyVariants(keyword) : new Set([keyword]);
-      let maxScoreForKeyword = 0;
-      let keywordMatched = false;
+      const variants = fuzzy ? generateFuzzyVariants(keyword) : new Set([keyword]);
+      let matched = false;
 
-      for (const variant of fuzzyVariants) {
-        if (!fuzzy) {
-          if (name.includes(variant)) {
-            maxScoreForKeyword = 15; // High score for exact match
-            keywordMatched = true;
+      for (const variant of variants) {
+        if (name.includes(variant)) {
+          totalScore += variant.length >= 2 ? 10 : 5;
+          matched = true;
+          break;
+        }
+
+        if (fuzzy && variant.length > 2 && name.length > 2) {
+          const dist = leven_distance(variant, name);
+          const ratio = (variant.length - dist) / variant.length;
+          if (dist <= 2 && ratio >= 0.5) {
+            totalScore += 3;
+            matched = true;
             break;
-          }
-        } else {
-          if (name.includes(variant)) {
-            maxScoreForKeyword = Math.max(maxScoreForKeyword, 10);
-            keywordMatched = true;
-          } else if (variant.length > 2 && name.length > 2 && leven_distance(variant, name) <= 2) {
-            const similarityRatio = (variant.length - leven_distance(variant, name)) / variant.length;
-            if (similarityRatio >= 0.5 && name.includes(variant)) {
-              maxScoreForKeyword = Math.max(maxScoreForKeyword, 3);
-              keywordMatched = true;
-            }
           }
         }
       }
 
-      if (maxScoreForKeyword > 0) {
-        totalScore += maxScoreForKeyword;
-      } else {
-        keywordFullyMatched = false;
+      if (!matched) {
+        totalScore = 0;
         break;
       }
     }
@@ -115,11 +78,9 @@ export default defineEventHandler((event) => {
       scoredResults.push({ url: baseURL + item.file_name, alt: item.name, score: totalScore });
     }
 
-    for (const keyword of keywords) {
-      if (name.includes(keyword)) {
-        fullMatchResults.push({ url: baseURL + item.file_name, alt: item.name, score: 15 });
-        break;
-      }
+    // 保留精準匹配（不重複）
+    if (keywords.some(k => name.includes(k))) {
+      fullMatchResults.push({ url: baseURL + item.file_name, alt: item.name, score: 15 });
     }
   }
 

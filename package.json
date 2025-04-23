@@ -11,6 +11,7 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.9",
     "@kikiutils/types": "^1.0.1",
+    "@types/opencc-js": "^1.0.3",
     "@unocss/nuxt": "^0.58.0",
     "@vueuse/nuxt": "^10.7.0",
     "nuxt": "^3.8.2",

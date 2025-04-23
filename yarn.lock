@@ -1359,6 +1359,11 @@
   dependencies:
     undici-types "~6.19.2"
 
+"@types/opencc-js@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@types/opencc-js/-/opencc-js-1.0.3.tgz#8168bbdd245fc276a3ae744c114ab1fd630a4a81"
+  integrity sha512-TENp7YkI2hNlc4dplhivSHj0hU4DORCK56VY7rniaSfA5f87uD3uv+kPIRuH9h64TGv976iVFi4gEHZZtS2y8Q==
+
 "@types/resolve@1.20.2":
   version "1.20.2"
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
