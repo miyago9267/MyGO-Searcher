@@ -59,7 +59,7 @@ const filters = ref({
         { label: '12', value: 'mujica_12' },
         { label: '13', value: 'mujica_13' },
     ],
-    MyGO人物: [
+    人物: [
         { label: '燈', value: '燈' },
         { label: '愛音', value: '愛音' },
         { label: '立希', value: '立希' },
