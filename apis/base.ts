@@ -1,5 +1,9 @@
-export const getAllImageList = async (query: string, config: any) => {
-	let API_BASE_URL = config.public.API_BASE_URL;
+import { useRuntimeConfig } from '#app'
+
+export const getAllImageList = async (query: string) => {
+	const config = useRuntimeConfig();
+	const API_BASE_URL = config.public.apiBase;
+
 	try {
 		let url = '';
 		if (query) {

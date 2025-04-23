@@ -9,8 +9,6 @@
 import { watch, ref, onMounted } from 'vue';
 import { getAllImageList } from '~/apis/base';
 
-const config = useRuntimeConfig();
-
 interface img {
     url: string,
     alt: string
@@ -18,23 +16,17 @@ interface img {
     episode: string
 }
 
-const images = ref<img[]>([
-    // 'https://i.imgur.com/olWo9xr.jpg',
-    // 'https://i.imgur.com/83sKGOi.jpg',
-    // 'https://i.imgur.com/XSzy1Hq.jpg',
-    // 'https://i.imgur.com/z5fMg6I.jpg',
-    // 'https://i.imgur.com/rPU8WDd.jpg'
-]);
+const images = ref<img[]>([]);
 
 const props = defineProps({
     searchQuery: String,
     filterQuery: Object
 });
 
-const getImageList = async (query: string, config: any) => {
+const getImageList = async (query: string) => {
     try {
         // images.value = await getAllImageList(query, config);
-        const allFiles = await getAllImageList(query, config);
+        const allFiles = await getAllImageList(query);
         images.value = allFiles.map((item: img) => ({
             url: item.url,
             alt: item.alt,
@@ -66,11 +58,11 @@ const filteredImages = computed(() => {
 
 // 監視 searchQuery 變化
 watch(() => props.searchQuery, (newQuery) => {
-    getImageList(newQuery || '', config);
+    getImageList(newQuery || '');
 }, { immediate: true });
 
 onMounted(() => {
-    getImageList('', config);
+    getImageList('');
 });
 
 </script>
