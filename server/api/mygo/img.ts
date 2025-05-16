@@ -3,7 +3,7 @@ import { leven_distance }  from '../../algo/levenshtein';
 import * as OpenCC from 'opencc-js';
 import { defineEventHandler } from 'h3';
 
-const baseURL = 'https://drive.miyago9267.com/d/file/img/mygo/';
+const baseURL = process.env.NUXT_IMG_BASE_URL;
 const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 const custom_keymap = customKeyMap;
 const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
