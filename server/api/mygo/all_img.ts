@@ -1,7 +1,7 @@
 import { jsonData } from '../../utils/dataLoader';
 import { defineEventHandler } from 'h3';
 
-const baseURL = process.env.NUXT_IMG_BASE_URL;
+const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
 const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 
 export const getPicList = () => {
