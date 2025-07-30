@@ -11,4 +11,4 @@ export const CopyToClipboard = (text: string) => {
         return;
     }
     copyToClipboard(text);
-    }
+}

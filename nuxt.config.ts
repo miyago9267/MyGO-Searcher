@@ -34,7 +34,12 @@ export default defineNuxtConfig({
 		'@element-plus/nuxt'
 	],
 
-	nitro: { compressPublicAssets: true },
+	nitro: { 
+		compressPublicAssets: true,
+		experimental: {
+			wasm: true
+		}
+	},
 
 	purgecss: {
 		enabled: false,
@@ -88,6 +93,7 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		NUXT_IMG_BASE_URL: process.env.NUXT_IMG_BASE_URL || 'https://default.url/',
+		API_BASE_URL: process.env.API_BASE_URL || 'https://default.url/api/v1',
 		public: {
 			apiBase: process.env.API_BASE_URL || 'default_value',
 		}
