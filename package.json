@@ -3,6 +3,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build --dotenv ./.env.production",
+    "build:docker": "./docker-run.sh",
     "dev": "nuxt dev --dotenv ./.env.development",
     "generate": "nuxt generate --dotenv ./.env.production",
     "postinstall": "nuxt prepare",
