@@ -8,9 +8,5 @@ export interface ImageItem {
 	filename?: string
 }
 
-// Filter options for images
-export interface FilterOptions {
-  MyGO集數: string[]
-  AveMujica集數: string[]
-  MyGO人物: string[]
-}
+// Re-export FilterOptions from filter.ts to maintain compatibility
+export type { FilterOptions } from './filter'

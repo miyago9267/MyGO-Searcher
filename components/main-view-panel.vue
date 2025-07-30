@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
     filterQuery: () => ({
         MyGO集數: [],
         AveMujica集數: [],
-        MyGO人物: []
+        人物: []
     })
 })
 
@@ -65,7 +65,7 @@ const {
 const filterQuery = computed(() => props.filterQuery || {
     MyGO集數: [],
     AveMujica集數: [],
-    MyGO人物: []
+    人物: []
 })
 
 // 使用篩選功能

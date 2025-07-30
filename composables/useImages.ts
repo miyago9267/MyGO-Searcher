@@ -220,7 +220,7 @@ export function useImageFilter(images: Ref<ImageItem[]>, filters: Ref<FilterOpti
 	const filteredImages = computed(() => {
 		if (!filters.value.MyGO集數?.length &&
 			!filters.value.AveMujica集數?.length &&
-			!filters.value.MyGO人物?.length) {
+			!filters.value.人物?.length) {
 			return images.value
 		}
 
@@ -231,10 +231,10 @@ export function useImageFilter(images: Ref<ImageItem[]>, filters: Ref<FilterOpti
 			const matchesAveMujicaEpisode = !filters.value.AveMujica集數?.length ||
 				filters.value.AveMujica集數.includes(image.episode || '')
 
-			const matchesMyGOCharacter = !filters.value.MyGO人物?.length ||
-				filters.value.MyGO人物.includes(image.author || '')
+			const matchesCharacter = !filters.value.人物?.length ||
+				filters.value.人物.includes(image.author || '')
 
-			return matchesMyGOEpisode && matchesAveMujicaEpisode && matchesMyGOCharacter
+			return matchesMyGOEpisode && matchesAveMujicaEpisode && matchesCharacter
 		})
 	})
 

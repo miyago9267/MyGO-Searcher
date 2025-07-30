@@ -21,7 +21,7 @@ const searchQuery = ref<string>('')
 const filterQuery = ref<FilterOptions>({
   MyGO集數: [],
   AveMujica集數: [],
-  MyGO人物: []
+  人物: []
 })
 
 // 處理搜尋更新
@@ -44,13 +44,5 @@ watch(searchQuery, (newValue) => {
 watch(filterQuery, (newValue) => {
   console.log('篩選條件變化:', newValue)
 }, { deep: true })
-
-// SEO Meta
-useHead({
-  title: 'MyGO! 圖片搜尋器',
-  meta: [
-    { name: 'description', content: 'MyGO! BanG Dream! 圖片搜尋和瀏覽工具' }
-  ]
-})
 
 </script>
