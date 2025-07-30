@@ -1,6 +1,9 @@
 {
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "name": "mygo-searcher",
+  "version": "2.0.0",
   "scripts": {
     "build": "nuxt build --dotenv ./.env.production",
     "build:docker": "./docker-run.sh",
