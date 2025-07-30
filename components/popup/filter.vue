@@ -48,16 +48,16 @@
       <!-- 操作按鈕 -->
       <div class="flex gap-2 mt-4">
         <button 
-          @click="handleReset" 
-          class="flex-1 p-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-        >
-          重置
-        </button>
-        <button 
           @click="handleApply" 
           class="flex-1 p-2 bg-tggray-100 text-white rounded hover:bg-tggray-200 transition-colors"
         >
           應用篩選
+        </button>
+        <button 
+          @click="handleReset" 
+          class="flex-1 p-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+        >
+          重置
         </button>
       </div>
     </div>
