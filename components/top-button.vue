@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 const backToTop = () => {
-    if (process.client) {
+    if (typeof window !== 'undefined') {
         window.scrollTo(0, 0);
     }
 };

@@ -83,11 +83,6 @@ const toggleFilter = () => {
     showFilter.value = !showFilter.value;
 };
 
-const applyFilters = () => {
-    console.log('Applied Filters:', selectedFilters.value);
-    toggleFilter();
-};
-
 const emitFilters = () => {
     emit('update:filter', selectedFilters.value);
     toggleFilter();
