@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2025-XX-XX
+
+### Features (Version 2.0.0)
+
+- 重構API路由，統一使用RESTful格式
+- 加入Filter Options功能，可選擇MyGO集數、AveMujica集數和人物
+
+### Changed (Version 2.0.0)
+
+- 調整Filter Options的資料結構，統一使用`FilterOptions`類型
+- 更新前端載入邏輯，從全部圖片載入改為動態滾動載入
+
 ## [Version 1.1.2] - 2024-11-14
 
 ### Features (Version 1.1.2)
