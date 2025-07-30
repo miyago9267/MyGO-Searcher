@@ -8,5 +8,12 @@
     "strictPropertyInitialization": false, // 關閉屬性初始化檢查
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"],
+      "~~/*": ["./*"],
+      "@@/*": ["./*"]
+    }
   }
 }

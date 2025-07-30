@@ -1,5 +1,5 @@
-import { useRuntimeConfig } from '#app'
-import type { ApiResponse, ApiError } from './types'
+import { useRuntimeConfig } from 'nuxt/app'
+import type { ApiResponse, ApiError } from '~/types/api'
 
 class ApiClient {
   private baseUrl: string

@@ -1,11 +1,12 @@
 // API response types
-export interface ImageItem {
-  id: string
-  url: string
-  alt: string
-  author?: string
-  episode?: string
-  filename?: string
+export interface ApiResponse<T = any> {
+  data: T
+  meta?: PaginationMeta | SearchMeta | RandomMeta
+}
+
+export interface ApiError {
+  statusCode: number
+  statusMessage: string
 }
 
 export interface PaginationMeta {
@@ -25,16 +26,6 @@ export interface SearchMeta extends PaginationMeta {
 export interface RandomMeta {
   count: number
   requested: number
-}
-
-export interface ApiResponse<T = ImageItem[]> {
-  data: T
-  meta?: PaginationMeta | SearchMeta | RandomMeta
-}
-
-export interface ApiError {
-  statusCode: number
-  statusMessage: string
 }
 
 // Query parameters

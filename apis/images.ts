@@ -5,7 +5,7 @@ import type {
   SearchParams, 
   PaginationParams, 
   RandomParams 
-} from './types'
+} from '~/types'
 
 /**
  * Images API service
