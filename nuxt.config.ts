@@ -94,6 +94,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		NUXT_IMG_BASE_URL: process.env.NUXT_IMG_BASE_URL || 'https://default.url/',
 		API_BASE_URL: process.env.API_BASE_URL || 'https://default.url/api/v1',
+		MONGODB_CONNECT_URL: process.env.MONGODB_CONNECT_URL || 'mongodb://localhost:27017/mygo-searcher',
+		MONGODB_COLLECTION: process.env.MONGODB_COLLECTION || 'images',
 		public: {
 			apiBase: process.env.API_BASE_URL || 'default_value',
 		}

@@ -61,7 +61,7 @@ class ApiClient {
       }
 
       const data = await response.json()
-      console.log('API response data:', data)
+      // console.log('API response data:', data)
       return data
     } catch (error) {
       console.error(`API request failed for ${url}:`, error)
