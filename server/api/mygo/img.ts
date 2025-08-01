@@ -43,7 +43,7 @@ export default defineEventHandler((event) => {
   const customKeymapResults: Array<{ url: string; alt: string; score: number }> = [];
 
   for (const item of data_mapping) {
-    const name = item.name;
+    const name = item.alt;
     let totalScore = 0;
 
     for (const keyword of keywords) {
@@ -75,12 +75,12 @@ export default defineEventHandler((event) => {
     }
 
     if (totalScore > 0) {
-      scoredResults.push({ url: baseURL + item.file_name, alt: item.name, score: totalScore });
+      scoredResults.push({ url: baseURL + item.filename, alt: item.alt, score: totalScore });
     }
 
     // 保留精準匹配（不重複）
     if (keywords.some(k => name.includes(k))) {
-      fullMatchResults.push({ url: baseURL + item.file_name, alt: item.name, score: 15 });
+      fullMatchResults.push({ url: baseURL + item.filename, alt: item.alt, score: 15 });
     }
   }
 
@@ -88,10 +88,10 @@ export default defineEventHandler((event) => {
     const keywordValue = custom_keymap[keyword]?.value || [];
     customKeymapResults.push(
       ...data_mapping
-        .filter((item) => keywordValue.includes(item.name))
+        .filter((item) => keywordValue.includes(item.alt))
         .map((item) => ({
-          url: baseURL + item.file_name,
-          alt: item.name,
+          url: baseURL + item.filename,
+          alt: item.alt,
           score: 15,
         }))
     );

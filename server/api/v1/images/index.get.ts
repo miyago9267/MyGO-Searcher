@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 		const limit = Math.min(Math.max(parseInt(query.limit as string) || 20, 1), 100); // 限制最大100張
 
 		// 異步載入資料
-		const data_mapping = await getJsonData();
+		let data_mapping = await getJsonData();
 
 		// 檢查數據是否可用
 		if (!data_mapping || data_mapping.length === 0) {
@@ -37,12 +37,13 @@ export default defineEventHandler(async (event) => {
 		}
 
 		const allImages = data_mapping.map((item: any) => ({
-			id: item.file_name.replace(/\.[^/.]+$/, ""), // 移除副檔名作為ID
-			url: baseURL + item.file_name,
-			alt: item.name,
+			id: item.id,
+			url: baseURL + item.filename,
+			alt: item.alt,
 			author: item.author,
 			episode: item.episode,
-			filename: item.file_name
+			filename: item.filename,
+			tags: item.tags || []
 		}));
 
 		const totalCount = allImages.length;

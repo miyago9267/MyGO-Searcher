@@ -6,6 +6,7 @@ export interface ImageItem {
 	author?: string
 	episode?: string
 	filename?: string
+	tags?: string[]
 }
 
 // Re-export FilterOptions from filter.ts to maintain compatibility

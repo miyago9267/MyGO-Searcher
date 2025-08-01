@@ -1,15 +1,15 @@
-import { jsonData } from '../../../utils/dataLoader';
+import { getJsonData } from '../../../utils/dataLoader';
 import { defineEventHandler, getRouterParam, createError } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
-const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 
 /**
  * GET /api/v1/images/{id}
  * 獲取特定圖片詳情
  */
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   try {
+    const data_mapping = await getJsonData();
     const id = getRouterParam(event, 'id');
 
     if (!id) {
@@ -21,7 +21,7 @@ export default defineEventHandler((event) => {
 
     // 查找圖片 (通過file_name去除副檔名比對ID)
     const imageItem = data_mapping.find((item: any) => {
-      const itemId = item.file_name.replace(/\.[^/.]+$/, "");
+      const itemId = item.id;
       return itemId === id;
     });
 
@@ -34,12 +34,12 @@ export default defineEventHandler((event) => {
 
     return {
       data: {
-        id,
-        url: baseURL + imageItem.file_name,
-        alt: imageItem.name,
+        id: imageItem.id,
+        url: baseURL + imageItem.filename,
+        alt: imageItem.alt,
         author: imageItem.author,
         episode: imageItem.episode,
-        filename: imageItem.file_name
+        filename: imageItem.filename
       }
     };
 

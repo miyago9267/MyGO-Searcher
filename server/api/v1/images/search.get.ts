@@ -1,4 +1,4 @@
-import { jsonData, customKeyMap } from '../../../utils/dataLoader';
+import { getJsonData, customKeyMap } from '../../../utils/dataLoader';
 import { leven_distance } from '../../../algo/levenshtein';
 import * as OpenCC from 'opencc-js';
 import { defineEventHandler, getQuery, createError } from 'h3';
@@ -40,8 +40,9 @@ function generateFuzzyVariants(keyword: string): Set<string> {
  * - page: 頁碼 (預設1)
  * - limit: 每頁數量 (預設20)
  */
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
 	try {
+		const data_mapping = await getJsonData();
 		const query = getQuery(event);
 		const queryKeyword: string = query.q as string || query.keyword as string || '';
 		const page = parseInt(query.page as string) || 1;
@@ -62,8 +63,8 @@ export default defineEventHandler((event) => {
 		let fullMatchResults: Array<{ url: string; alt: string; score: number; id: string; author?: string; episode?: string }> = [];
 		const customKeymapResults: Array<{ url: string; alt: string; score: number; id: string; author?: string; episode?: string }> = [];
 
-		for (const item of data_mapping) {
-			const name = item.name;
+		data_mapping.forEach((item, index) => {
+			const name = item.alt;
 			let totalScore = 0;
 
 			for (const keyword of keywords) {
@@ -95,9 +96,9 @@ export default defineEventHandler((event) => {
 			}
 
 			const imageItem = {
-				id: item.file_name.replace(/\.[^/.]+$/, ""),
-				url: baseURL + item.file_name,
-				alt: item.name,
+				id: index.toString(),
+				url: baseURL + item.filename,
+				alt: item.alt,
 				author: item.author,
 				episode: item.episode,
 				score: totalScore
@@ -111,23 +112,23 @@ export default defineEventHandler((event) => {
 			if (keywords.some(k => name.includes(k))) {
 				fullMatchResults.push({ ...imageItem, score: 15 });
 			}
-		}
+		});
 
 		// 自定義關鍵字映射
 		if (custom_keymap.hasOwnProperty(keyword)) {
 			const keywordValue = custom_keymap[keyword]?.value || [];
-			customKeymapResults.push(
-				...data_mapping
-					.filter((item) => keywordValue.includes(item.name))
-					.map((item) => ({
-						id: item.file_name.replace(/\.[^/.]+$/, ""),
-						url: baseURL + item.file_name,
-						alt: item.name,
+			data_mapping.forEach((item, index) => {
+				if (keywordValue.includes(item.alt)) {
+					customKeymapResults.push({
+						id: index.toString(),
+						url: baseURL + item.filename,
+						alt: item.alt,
 						author: item.author,
 						episode: item.episode,
 						score: 15,
-					}))
-			);
+					});
+				}
+			});
 		}
 
 		// 合併結果並去重

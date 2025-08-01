@@ -7,8 +7,8 @@ const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 export const getPicList = () => {
 	try {
 		const allFiles = data_mapping.map((item: any) => ({
-			url: baseURL + item.file_name,
-			alt: item.name,
+			url: baseURL + item.filename,
+			alt: item.alt,
 			author: item.author,
 			episode: item.episode,
 		}));
