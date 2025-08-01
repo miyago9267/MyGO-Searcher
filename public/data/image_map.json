@@ -3747,15 +3747,6 @@
     "tags": []
   },
   {
-    "id": 412,
-    "alt": "妳就不要再管我了",
-    "filename": "妳就不要再管我了_0545.jpg",
-    "author": "",
-    "episode": "mujica_1",
-    "description": "妳就不要再管我了",
-    "tags": []
-  },
-  {
     "id": 413,
     "alt": "妳怕會有人爆料嗎",
     "filename": "妳怕會有人爆料嗎_0170.jpg",
@@ -3777,15 +3768,6 @@
     "id": 415,
     "alt": "妳真的什麼都不打算問嗎",
     "filename": "妳真的什麼都不打算問嗎_0221.jpg",
-    "author": "",
-    "episode": "mujica_1",
-    "description": "妳真的什麼都不打算問嗎",
-    "tags": []
-  },
-  {
-    "id": 416,
-    "alt": "妳真的什麼都不打算問嗎",
-    "filename": "妳真的什麼都不打算問嗎_0222.jpg",
     "author": "",
     "episode": "mujica_1",
     "description": "妳真的什麼都不打算問嗎",
@@ -7357,11 +7339,11 @@
   },
   {
     "id": 813,
-    "alt": "汝避已成之事,而求當為之事",
-    "filename": "(#5_汝避已成之事_而求當為之事)_0710.jpg",
+    "alt": "汝避已成之事，而求當為之事",
+    "filename": "汝避已成之事_而求當為之事_0710.jpg",
     "author": "",
     "episode": "mujica_4",
-    "description": "(#5_汝避已成之事,而求當為之事)",
+    "description": "預告，汝避已成之事，而求當為之事",
     "tags": []
   },
   {
@@ -8329,11 +8311,11 @@
   },
   {
     "id": 921,
-    "alt": "(#6_掌握心靈)",
-    "filename": "(#6_掌握心靈)_0710.jpg",
+    "alt": "掌握心靈",
+    "filename": "6_掌握心靈_0710.jpg",
     "author": "",
     "episode": "mujica_5",
-    "description": "(#6_掌握心靈)",
+    "description": "預告，掌握心靈",
     "tags": []
   },
   {
@@ -8365,11 +8347,11 @@
   },
   {
     "id": 925,
-    "alt": "不是%",
-    "filename": "不是%_0122.jpg",
+    "alt": "不是",
+    "filename": "不是_0122.jpg",
     "author": "",
     "episode": "mujica_5",
-    "description": "不是%",
+    "description": "不是",
     "tags": []
   },
   {
@@ -8689,11 +8671,11 @@
   },
   {
     "id": 961,
-    "alt": "是的%是的%",
-    "filename": "是的%是的%_0670.jpg",
+    "alt": "是的，是的",
+    "filename": "是的_是的_0670.jpg",
     "author": "",
     "episode": "mujica_5",
-    "description": "是的%是的%",
+    "description": "是的，是的",
     "tags": []
   },
   {
@@ -8878,11 +8860,11 @@
   },
   {
     "id": 982,
-    "alt": "(#7雨後天晴)",
-    "filename": "(#7雨後天晴)_0710.jpg",
+    "alt": "雨後天晴",
+    "filename": "雨後天晴_0710.jpg",
     "author": "",
     "episode": "mujica_6",
-    "description": "(#7雨後天晴)",
+    "description": "預告，雨後天晴",
     "tags": []
   },
   {
@@ -9535,11 +9517,11 @@
   },
   {
     "id": 1055,
-    "alt": "等-下_+[=%`]",
-    "filename": "等-下_+[=%`]_0244.jpg",
+    "alt": "等一下",
+    "filename": "等一下_0244.jpg",
     "author": "",
     "episode": "mujica_6",
-    "description": "等-下_+[=%`]",
+    "description": "等一下",
     "tags": []
   },
   {
@@ -10256,7 +10238,7 @@
   {
     "id": 1135,
     "alt": "不要...不要...不要...",
-    "filename": "不要,.不要...不要_0029.jpg",
+    "filename": "不要_不要_不要_0029.jpg",
     "author": "",
     "episode": "mujica_8",
     "description": "不要x3",
