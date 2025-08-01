@@ -8,8 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Features (Version 2.0.0)
 
-- 重構API路由，統一使用RESTful格式
+- 重構API路由，統一使用RESTful格式，舊版API暫時保留作為過渡，未來則不再更新及支援
+      - `GET /api/v1/images/{id}` 獲取特定id圖片
+      - `GET /api/v1/images` 獲取所有圖片
+      - `GET /api/v1/search` 搜尋圖片
+      - `GET /api/v1/random` 隨機獲取圖片
+      > 詳見 [API Documentation](docs/API.md)
+- 更新圖片資料結構，使用新的資料接口格式
 - 加入Filter Options功能，可選擇MyGO集數、AveMujica集數和人物
+- 正式加入AveMujica圖包
 
 ### Changed (Version 2.0.0)
 

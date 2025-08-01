@@ -1,11 +1,11 @@
-import { jsonData } from '../../utils/dataLoader';
+import { getJsonData } from '../../utils/dataLoader';
 import { defineEventHandler } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
-const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 
-export const getPicList = () => {
+export const getPicList = async () => {
 	try {
+		const data_mapping = await getJsonData();
 		const allFiles = data_mapping.map((item: any) => ({
 			url: baseURL + item.filename,
 			alt: item.alt,
@@ -18,6 +18,6 @@ export const getPicList = () => {
 	}
 };
 
-export default defineEventHandler((event) => {
-	return getPicList();
+export default defineEventHandler(async(event) => {
+	return await getPicList();
 });

@@ -1,10 +1,9 @@
-import { jsonData, customKeyMap } from '../../utils/dataLoader';
+import { getJsonData, customKeyMap } from '../../utils/dataLoader';
 import { leven_distance }  from '../../algo/levenshtein';
 import * as OpenCC from 'opencc-js';
 import { defineEventHandler } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
-const data_mapping = Array.isArray(jsonData) ? jsonData : [];
 const custom_keymap = customKeyMap;
 const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
 
@@ -31,7 +30,8 @@ function generateFuzzyVariants(keyword: string): Set<string> {
   return variants;
 }
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
+  const data_mapping = await getJsonData();
   const query = getQuery(event);
   const queryKeyword: string = query.keyword as string ?? '';
   const keyword = converter(queryKeyword)
