@@ -13,13 +13,14 @@
       </button>
       
       <!-- 篩選器內容 -->
-      <div class="space-x-4 flex justify-around">
+      <div class="flex justify-around">
         <div 
           v-for="(options, category) in filters" 
           :key="category" 
           class="border-b border-gray-300 pb-4"
         >
-          <h3 class="mb-2 text-lg font-bold">{{ category }}</h3>
+          <h3 class="mb-2 text-lg font-bold">{{ category === '人物' ? category + ' (WIP)' : category }}</h3>
+          <div class="h-px bg-gray-300 mb-3"></div>
           <div class="grid grid-cols-1 gap-2">
             <div 
               v-for="option in options" 
@@ -32,11 +33,16 @@
                 :value="option.value"
                 :checked="localSelectedFilters[String(category)]?.includes(option.value)"
                 @change="(event) => handleFilterChange(String(category), option.value, event)"
-                class="mr-2" 
+                class="sr-only" 
               />
               <label 
                 :for="`${category}-${option.value}`" 
-                class="text-sm"
+                :class="[
+                  'text-sm cursor-pointer select-none flex-1 pl-2 py-[4px] rounded-md border transition-all duration-200',
+                  localSelectedFilters[String(category)]?.includes(option.value)
+                    ? 'text-white border-blue-500'
+                    : 'text-gray-700 border-gray-300 hover:bg-gray-600'
+                ]"
               >
                 {{ option.label }}
               </label>
@@ -47,12 +53,6 @@
       
       <!-- 操作按鈕 -->
       <div class="flex gap-2 mt-4">
-        <button 
-          @click="handleApply" 
-          class="flex-1 p-2 bg-tggray-100 text-white rounded hover:bg-tggray-200 transition-colors"
-        >
-          應用篩選
-        </button>
         <button 
           @click="handleReset" 
           class="flex-1 p-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
@@ -65,19 +65,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import type { FilterPopupProps, FilterOptions } from '~/types/filter'
 
 // Props 和 Emits 定義
 const props = defineProps<FilterPopupProps>()
 const emit = defineEmits<{
   'update:selectedFilters': [filters: FilterOptions]
-  'apply': [filters: FilterOptions]
   'close': []
 }>()
 
 // 本地狀態管理
 const localSelectedFilters = ref<FilterOptions>({ ...props.selectedFilters })
+
+// 組件掛載時確保發送初始狀態
+onMounted(() => {
+  emit('update:selectedFilters', { ...localSelectedFilters.value })
+})
 
 // 監聽 props 變化
 watch(
@@ -85,7 +89,7 @@ watch(
   (newFilters) => {
     localSelectedFilters.value = { ...newFilters }
   },
-  { deep: true }
+  { deep: true, immediate: true }
 )
 
 // 處理篩選器變化
@@ -106,6 +110,8 @@ const handleFilterChange = (category: string, value: string, event: Event) => {
       item => item !== value
     )
   }
+
+  console.log(`篩選器更新: ${category} - ${value} (${isChecked ? '選中' : '未選中'})`)
   
   emit('update:selectedFilters', { ...localSelectedFilters.value })
 }
@@ -120,11 +126,6 @@ const handleReset = () => {
   
   localSelectedFilters.value = resetFilters
   emit('update:selectedFilters', resetFilters)
-}
-
-// 處理應用篩選
-const handleApply = () => {
-  emit('apply', { ...localSelectedFilters.value })
 }
 
 // 處理關閉

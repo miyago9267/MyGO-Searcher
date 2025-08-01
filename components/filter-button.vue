@@ -13,7 +13,6 @@
       :filters="filters"
       :selected-filters="selectedFilters"
       @update:selected-filters="handleFilterUpdate"
-      @apply="handleFilterApply"
       @close="handleFilterClose"
     />
   </div>
@@ -33,7 +32,7 @@ const showFilter = ref(false)
 
 // 篩選器配置
 const filters = ref<FilterCategory>({
-  MyGO集數: [
+  'MyGO集數': [
     { label: '1', value: 'mygo_1' },
     { label: '2', value: 'mygo_2' },
     { label: '3', value: 'mygo_3' },
@@ -48,7 +47,7 @@ const filters = ref<FilterCategory>({
     { label: '12', value: 'mygo_12' },
     { label: '13', value: 'mygo_13' },
   ],
-  AveMujica集數: [
+  'AveMujica集數': [
     { label: '1', value: 'mujica_1' },
     { label: '2', value: 'mujica_2' },
     { label: '3', value: 'mujica_3' },
@@ -63,7 +62,7 @@ const filters = ref<FilterCategory>({
     { label: '12', value: 'mujica_12' },
     { label: '13', value: 'mujica_13' },
   ],
-  人物: [
+  '人物': [
     { label: '燈', value: '燈' },
     { label: '愛音', value: '愛音' },
     { label: '立希', value: '立希' },
@@ -91,11 +90,8 @@ const toggleFilter = () => {
 
 const handleFilterUpdate = (newFilters: FilterOptions) => {
   selectedFilters.value = newFilters
-}
-
-const handleFilterApply = (appliedFilters: FilterOptions) => {
-  emit('update:filter', appliedFilters)
-  showFilter.value = false
+  // 直接發送更新給父組件，實現即時篩選
+  emit('update:filter', newFilters)
 }
 
 const handleFilterClose = () => {
