@@ -3,7 +3,7 @@
     class="fixed inset-0 flex items-center justify-center bg-tggray-100 rounded-xl bg-opacity-50 z-50" 
     @click.self="handleClose"
   >
-    <div class="bg-tggray-100 border bg-tggray-50 shadow p-6 w-120 relative">
+    <div class="bg-tggray-100 border rounded-lg bg-tggray-50 shadow p-6 w-120 relative">
       <!-- 關閉按鈕 -->
       <button 
         @click="handleClose" 

@@ -2,9 +2,30 @@
   <div class="relative flex justify-end">
     <button 
       @click="toggleFilter" 
-      class="p-2 bg-tggray-50 border-tggray-50 text-white rounded"
+      class="p-2 bg-tggray-50 border-tggray-50 text-white rounded-full flex items-center gap-2"
     >
-      篩選
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="text-white"
+      >
+        <path
+          d="M3 4C3 3.44772 3.44772 3 4 3H20C20.5523 3 21 3.44772 21 4C21 4.55228 20.5523 5 20 5H4C3.44772 5 3 4.55228 3 4Z"
+          fill="currentColor"
+        />
+        <path
+          d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
+          fill="currentColor"
+        />
+        <path
+          d="M9 20C9 19.4477 9.44772 19 10 19H14C14.5523 19 15 19.4477 15 20C15 20.5523 14.5523 21 14 21H10C9.44772 21 9 20.5523 9 20Z"
+          fill="currentColor"
+        />
+      </svg>
+      篩選器
     </button>
     
     <!-- 使用抽離的篩選器彈出視窗 -->
