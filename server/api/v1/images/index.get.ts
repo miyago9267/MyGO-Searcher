@@ -11,12 +11,18 @@ const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
  * Query parameters:
  * - page: 頁碼 (預設1，從1開始)
  * - limit: 每頁數量 (預設20，建議10-50之間)
+ * - order: 排序方式 (預設按ID升序)
+ *   - id: 按 ID 數字順序排序
+ *   - random: 隨機排序
+ *   - episode: 按集數排序 (mygo_x 優先於 mujica_x)
+ *   - alphabetical: 按字典序排序 (依據 alt 屬性)
  */
 export default defineEventHandler(async (event) => {
 	try {
 		const query = getQuery(event);
 		const page = Math.max(parseInt(query.page as string) || 1, 1);
 		const limit = Math.min(Math.max(parseInt(query.limit as string) || 20, 1), 100); // 限制最大100張
+		const order = query.order as string || 'id';
 
 		// 異步載入資料
 		let data_mapping = await getJsonData();
@@ -65,7 +71,46 @@ export default defineEventHandler(async (event) => {
 		}
 
 		const offset = (page - 1) * limit;
-		const paginatedImages = allImages.slice(offset, offset + limit);
+		const sortedImages = allImages.sort((a, b) => {
+			if (order === 'id') {
+				// ID 排序：轉換為數字進行比較
+				return parseInt(a.id) - parseInt(b.id);
+			} else if (order === 'random') {
+				// 隨機排序
+				return Math.random() - 0.5;
+			} else if (order === 'episode') {
+				// 集數排序：mygo_x 優先於 mujica_x
+				const aEpisode = a.episode || '';
+				const bEpisode = b.episode || '';
+				
+				// 解析集數信息
+				const parseEpisode = (episode: string) => {
+					const match = episode.match(/^(mygo|mujica)_(\d+)$/);
+					if (!match) return { series: 'zzz', number: 0 }; // 未知的放最後
+					return {
+						series: match[1] === 'mygo' ? 'a' : 'b', // mygo 優先
+						number: parseInt(match[2])
+					};
+				};
+				
+				const aParsed = parseEpisode(aEpisode);
+				const bParsed = parseEpisode(bEpisode);
+				
+				// 先按系列排序（mygo 優先），再按集數排序
+				if (aParsed.series !== bParsed.series) {
+					return aParsed.series.localeCompare(bParsed.series);
+				}
+				return aParsed.number - bParsed.number;
+			} else if (order === 'alphabetical') {
+				// 字典序排序（按 alt 屬性）
+				const aAlt = a.alt || '';
+				const bAlt = b.alt || '';
+				return aAlt.localeCompare(bAlt, 'zh', { numeric: true });
+			} else {
+				return 0; // 默認不排序
+			}
+		});
+		const paginatedImages = sortedImages.slice(offset, offset + limit);
 
 		return {
 			data: paginatedImages,
