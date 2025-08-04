@@ -1,35 +1,16 @@
-import { getJsonData, customKeyMap } from '../../../utils/dataLoader';
-import { leven_distance } from '../../../algo/levenshtein';
-import * as OpenCC from 'opencc-js';
+import { 
+	getJsonData, 
+	customKeyMap, 
+	sortImages, 
+	SearchEngine,
+	type SortOrder,
+	type SearchParams,
+	type SearchResponse,
+	type SearchResponseItem
+} from '../../../utils';
 import { defineEventHandler, getQuery, createError } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
-const data_mapping = Array.isArray(jsonData) ? jsonData : [];
-const custom_keymap = customKeyMap;
-const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
-
-const fuzzyReplacements: Record<string, string[]> = {
-	"你": ["姊"],
-	"姊": ["你"],
-	"他": ["她"],
-	"她": ["他"],
-	"欸": ["耶"],
-	"耶": ["欸"],
-};
-
-function generateFuzzyVariants(keyword: string): Set<string> {
-	const variants = new Set<string>([keyword]);
-	for (let i = 0; i < keyword.length; i++) {
-		const char = keyword[i];
-		if (fuzzyReplacements[char]) {
-			for (const replacement of fuzzyReplacements[char]) {
-				const newVariant = keyword.substring(0, i) + replacement + keyword.substring(i + 1);
-				variants.add(newVariant);
-			}
-		}
-	}
-	return variants;
-}
 
 /**
  * GET /api/v1/images/search
@@ -45,165 +26,71 @@ function generateFuzzyVariants(keyword: string): Set<string> {
  *   - episode: 按集數排序 (mygo_x 優先於 mujica_x)
  *   - alphabetical: 按字典序排序 (依據 alt 屬性)
  */
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<SearchResponse> => {
 	try {
-		const data_mapping = await getJsonData();
 		const query = getQuery(event);
-		const queryKeyword: string = query.q as string || query.keyword as string || '';
-		const page = parseInt(query.page as string) || 1;
-		const limit = parseInt(query.limit as string) || 20;
-		const fuzzy = query.fuzzy === 'true';
-		const order = query.order as string || 'id';
+		
+		// 解析搜索參數
+		const searchParams: SearchParams = {
+			query: query.q as string || query.keyword as string || '',
+			fuzzy: query.fuzzy === 'true',
+			page: parseInt(query.page as string) || 1,
+			limit: parseInt(query.limit as string) || 20,
+			order: query.order as string || 'id'
+		};
 
-		if (!queryKeyword.trim()) {
+		// 驗證必要參數
+		if (!searchParams.query.trim()) {
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Search query is required. Use "q" parameter.'
 			});
 		}
 
-		const keyword = converter(queryKeyword);
-		const keywords: string[] = keyword.split(' ');
+		// 載入數據
+		const data = await getJsonData();
+		
+		// 初始化搜索引擎
+		const searchEngine = new SearchEngine(baseURL, customKeyMap);
+		
+		// 執行搜索
+		const searchResults = await searchEngine.searchInData(
+			data, 
+			searchParams.query, 
+			searchParams.fuzzy
+		);
 
-		let scoredResults: Array<{ url: string; alt: string; score: number; id: string; author?: string; episode?: string }> = [];
-		let fullMatchResults: Array<{ url: string; alt: string; score: number; id: string; author?: string; episode?: string }> = [];
-		const customKeymapResults: Array<{ url: string; alt: string; score: number; id: string; author?: string; episode?: string }> = [];
+		// 排序結果
+		const sortedResults = await sortImages(searchResults, searchParams.order as SortOrder);
 
-		data_mapping.forEach((item, index) => {
-			const name = item.alt;
-			let totalScore = 0;
+		// 分頁處理
+		const totalCount = sortedResults.length;
+		const totalPages = Math.ceil(totalCount / searchParams.limit);
+		const offset = (searchParams.page - 1) * searchParams.limit;
+		const paginatedResults = sortedResults.slice(offset, offset + searchParams.limit);
 
-			for (const keyword of keywords) {
-				const variants = fuzzy ? generateFuzzyVariants(keyword) : new Set([keyword]);
-				let matched = false;
-
-				for (const variant of variants) {
-					if (name.includes(variant)) {
-						totalScore += variant.length >= 2 ? 10 : 5;
-						matched = true;
-						break;
-					}
-
-					if (fuzzy && variant.length > 2 && name.length > 2) {
-						const dist = leven_distance(variant, name);
-						const ratio = (variant.length - dist) / variant.length;
-						if (dist <= 2 && ratio >= 0.5) {
-							totalScore += 3;
-							matched = true;
-							break;
-						}
-					}
-				}
-
-				if (!matched) {
-					totalScore = 0;
-					break;
-				}
-			}
-
-			const imageItem = {
-				id: index.toString(),
-				url: baseURL + item.filename,
+		// 構建響應
+		const response: SearchResponse = {
+			data: paginatedResults.map((item): SearchResponseItem => ({
+				id: item.id!,  // 在 SearchEngine 中已確保 id 存在
+				url: item.url,
 				alt: item.alt,
 				author: item.author,
-				episode: item.episode,
-				score: totalScore
-			};
-
-			if (totalScore > 0) {
-				scoredResults.push(imageItem);
-			}
-
-			// 精準匹配
-			if (keywords.some(k => name.includes(k))) {
-				fullMatchResults.push({ ...imageItem, score: 15 });
-			}
-		});
-
-		// 自定義關鍵字映射
-		if (custom_keymap.hasOwnProperty(keyword)) {
-			const keywordValue = custom_keymap[keyword]?.value || [];
-			data_mapping.forEach((item, index) => {
-				if (keywordValue.includes(item.alt)) {
-					customKeymapResults.push({
-						id: index.toString(),
-						url: baseURL + item.filename,
-						alt: item.alt,
-						author: item.author,
-						episode: item.episode,
-						score: 15,
-					});
-				}
-			});
-		}
-
-		// 合併結果並去重
-		const combinedResultsMap = new Map<string, any>();
-		[...scoredResults, ...fullMatchResults, ...customKeymapResults].forEach((result) => {
-			combinedResultsMap.set(result.url, result);
-		});
-
-		const sortedResults = Array.from(combinedResultsMap.values())
-			.sort((a, b) => b.score - a.score);
-
-		// 分頁
-		const offset = (page - 1) * limit;
-		const sortedImages = sortedResults.sort((a, b) => {
-			if (order === 'id') {
-				// ID 排序：轉換為數字進行比較
-				return parseInt(a.id) - parseInt(b.id);
-			} else if (order === 'random') {
-				// 隨機排序
-				return Math.random() - 0.5;
-			} else if (order === 'episode') {
-				// 集數排序：mygo_x 優先於 mujica_x
-				const aEpisode = a.episode || '';
-				const bEpisode = b.episode || '';
-				
-				// 解析集數信息
-				const parseEpisode = (episode: string) => {
-					const match = episode.match(/^(mygo|mujica)_(\d+)$/);
-					if (!match) return { series: 'zzz', number: 0 }; // 未知的放最後
-					return {
-						series: match[1] === 'mygo' ? 'a' : 'b', // mygo 優先
-						number: parseInt(match[2])
-					};
-				};
-				
-				const aParsed = parseEpisode(aEpisode);
-				const bParsed = parseEpisode(bEpisode);
-				
-				// 先按系列排序（mygo 優先），再按集數排序
-				if (aParsed.series !== bParsed.series) {
-					return aParsed.series.localeCompare(bParsed.series);
-				}
-				return aParsed.number - bParsed.number;
-			} else if (order === 'alphabetical') {
-				// 字典序排序（按 alt 屬性）
-				const aAlt = a.alt || '';
-				const bAlt = b.alt || '';
-				return aAlt.localeCompare(bAlt, 'zh', { numeric: true });
-			} else {
-				return 0; // 默認不排序
-			}
-		});
-		const paginatedResults = sortedImages.slice(offset, offset + limit);
-		const totalCount = sortedResults.length;
-		const totalPages = Math.ceil(totalCount / limit);
-
-		return {
-			data: paginatedResults.map(({ score, ...item }) => item), // 移除score
+				episode: item.episode
+			})),
 			meta: {
-				query: queryKeyword,
-				fuzzy,
+				query: searchParams.query,
+				fuzzy: searchParams.fuzzy,
 				total: totalCount,
-				page,
-				limit,
+				page: searchParams.page,
+				limit: searchParams.limit,
 				totalPages,
-				hasNext: page < totalPages,
-				hasPrev: page > 1
+				hasNext: searchParams.page < totalPages,
+				hasPrev: searchParams.page > 1
 			}
 		};
+
+		return response;
 
 	} catch (error: any) {
 		if (error.statusCode) {
