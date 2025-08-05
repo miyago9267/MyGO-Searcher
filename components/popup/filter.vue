@@ -1,13 +1,13 @@
 <template>
   <div 
-    class="fixed inset-0 flex items-center justify-center bg-tggray-50 rounded-xl bg-opacity-50 z-50" 
+    class="fixed inset-0 flex items-center justify-center rounded-xl bg-opacity-50 z-50 bg-black/80 backdrop-blur-2" 
     @click.self="handleClose"
   >
-    <div class="bg-tggray-200 border rounded-lg border-tggray-300 shadow p-6 w-120 relative">
+    <div class="bg-tggray-100 border rounded-lg border-tggray-300 shadow-lg p-6 w-120 relative">
       <!-- 關閉按鈕 -->
       <button 
         @click="handleClose" 
-        class="absolute top-2 right-2 h-8 w-8 flex items-center justify-center text-lg font-bold bg-tggray-100 rounded-md"
+        class="absolute top-4 right-4 bg-transparent border-none text-6 text-[#b0b0b0] cursor-pointer p-0 w-8 h-8 flex items-center justify-center rounded-2 transition-all duration-200 hover:bg-[#404040] hover:text-white leading-none"
       > 
         × 
       </button>
@@ -17,7 +17,7 @@
         <div 
           v-for="(options, category) in filters" 
           :key="category" 
-          class="border-b border-gray-300 pb-4"
+          class="border-b border-gray-300 pb-8"
         >
           <h3 class="mb-2 text-lg font-bold">{{ category === '人物' ? category + ' (WIP)' : category }}</h3>
           <div class="h-px bg-gray-300 mb-3"></div>

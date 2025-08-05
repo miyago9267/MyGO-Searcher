@@ -13,7 +13,7 @@
     @click.stop
   >
     <div class="p-4">
-      <h3 class="text-lg font-medium border-gray-300 mb-3">排序方式</h3>
+      <h3 class="text-lg font-medium border-gray-300 m-2">排序方式</h3>
       <div class="space-y-2">
         <label
           v-for="option in sortOptions"
