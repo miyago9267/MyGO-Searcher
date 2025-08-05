@@ -1,4 +1,4 @@
-import type { SearchResult, ImageData } from './searchTypes';
+import type { SearchResult, ImageData } from '../../types';
 import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm';
 
 /**
