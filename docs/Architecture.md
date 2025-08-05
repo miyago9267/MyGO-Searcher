@@ -3,6 +3,7 @@
 ## 系統架構概覽
 
 MyGO Searcher 是一個基於 Nuxt 3 的全端應用。
+
 以下是技術架構文檔，我叫Claude寫的，怎樣我就懶得寫文檔嘛。
 
 ## Tech Stack
