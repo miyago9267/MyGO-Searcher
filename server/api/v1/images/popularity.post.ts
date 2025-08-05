@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody, createError } from 'h3';
-import { PopularityService } from '../../../utils/popularityService';
+import { PopularityService } from '../../../services/popularityService';
 
 /**
  * POST /api/v1/images/popularity

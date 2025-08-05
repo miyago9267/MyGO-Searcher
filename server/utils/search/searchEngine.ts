@@ -1,5 +1,5 @@
 import type { SearchResult, ImageData } from './searchTypes';
-import { calculateTotalScore, isExactMatch, processSearchKeyword } from './search';
+import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm';
 
 /**
  * 搜索引擎類

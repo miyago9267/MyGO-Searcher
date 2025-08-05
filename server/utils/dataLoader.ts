@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { getImagesCollection, isMongoConfigured, collectionExists } from './db';
-import { getProcessedImageData, getProcessedImageDataSync } from './special';
+import { getImagesCollection, isMongoConfigured, collectionExists } from '../config/database';
+import { getProcessedImageData, getProcessedImageDataSync } from './dataProcessing';
 
 // 從 MongoDB 載入資料
 export const loadFromMongoDB = async (): Promise<any[]> => {

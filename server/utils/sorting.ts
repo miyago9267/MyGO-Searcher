@@ -1,6 +1,6 @@
 import type { ImageItem } from '~/types';
 
-export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical';
+export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'popularity';
 
 /**
  * 對圖片陣列進行排序
@@ -46,6 +46,11 @@ export async function sortImages(allImages: ImageItem[], order: SortOrder = 'id'
 				const aAlt = a.alt || '';
 				const bAlt = b.alt || '';
 				return aAlt.localeCompare(bAlt, 'zh', { numeric: true });
+			} else if (order === 'popularity') {
+				// 人氣排序（人氣高的在前面）
+				const aPopularity = a.popularity || 0;
+				const bPopularity = b.popularity || 0;
+				return bPopularity - aPopularity; // 降序排列
 			} else {
 				return 0; // 默認不排序
 			}

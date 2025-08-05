@@ -1,4 +1,4 @@
-import { leven_distance } from '../algo/levenshtein';
+import { leven_distance } from '../../algo/levenshtein';
 import * as OpenCC from 'opencc-js';
 
 // 初始化轉換器

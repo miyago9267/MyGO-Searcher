@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery, createError } from 'h3';
-import { getImagesCollection, isMongoConfigured } from '../../../utils/db';
+import { getImagesCollection, isMongoConfigured } from '../../../config';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
