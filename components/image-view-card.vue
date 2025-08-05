@@ -5,8 +5,8 @@
                 class="w-full aspect-[334/187.88] rounded-lg mb-2 outline outline-1 outline-tggray-300 group-hover:opacity-50 transition-opacity duration-300" />
             <div
                 class="absolute top-[10px] right-[10px] inset-0 flex gap-[10px] items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <card-download-button :alt="props.alt" :url="props.url" />
-                <card-copy-button :alt="props.alt" :url="props.url" />
+                <card-download-button :id="props.id" :alt="props.alt" :url="props.url" />
+                <card-copy-button :id="props.id" :alt="props.alt" :url="props.url" />
             </div>
         </div>
         <card-alt-description :alt="props.alt" :url="props.url" />

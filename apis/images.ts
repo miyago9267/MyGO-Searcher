@@ -42,6 +42,21 @@ export class ImagesApi {
     const apiClient = getApiClient()
     return apiClient.get<ApiResponse<ImageItem>>(`/images/${id}`)
   }
+
+  /**
+   * Update image popularity statistics
+   */
+  static async updatePopularity(params: {
+    imageId?: string
+    imageUrl?: string
+    action: 'copy' | 'download'
+  }): Promise<{ success: boolean; action: string; imageId: string; updated: boolean }> {
+    const apiClient = getApiClient()
+    return apiClient.post<{ success: boolean; action: string; imageId: string; updated: boolean }>(
+      '/images/popularity', 
+      params
+    )
+  }
 }
 
 /**

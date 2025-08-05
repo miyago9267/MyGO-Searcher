@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col w-full justify-center">
         <div class="image-row">
-            <image-view-card v-for="image in filteredImages" :key="image.id" :url="image.url" :alt="image.alt"
+            <image-view-card v-for="image in filteredImages" :id="image.id" :url="image.url" :alt="image.alt"
                 class="image" />
         </div>
 

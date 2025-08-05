@@ -8,17 +8,26 @@
 </template>
 
 <script lang="ts" setup>
+import { usePopularity } from '~/composables/usePopularity';
 
 const props = defineProps<{
     url: string;
     alt?: string;
+    id?: string;
 }>();
 
+// 使用人氣統計組合式函數
+const { recordDownload } = usePopularity();
+
 const downloadImage = () => {
+    // 執行下載操作
     const link = document.createElement('a');
     link.href = props.url;
     link.download = props.alt || 'image';
     link.click();
+    
+    // 記錄人氣統計（非阻塞）
+    recordDownload(props.id, props.url);
 }
 </script>
 

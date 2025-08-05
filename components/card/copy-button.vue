@@ -11,11 +11,22 @@
 <script lang="ts" setup>
 import type { ImageItem } from '~/types';
 import { copyToClipboard } from '~/composables/common';
+import { usePopularity } from '~/composables/usePopularity';
 
 const props = defineProps<ImageItem>();
 
+// 使用人氣統計組合式函數
+const { recordCopy } = usePopularity();
+
 const handleCopy = async () => {
+    console.log('Copy button clicked, props:', { id: props.id, url: props.url, alt: props.alt });
+    
+    // 先執行複製操作
     await copyToClipboard(props.url);
+    
+    // 記錄人氣統計（非阻塞）
+    console.log('About to record copy with:', props.id, props.url);
+    recordCopy(props.id, props.url);
 }
 
 </script>

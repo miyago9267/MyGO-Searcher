@@ -69,13 +69,13 @@ class ApiClient {
     }
   }
 
-  async get<T>(endpoint: string, params?: Record<string, string | number | boolean>): Promise<T> {
+  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
     let url = endpoint
-    
+
     if (params) {
       const searchParams = new URLSearchParams()
       Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
+        if (value !== undefined && value !== null) {
           searchParams.append(key, String(value))
         }
       })
@@ -87,6 +87,14 @@ class ApiClient {
     }
 
     return this.request<T>(url)
+  }
+
+  async post<T>(endpoint: string, data?: any): Promise<T> {
+    console.log('POST request to:', endpoint, 'with data:', data);
+    return this.request<T>(endpoint, {
+      method: 'POST',
+      body: data ? JSON.stringify(data) : undefined,
+    })
   }
 
   // Health check
