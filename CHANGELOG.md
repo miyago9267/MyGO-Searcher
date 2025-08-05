@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2025-XX-XX
+## [Version 2.0.0] - 2025-XX-XX
 
 ### Features (Version 2.0.0)
 
@@ -14,14 +14,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
       - `GET /api/v1/search` 搜尋圖片
       - `GET /api/v1/random` 隨機獲取圖片
       > 詳見 [API Documentation](docs/API.md)
-- 更新圖片資料結構，使用新的資料接口格式
-- 加入Filter Options功能，可選擇MyGO集數、AveMujica集數和人物
+- 加入篩選器功能，可選擇MyGO集數、AveMujica集數和人物（人物分類尚在製作中）
+- 加入排序功能，可選擇四種排序方式（包含預設、集數、字典序、隨機）
+- 加入更新提示
 - 正式加入AveMujica圖包
 
 ### Changed (Version 2.0.0)
 
-- 調整Filter Options的資料結構，統一使用`FilterOptions`類型
+- 重新設計前端Component及Nuxt後端架構
 - 更新前端載入邏輯，從全部圖片載入改為動態滾動載入
+- 優化SSR效能
+- 連線MongoDB
+- 重構文檔
+
+### Todo （Version 2.0.0）
+
+- 完善人物分類
+- 完善API文檔
+- 加入人氣排序
 
 ## [Version 1.1.2] - 2024-11-14
 

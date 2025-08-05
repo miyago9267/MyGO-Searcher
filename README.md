@@ -1,82 +1,67 @@
 # MyGo貼圖搜尋器
 
 你願意一輩子跟我一起MyGO嗎？
+MyGO 搜尋器，滿足你上網戰鬥的各種需求！
 
-[已部署網頁連結](https://mygo.miyago9267.com)
-
-[舊版Vite分支](https://github.com/miyago9267/MyGO-Searcher/tree/vite)
+[網頁連結](https://mygo.miyago9267.com)
 
 ## 疊甲
 
-本人為17年入坑之邦邦粉絲，對於爆夢企劃仍持續支持，手遊上位多AP，動畫企劃、真人樂隊也都有持續關注，歌單也是不斷重複收聽，對於老邦和新團的愛是一樣的。
+本人為17年入坑之老邦人，對於BGD企劃一直都十分支持，手遊上位多AP，動畫企劃、真人樂隊也都有持續關注，歌單更是不斷重複收聽，對老邦和新團的愛是一樣的。
 
-本專案雖推廣MyGO，但也呼籲大家多多支持舊7團，讓邦邦企劃有辦法繼續走下去，武士道已經夠糟蹋自家企劃了，敬請大家玩梗需謹慎，別讓MyGO破壞掉邦邦的名聲。
+本專案雖推廣雞狗，但也呼籲大家多多支持舊7團，讓邦邦企劃有辦法繼續走下去，武士道已經夠糟蹋自家企劃了，敬請大家玩梗需謹慎，別讓雞狗破壞掉邦邦的名聲。
 
 ## 使用技術
 
 - 前端框架 - `Vue3` with `Nuxt3`
 - 後端框架 - `NuxtAPI` with `Nuxt3`
-  - 獨立後端[API](https://github.com/miyago9267/mygoapi)服務 - `FastAPI`
+  - [API文檔](./docs/API.md)
+  - 獨立後端[API](https://github.com/miyago9267/mygoapi)服務 - `FastAPI` (已棄用)
 
 ## 部署指南
 
-1. clone下本專案
-2. 安裝dependencies
+1. 確保你有`node.js`及`yarn`環境
+2. clone本專案Repo
+3. 安裝dependencies
 
-```bash
-cd MyGo_Searcher
-npm install # or yarn install
-```
-3. 設定環境變數(非必要)
-```
-echo "API_BASE_URL=<API_BASE_URL>" >> .env.development
-```
-4. 啟動及部署Nuxt
+  ```bash
+  cd MyGo_Searcher
+  yarn install
+  ```
+
+4. 複製環境變數範本並配置
+
+  ```bash
+  cp .env.example .env.development
+  ```
+
+5. 啟動及部署Nuxt
 
 ```bash
 yarn dev # with devmode
 yarn build # for production
+yarn build:docker # for docker
 ```
 
-## 使用API
+## 說明文檔
 
-### 內建API
+- [API 文檔](./docs/API.md)
+- [技術實現](./docs/Technical.md)
+- [架構設計](./docs/Architecture.md)
+- [貢獻指南（包含意見回饋）](./docs/Contributing.md)
 
-本分支使用Nuxt框架自帶Server系統內建之API路由
-
-#### 取得所有貼圖
-
-```http
-GET /api/mygo/all_img
-```
-
-#### 查詢關鍵字列表
-
-```http
-GET /api/mygo/img?keyword={keyword: string}<&fuzzy={fuzzy: boolean}>
-```
-
-#### 取得隨機貼圖
-
-```http
-GET /api/mygo/random_img
-```
-
-### 獨立API
-
-關於獨立拆分之API，請參考
-[API專案](https://github.com/miyago9267/mygoapi)
+~~偷偷說，除了這個根目錄Readme以外其他都是Claude幫我寫的~~
 
 ## 未來計劃(TodoList)
 
 - [ ] 前端優化
   - [ ] 增加亮暗色
-  - [ ] 增加排序
-- [ ] 優化後端
+  - [X] 增加排序
+- [X] 優化後端
   - [X] 改善api並開放
-  - [ ] 增加標籤(趕工中)
-    - [ ] 以集數作為tag
-    - [ ] 以人物為tag
+  - [] 增加標籤(趕工中)
+    - [X] 以集數作為tag
+    - [ ] 以人物為tag(WIP)
   - [ ] 增加敘述(趕工中)
 
 ## 更新紀錄
