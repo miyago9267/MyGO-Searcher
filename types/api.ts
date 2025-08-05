@@ -34,11 +34,13 @@ export interface SearchParams extends Record<string, string | number | boolean |
   fuzzy?: boolean
   page?: number
   limit?: number
+  order?: string
 }
 
 export interface PaginationParams extends Record<string, string | number | boolean | undefined> {
   page?: number
   limit?: number
+  order?: string
 }
 
 export interface RandomParams extends Record<string, string | number | boolean | undefined> {

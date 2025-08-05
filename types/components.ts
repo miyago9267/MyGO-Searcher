@@ -3,6 +3,7 @@ export interface UseImagesOptions {
   initialQuery?: string
   pageSize?: number
   fuzzySearch?: boolean
+  sortOrder?: string
 }
 
 // Component emits

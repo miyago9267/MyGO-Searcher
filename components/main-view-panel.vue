@@ -32,11 +32,13 @@ import { useImages, useImageFilter } from '~/composables/useImages'
 import type { FilterOptions } from '~/types'
 
 interface Props {
+    sortOrder?: string
     searchQuery?: string
     filterQuery?: FilterOptions
 }
 
 const props = withDefaults(defineProps<Props>(), {
+    sortOrder: 'id',
     searchQuery: '',
     filterQuery: () => ({
         MyGO集數: [],
@@ -53,10 +55,12 @@ const {
     hasMore,
     search,
     fetchImages,
+    setSortOrder,
     initInfiniteScroll,
     cleanupInfiniteScroll
 } = useImages({
     initialQuery: props.searchQuery,
+    sortOrder: props.sortOrder || 'id',
     pageSize: 20,
     fuzzySearch: false
 })
@@ -80,6 +84,14 @@ watch(() => props.searchQuery, (newQuery) => {
         search(newQuery)
     }
 }, { immediate: true })
+
+// 監聽排序方式變化
+watch(() => props.sortOrder, async (newSortOrder) => {
+    if (newSortOrder) {
+        // 使用 setSortOrder 函數來更新排序並重新載入數據
+        await setSortOrder(newSortOrder)
+    }
+})
 
 // 當有更多數據且觸發器存在時，初始化無限滾動
 watch([hasMore, loadMoreTrigger], async ([newHasMore, newTrigger]) => {

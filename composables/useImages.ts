@@ -9,7 +9,8 @@ export function useImages(options: UseImagesOptions = {}) {
 	const {
 		initialQuery = '',
 		pageSize = 20,
-		fuzzySearch = false
+		fuzzySearch = false,
+		sortOrder = 'id'
 	} = options
 
 	// State
@@ -23,6 +24,7 @@ export function useImages(options: UseImagesOptions = {}) {
 	// Search state
 	const searchQuery = ref(initialQuery)
 	const isFuzzyEnabled = ref(fuzzySearch)
+	const currentSortOrder = ref(sortOrder)
 
 	// Infinite scroll state
 	const loadMoreTrigger = ref<HTMLElement>()
@@ -42,12 +44,13 @@ export function useImages(options: UseImagesOptions = {}) {
 				q: query,
 				fuzzy: isFuzzyEnabled.value,
 				page,
-				limit: pageSize
+				limit: pageSize,
+				order: currentSortOrder.value
 			}
 
 			const response = query.trim()
 				? await ImagesApi.search(params)
-				: await ImagesApi.getAll({ page, limit: pageSize })
+				: await ImagesApi.getAll({ page, limit: pageSize, order: currentSortOrder.value })
 
 			if (append) {
 				images.value = [...images.value, ...response.data]
@@ -91,6 +94,15 @@ export function useImages(options: UseImagesOptions = {}) {
 	 */
 	const toggleFuzzy = async () => {
 		isFuzzyEnabled.value = !isFuzzyEnabled.value
+		await fetchImages(searchQuery.value, 1, false)
+	}
+
+	/**
+	 * Set sort order
+	 */
+	const setSortOrder = async (order: string) => {
+		currentSortOrder.value = order
+		currentPage.value = 1
 		await fetchImages(searchQuery.value, 1, false)
 	}
 
@@ -204,6 +216,7 @@ export function useImages(options: UseImagesOptions = {}) {
 		fetchImages,
 		loadMore,
 		toggleFuzzy,
+		setSortOrder,
 		getRandomImages,
 		reset,
 
