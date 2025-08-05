@@ -1,9 +1,9 @@
 <template>
   <div 
-    class="fixed inset-0 flex items-center justify-center bg-tggray-100 rounded-xl bg-opacity-50 z-50" 
+    class="fixed inset-0 flex items-center justify-center bg-tggray-50 rounded-xl bg-opacity-50 z-50" 
     @click.self="handleClose"
   >
-    <div class="bg-tggray-100 border rounded-lg bg-tggray-50 shadow p-6 w-120 relative">
+    <div class="bg-tggray-200 border rounded-lg border-tggray-300 shadow p-6 w-120 relative">
       <!-- 關閉按鈕 -->
       <button 
         @click="handleClose" 
@@ -38,10 +38,10 @@
               <label 
                 :for="`${category}-${option.value}`" 
                 :class="[
-                  'text-sm cursor-pointer select-none flex-1 pl-2 py-[4px] rounded-md border transition-all duration-200',
+                  'text-sm cursor-pointer select-none flex-1 pl-2 py-[4px] rounded-md border transition-all duration-20 font-bold',
                   localSelectedFilters[String(category)]?.includes(option.value)
                     ? 'text-white border-blue-500'
-                    : 'text-gray-700 border-gray-300 hover:bg-gray-600'
+                    : 'text-gray-500 border-gray-300 hover:bg-gray-400'
                 ]"
               >
                 {{ option.label }}
