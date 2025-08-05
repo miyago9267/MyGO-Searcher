@@ -19,18 +19,47 @@ class ApiClient {
     
     // 確保 baseUrl 不以斜線結尾
     this.baseUrl = this.baseUrl.replace(/\/$/, '')
-    console.log('ApiClient initialized with baseUrl:', this.baseUrl)
+    
+    // 使用 stderr 在服務器端輸出日誌
+    if (process.server) {
+      process.stderr.write(`[ApiClient] Initialized with baseUrl: ${this.baseUrl}\n`)
+    } else {
+      console.log('[ApiClient] Initialized with baseUrl:', this.baseUrl)
+    }
+  }
+
+  private getFullUrl(endpoint: string): string {
+    // 確保 endpoint 以斜線開頭
+    const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+    
+    if (process.server) {
+      // 在服務器端 SSR 時，使用完整的內部 URL，包含 baseUrl
+      const fullPath = `${this.baseUrl}${normalizedEndpoint}`
+      const url = `http://localhost:3000${fullPath}`
+      
+      process.stderr.write(`[ApiClient] SSR URL construction - baseUrl: ${this.baseUrl}, endpoint: ${normalizedEndpoint}, full URL: ${url}\n`)
+      
+      return url
+    } else {
+      // 在客戶端，使用相對路徑
+      const url = `${this.baseUrl}${normalizedEndpoint}`
+      console.log('[ApiClient] Client URL construction - baseUrl:', this.baseUrl, 'endpoint:', normalizedEndpoint, 'full URL:', url)
+      return url
+    }
   }
 
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    // 確保 endpoint 以斜線開頭
-    const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
-    const url = `${this.baseUrl}${normalizedEndpoint}`
+    const url = this.getFullUrl(endpoint)
     
-    console.log('Making API request to:', url)
+    // 使用適當的日誌輸出方式
+    if (process.server) {
+      process.stderr.write(`[ApiClient] Making API request to: ${url}\n`)
+    } else {
+      console.log('[ApiClient] Making API request to:', url)
+    }
     
     const defaultOptions: RequestInit = {
       method: 'GET',
@@ -44,7 +73,11 @@ class ApiClient {
     try {
       const response = await fetch(url, defaultOptions)
       
-      console.log('API response status:', response.status, 'for URL:', url)
+      if (process.server) {
+        process.stderr.write(`[ApiClient] Response status: ${response.status} for URL: ${url}\n`)
+      } else {
+        console.log('[ApiClient] Response status:', response.status, 'for URL:', url)
+      }
       
       if (!response.ok) {
         let errorMessage = `HTTP ${response.status}: ${response.statusText}`
@@ -54,17 +87,25 @@ class ApiClient {
           errorMessage = errorData.statusMessage || errorData.message || errorMessage
         } catch (parseError) {
           // 如果無法解析錯誤響應，使用默認錯誤信息
-          console.warn('Failed to parse error response:', parseError)
+          if (process.server) {
+            process.stderr.write(`[ApiClient] Failed to parse error response: ${parseError}\n`)
+          } else {
+            console.warn('[ApiClient] Failed to parse error response:', parseError)
+          }
         }
         
         throw new Error(errorMessage)
       }
 
       const data = await response.json()
-      // console.log('API response data:', data)
       return data
     } catch (error) {
-      console.error(`API request failed for ${url}:`, error)
+      const errorMsg = `API request failed for ${url}: ${error}`
+      if (process.server) {
+        process.stderr.write(`[ERROR] ${errorMsg}\n`)
+      } else {
+        console.error(errorMsg)
+      }
       throw error
     }
   }
@@ -90,7 +131,13 @@ class ApiClient {
   }
 
   async post<T>(endpoint: string, data?: any): Promise<T> {
-    console.log('POST request to:', endpoint, 'with data:', data);
+    const logMsg = `POST request to: ${endpoint} with data: ${JSON.stringify(data)}`
+    if (process.server) {
+      process.stderr.write(`[ApiClient] ${logMsg}\n`)
+    } else {
+      console.log('[ApiClient]', logMsg)
+    }
+    
     return this.request<T>(endpoint, {
       method: 'POST',
       body: data ? JSON.stringify(data) : undefined,

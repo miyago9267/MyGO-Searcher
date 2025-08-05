@@ -1,10 +1,6 @@
 import { MongoClient, Db, Collection } from 'mongodb';
 import type { Document } from 'mongodb';
 
-// MongoDB 連接設定
-const MONGODB_URL = process.env.MONGODB_CONNECT_URL || '';
-const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || '';
-
 // MongoDB 客戶端實例
 let client: MongoClient | null = null;
 let db: Db | null = null;
@@ -13,24 +9,32 @@ let db: Db | null = null;
  * 獲取 MongoDB 連接
  */
 export async function getMongoClient(): Promise<MongoClient> {
+  // 使用 useRuntimeConfig() 獲取配置
+  const config = useRuntimeConfig();
+  const MONGODB_URL = config.mongodbConnectUrl;
+  
   if (!MONGODB_URL) {
-    throw new Error('MongoDB URL not configured');
+    const errorMsg = '[MongoDB] URL not configured';
+    process.stderr.write(`[ERROR] ${errorMsg}\n`);
+    throw new Error(errorMsg);
   }
 
   // 檢查現有連接是否仍然有效
   if (client) {
     try {
       await client.db('admin').command({ ping: 1 });
+      process.stderr.write('[INFO] [MongoDB] Existing connection is alive\n');
       return client;
     } catch (error) {
-      console.warn('Existing MongoDB connection is invalid, creating new connection');
+      process.stderr.write('[WARN] [MongoDB] Existing connection is invalid, creating new connection\n');
       client = null;
       db = null;
     }
   }
 
   try {
-    console.log(`Connecting to MongoDB: ${MONGODB_URL.replace(/\/\/.*@/, '//***:***@')}`);
+    const maskedUrl = MONGODB_URL.replace(/\/\/.*@/, '//***:***@');
+    process.stderr.write(`[INFO] [MongoDB] Connecting to: ${maskedUrl}\n`);
     
     client = new MongoClient(MONGODB_URL, {
       connectTimeoutMS: 10000,
@@ -40,15 +44,16 @@ export async function getMongoClient(): Promise<MongoClient> {
     });
 
     await client.connect();
-    console.log('Successfully connected to MongoDB');
+    process.stderr.write('[INFO] [MongoDB] Successfully connected to database\n');
     
     // 測試連接
     await client.db('admin').command({ ping: 1 });
-    console.log('MongoDB ping successful');
+    process.stderr.write('[INFO] [MongoDB] Ping test successful\n');
     
     return client;
   } catch (error: any) {
-    console.error('MongoDB connection error:', error.message);
+    const errorMsg = `[MongoDB] Connection failed: ${error.message}`;
+    process.stderr.write(`[ERROR] ${errorMsg}\n`);
     client = null;
     throw error;
   }
@@ -61,6 +66,7 @@ export async function getDatabase(): Promise<Db> {
   if (!db) {
     const mongoClient = await getMongoClient();
     db = mongoClient.db();
+    process.stderr.write('[INFO] [MongoDB] Database instance created\n');
   }
   return db;
 }
@@ -77,9 +83,16 @@ export async function getCollection<T extends Document = Document>(collectionNam
  * 獲取圖片集合
  */
 export async function getImagesCollection(): Promise<Collection> {
+  const config = useRuntimeConfig();
+  const MONGODB_COLLECTION = config.mongodbCollection;
+  
   if (!MONGODB_COLLECTION) {
-    throw new Error('MongoDB collection not configured');
+    const errorMsg = '[MongoDB] Collection name not configured';
+    process.stderr.write(`[ERROR] ${errorMsg}\n`);
+    throw new Error(errorMsg);
   }
+  
+  process.stderr.write(`[INFO] [MongoDB] Using collection: ${MONGODB_COLLECTION}\n`);
   return getCollection(MONGODB_COLLECTION);
 }
 
@@ -87,7 +100,10 @@ export async function getImagesCollection(): Promise<Collection> {
  * 檢查 MongoDB 是否可用
  */
 export function isMongoConfigured(): boolean {
-  return !!(MONGODB_URL && MONGODB_COLLECTION);
+  const config = useRuntimeConfig();
+  const isConfigured = !!(config.mongodbConnectUrl && config.mongodbCollection);
+  process.stderr.write(`[INFO] [MongoDB] Configuration status: ${isConfigured ? 'configured' : 'not configured'}\n`);
+  return isConfigured;
 }
 
 /**
@@ -98,7 +114,7 @@ export async function closeMongoConnection(): Promise<void> {
     await client.close();
     client = null;
     db = null;
-    console.log('MongoDB connection closed');
+    process.stderr.write('[INFO] [MongoDB] Connection closed\n');
   }
 }
 
@@ -109,9 +125,12 @@ export async function collectionExists(collectionName: string): Promise<boolean>
   try {
     const database = await getDatabase();
     const collections = await database.listCollections({ name: collectionName }).toArray();
-    return collections.length > 0;
+    const exists = collections.length > 0;
+    process.stderr.write(`[INFO] [MongoDB] Collection '${collectionName}' exists: ${exists}\n`);
+    return exists;
   } catch (error) {
-    console.error('Error checking collection existence:', error);
+    const errorMsg = `[MongoDB] Error checking collection existence: ${error}`;
+    process.stderr.write(`[ERROR] ${errorMsg}\n`);
     return false;
   }
 }
