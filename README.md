@@ -25,24 +25,24 @@ MyGO 搜尋器，滿足你上網戰鬥的各種圖戰需求！
 2. clone本專案Repo
 3. 安裝dependencies
 
-  ```bash
-  cd MyGo_Searcher
-  yarn install
-  ```
+    ```bash
+    cd MyGo_Searcher
+    yarn install
+    ```
 
 4. 複製環境變數範本並配置
 
-  ```bash
-  cp .env.example .env.development
-  ```
+    ```bash
+    cp .env.example .env.development
+    ```
 
 5. 啟動及部署Nuxt
 
-```bash
-yarn dev # with devmode
-yarn build # for production
-yarn build:docker # for docker
-```
+  ```bash
+  yarn dev # with devmode
+  yarn build # for production
+  yarn build:docker # for docker
+  ```
 
 ## 說明文檔
 
@@ -74,3 +74,7 @@ yarn build:docker # for docker
 [MIT](./LICENSE)
 
 本專案以MIT規範開源，歡迎大家自由使用、修改及分支開發，但請務必保留原作者署名。
+
+## 特別銘謝
+
+靈感來源於[lekoOwO](https://github.com/lekoOwO)大大製作之[海綿寶寶高清貼圖搜尋器](https://sb.leko.moe/#!)
