@@ -1,0 +1,41 @@
+{
+  "name": "watsuki-official-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "nuxt test",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0",
+    "dev": "nuxt dev --dotenv ./.env.development",
+    "build": "nuxt build --dotenv ./.env.production",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@element-plus/nuxt": "^1.1.4",
+    "@nuxt/eslint": "1.8.0",
+    "@nuxt/fonts": "0.11.4",
+    "@nuxt/icon": "1.15.0",
+    "@nuxt/image": "1.11.0",
+    "@nuxt/test-utils": "3.19.2",
+    "@nuxt/ui": "^3.3.3",
+    "@unocss/nuxt": "^66.4.2",
+    "better-sqlite3": "^12.2.0",
+    "element-plus": "^2.11.1",
+    "mongodb": "^6.20.0",
+    "nuxt": "^4.0.1",
+    "opencc-js": "^1.0.5",
+    "vue": "^3.5.22",
+    "vue-lazyload": "^3.0.0",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.66",
+    "eslint": "^9.0.0",
+    "happy-dom": "^18.0.1",
+    "stylelint": "^16.23.1",
+    "stylelint-config-standard": "^39.0.0",
+    "vitest": "^3.2.4"
+  }
+}

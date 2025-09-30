@@ -1,0 +1,22 @@
+stages:
+  - lint
+  - test
+
+variables:
+  BUN_INSTALL: "/root/.bun"
+
+before_script:
+  - curl -fsSL https://bun.sh/install | bash
+  - export PATH="$BUN_INSTALL/bin:$PATH"
+  - bun --version
+  - bun install
+
+lint:
+  stage: lint
+  script:
+    - bun run lint
+
+test:
+  stage: test
+  script:
+  - bun run test
