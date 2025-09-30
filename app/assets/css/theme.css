@@ -1,0 +1,27 @@
+:root {
+  --bg-default: #dedede;
+  --bg-sub: #b0b0b0;
+  --font-default: #160505; /* 字體顏色 */
+  --font-gray: #433C3C;
+  --font-white: #e6eaf2;
+  --pink: #D95F8B;
+  --magenta: #EE1161;
+  --border: #505050;
+}
+
+html.dark {
+  --bg-default: #1e1e1e;
+  --bg-sub: #2a2a2a;
+  --bg-popup-color: #252525;
+  --bg-hover: #1f2937;
+  --font-default: rgba(255, 255, 255, 0.87);
+  --white: #FCF9FA;
+  --gray: #383335;
+  --surface: #141a2a;
+  --border: #505050;
+  --brand: #a78bfa;
+}
+
+* {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
