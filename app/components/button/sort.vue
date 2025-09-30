@@ -2,7 +2,7 @@
   <div class="relative flex justify-end">
     <button
       data-sort-button
-      class="p-2 bg-[--bg-default] border-[--border] text-[--font-default] rounded-full flex items-center gap-2"
+      class="p-2 bg-[--bg-default] border-[--border] dark:border-[--bg-default] text-[--font-default] rounded-full flex items-center gap-2"
       @click="toggleSort"
     >
       <svg

@@ -3,7 +3,7 @@
     class="fixed inset-0 flex items-center justify-center rounded-xl bg-opacity-50 z-50 bg-black/80 backdrop-blur-2"
     @click.self="handleClose"
   >
-    <div class="bg-[--bg-sub] border rounded-lg border-tggray-300 shadow-lg p-6 w-120 relative">
+    <div class="bg-[--bg-sub] border rounded-lg border-[--font-default] shadow-lg p-6 w-120 relative">
       <!-- 關閉按鈕 -->
       <button
         class="absolute top-4 right-4 bg-transparent border-none text-6 text-[#b0b0b0] cursor-pointer p-0 w-8 h-8 flex items-center justify-center rounded-2 transition-all duration-200 hover:bg-[#404040] hover:text-white leading-none"

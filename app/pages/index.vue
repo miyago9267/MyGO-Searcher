@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-screen h-full bg-[--bg-default]">
-    <Header class="outline outline-offset-0 outline-tggray-300 outline-2" />
+    <Header class="outline outline-offset-0 outline-[--outline] outline-2" />
     <div class="p-10">
       <search-bar
         class="mb-5"

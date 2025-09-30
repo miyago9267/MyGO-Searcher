@@ -4,7 +4,7 @@
       <img
         :src="encodedUrl"
         loading="lazy"
-        class="w-full aspect-[334/187.88] rounded-lg mb-2 outline outline-1 outline-tggray-300 group-hover:opacity-50 transition-opacity duration-300"
+        class="w-full aspect-[334/187.88] rounded-lg mb-2 outline outline-1 outline-[--outline] group-hover:opacity-50 transition-opacity duration-300"
       >
       <div
         class="absolute top-[10px] right-[10px] inset-0 flex gap-[10px] items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
