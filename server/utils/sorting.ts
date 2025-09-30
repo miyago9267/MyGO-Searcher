@@ -1,4 +1,4 @@
-import type { ImageItem } from '~/types'
+import type { ImageData, SearchResult } from '../types'
 
 export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'popularity'
 
@@ -6,15 +6,15 @@ export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'populari
  * 對圖片陣列進行排序
  * @param allImages - 要排序的圖片陣列
  * @param order - 排序方式
- * @returns Promise<ImageItem[]> - 排序後的圖片陣列
+ * @returns Promise<ImageData[]> - 排序後的圖片陣列
  */
 
-export async function sortImages(allImages: ImageItem[], order: SortOrder = 'id'): Promise<ImageItem[]> {
+export async function sortImages(allImages: ImageData[] | SearchResult[], order: SortOrder = 'id'): Promise<ImageData[]> {
   return new Promise((resolve) => {
     const sortedImages = allImages.sort((a, b) => {
       if (order === 'id') {
         // ID 排序：轉換為數字進行比較
-        return parseInt(a.id ?? '') - parseInt(b.id ?? '')
+        return parseInt(String(a.id ?? '')) - parseInt(String(b.id ?? ''))
       }
       else if (order === 'random') {
         // 隨機排序
@@ -61,6 +61,6 @@ export async function sortImages(allImages: ImageItem[], order: SortOrder = 'id'
       }
     })
 
-    resolve(sortedImages)
+    resolve(sortedImages as ImageData[])
   })
 }

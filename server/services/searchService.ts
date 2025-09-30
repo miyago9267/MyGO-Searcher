@@ -42,8 +42,8 @@ export class SearchService {
     // 構建響應
     return {
       data: paginatedResults.map((item): SearchResponseItem => ({
-        id: item.id!,
-        url: item.url,
+        id: String(item.id!),
+        url: item.url ?? '',
         alt: item.alt,
         author: item.author,
         episode: item.episode,

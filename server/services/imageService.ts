@@ -1,6 +1,7 @@
 import { sortImages, type SortOrder } from '../utils/sorting'
 import { MongoRepository } from '../repositories/mongoRepository'
 import { FileRepository } from '../repositories/fileRepository'
+import type { ImageData } from '../types'
 
 /**
  * 圖片服務類，處理所有圖片相關的業務邏輯
@@ -22,7 +23,7 @@ export class ImageService {
     limit: number
     order: SortOrder
   }): Promise<{
-    data: any[]
+    data: ImageData[]
     meta: {
       total: number
       page: number
@@ -56,7 +57,7 @@ export class ImageService {
       const popularityStats = await this.getPopularityStats()
       allImages = allImages.map(image => ({
         ...image,
-        popularity: popularityStats[image.id?.toString()] || image.popularity || 0,
+        popularity: image.id !== undefined ? (popularityStats[image.id] ?? image.popularity ?? 0) : (image.popularity ?? 0),
       }))
     }
 
@@ -98,13 +99,13 @@ export class ImageService {
   /**
    * 獲取所有圖片並轉換格式
    */
-  private async getAllImages(): Promise<any[]> {
+  private async getAllImages(): Promise<ImageData[]> {
     try {
       // 優先從 MongoDB 獲取
       const mongoImages = await this.mongoRepo.getImages()
-      return mongoImages.map((item: any) => ({
+      return mongoImages.map((item: ImageData) => ({
         id: item.id,
-        url: this.baseURL + item.filename,
+        url: this.baseURL + (item.filename ?? ''),
         alt: item.alt,
         author: item.author,
         episode: item.episode,
@@ -116,9 +117,9 @@ export class ImageService {
     catch {
       // 失敗則使用本地文件
       const fileImages = await this.fileRepo.getImages()
-      return fileImages.map((item: any) => ({
+      return fileImages.map((item: ImageData) => ({
         id: item.id,
-        url: this.baseURL + item.filename,
+        url: this.baseURL + (item.filename ?? ''),
         alt: item.alt,
         author: item.author,
         episode: item.episode,

@@ -1,10 +1,11 @@
-export interface ImageItem {
-  url: string
+export interface ImageData {
+  id?: number
   alt: string
-  id?: string
+  url?: string
+  file_name?: string
+  filename?: string
   author?: string
   episode?: string
-  filename?: string
   tags?: string[]
   popularity?: number
 }
