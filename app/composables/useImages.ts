@@ -1,6 +1,7 @@
 import { ref, computed, watch, nextTick, readonly } from 'vue'
 import { ImagesApi } from '~/apis/images'
 import type { ImageItem, SearchParams, FilterOptions, UseImagesOptions } from '~/types'
+import { FilterCategoryKey } from '~/types'
 import type { Ref } from 'vue'
 
 /**
@@ -237,21 +238,23 @@ export function useImages(options: UseImagesOptions = {}) {
  */
 export function useImageFilter(images: Ref<ImageItem[]>, filters: Ref<FilterOptions>) {
   const filteredImages = computed(() => {
-    if (!filters.value.MyGO集數?.length
-      && !filters.value.AveMujica集數?.length
-      && !filters.value.人物?.length) {
+    const mygoFilters = filters.value[FilterCategoryKey.MyGOEpisodes] ?? []
+    const aveMujicaFilters = filters.value[FilterCategoryKey.AveMujicaEpisodes] ?? []
+    const characterFilters = filters.value[FilterCategoryKey.Characters] ?? []
+
+    if (!mygoFilters.length && !aveMujicaFilters.length && !characterFilters.length) {
       return images.value
     }
 
     return images.value.filter((image) => {
-      const matchesMyGOEpisode = !filters.value.MyGO集數?.length
-        || filters.value.MyGO集數.includes(image.episode || '')
+      const matchesMyGOEpisode = !mygoFilters.length
+        || mygoFilters.includes(image.episode || '')
 
-      const matchesAveMujicaEpisode = !filters.value.AveMujica集數?.length
-        || filters.value.AveMujica集數.includes(image.episode || '')
+      const matchesAveMujicaEpisode = !aveMujicaFilters.length
+        || aveMujicaFilters.includes(image.episode || '')
 
-      const matchesCharacter = !filters.value.人物?.length
-        || filters.value.人物.includes(image.author || '')
+      const matchesCharacter = !characterFilters.length
+        || characterFilters.includes(image.author || '')
 
       return matchesMyGOEpisode && matchesAveMujicaEpisode && matchesCharacter
     })
