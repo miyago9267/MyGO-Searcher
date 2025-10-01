@@ -41,7 +41,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { FilterCategory, FilterOptions } from '~/types/filter'
+import { FilterCategoryKey, createEmptyFilters } from '~/types'
+import type { FilterCategory, FilterOptions } from '~/types'
 
 // Emits 定義
 const emit = defineEmits<{
@@ -53,7 +54,7 @@ const showFilter = ref(false)
 
 // 篩選器配置
 const filters = ref<FilterCategory>({
-  MyGO集數: [
+  [FilterCategoryKey.MyGOEpisodes]: [
     { label: '1', value: 'mygo_1' },
     { label: '2', value: 'mygo_2' },
     { label: '3', value: 'mygo_3' },
@@ -68,7 +69,7 @@ const filters = ref<FilterCategory>({
     { label: '12', value: 'mygo_12' },
     { label: '13', value: 'mygo_13' },
   ],
-  AveMujica集數: [
+  [FilterCategoryKey.AveMujicaEpisodes]: [
     { label: '1', value: 'mujica_1' },
     { label: '2', value: 'mujica_2' },
     { label: '3', value: 'mujica_3' },
@@ -83,7 +84,7 @@ const filters = ref<FilterCategory>({
     { label: '12', value: 'mujica_12' },
     { label: '13', value: 'mujica_13' },
   ],
-  人物: [
+  [FilterCategoryKey.Characters]: [
     { label: '燈', value: '燈' },
     { label: '愛音', value: '愛音' },
     { label: '立希', value: '立希' },
@@ -98,11 +99,7 @@ const filters = ref<FilterCategory>({
 })
 
 // 選中的篩選器
-const selectedFilters = ref<FilterOptions>({
-  MyGO集數: [],
-  AveMujica集數: [],
-  人物: [],
-})
+const selectedFilters = ref<FilterOptions>(createEmptyFilters())
 
 // 方法
 const toggleFilter = () => {
@@ -110,9 +107,11 @@ const toggleFilter = () => {
 }
 
 const handleFilterUpdate = (newFilters: FilterOptions) => {
-  selectedFilters.value = newFilters
+  const normalizedFilters = { ...createEmptyFilters(), ...newFilters }
+
+  selectedFilters.value = normalizedFilters
   // 直接發送更新給父組件，實現即時篩選
-  emit('update:filter', newFilters)
+  emit('update:filter', normalizedFilters)
 }
 
 const handleFilterClose = () => {

@@ -1,12 +1,19 @@
 :root {
-  --bg-default: #dedede;
-  --bg-sub: #b0b0b0;
-  --font-default: #160505; /* 字體顏色 */
-  --font-gray: #433C3C;
-  --font-white: #e6eaf2;
-  --pink: #D95F8B;
-  --magenta: #EE1161;
-  --border: #505050;
+  --bg-default: #f5f6fb;
+  --bg-sub: #eceffd;
+  --bg-popup-color: #ffffff;
+  --bg-hover: #e4e9fb;
+  --font-default: #1b1221; /* 字體顏色 */
+  --font-gray: #5f5b67;
+  --font-white: #fdfdff;
+  --white: #ffffff;
+  --gray: #8c8f9c;
+  --surface: #ffffff;
+  --border: #d9dceb;
+  --outline: #c8cde0;
+  --brand: #7153ff;
+  --pink: #d95f8b;
+  --magenta: #ee1161;
 }
 
 html.dark {

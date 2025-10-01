@@ -31,15 +31,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { FilterOptions } from '~/types'
+import { createEmptyFilters } from '~/types'
 
 // 使用正確的類型定義
 const searchQuery = ref<string>('')
 const sortOrder = ref<string>('id')
-const filterQuery = ref<FilterOptions>({
-  MyGO集數: [],
-  AveMujica集數: [],
-  人物: [],
-})
+const filterQuery = ref<FilterOptions>(createEmptyFilters())
 
 // 處理搜尋更新
 const handleSearch = (newSearch: string) => {
@@ -48,7 +45,7 @@ const handleSearch = (newSearch: string) => {
 
 // 處理篩選更新 - 修正類型
 const handleFilter = (newFilter: FilterOptions) => {
-  filterQuery.value = newFilter
+  filterQuery.value = { ...createEmptyFilters(), ...newFilter }
 }
 
 const handleSort = (newSort: string) => {

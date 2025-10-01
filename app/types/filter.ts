@@ -3,16 +3,21 @@ export interface FilterOption {
   value: string
 }
 
-export interface FilterCategory {
-  [key: string]: FilterOption[]
+export enum FilterCategoryKey {
+  MyGOEpisodes = 'MyGO集數',
+  AveMujicaEpisodes = 'AveMujica集數',
+  Characters = '人物',
 }
 
-// 使用 FilterOptions 替代 SelectedFilters 以保持一致性
-export interface FilterOptions {
-  MyGO集數: string[]
-  AveMujica集數: string[]
-  人物: string[]
-}
+export type FilterCategory = Partial<Record<FilterCategoryKey, FilterOption[]>>
+
+export type FilterOptions = Partial<Record<FilterCategoryKey, string[]>>
+
+export const createEmptyFilters = (): FilterOptions => ({
+  [FilterCategoryKey.MyGOEpisodes]: [],
+  [FilterCategoryKey.AveMujicaEpisodes]: [],
+  [FilterCategoryKey.Characters]: [],
+})
 
 export interface FilterPopupProps {
   filters: FilterCategory

@@ -49,6 +49,7 @@
 import { watch, ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { useImages, useImageFilter } from '~/composables/useImages'
 import type { FilterOptions } from '~/types'
+import { createEmptyFilters } from '~/types'
 
 interface Props {
   sortOrder?: string
@@ -59,11 +60,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   sortOrder: 'id',
   searchQuery: '',
-  filterQuery: () => ({
-    MyGO集數: [],
-    AveMujica集數: [],
-    人物: [],
-  }),
+  filterQuery: () => createEmptyFilters(),
 })
 
 // 使用 useImages 組合式函數
@@ -85,11 +82,7 @@ const {
 })
 
 // 將 filterQuery 轉換為 ref
-const filterQuery = computed(() => props.filterQuery || {
-  MyGO集數: [],
-  AveMujica集數: [],
-  人物: [],
-})
+const filterQuery = computed(() => ({ ...createEmptyFilters(), ...(props.filterQuery || {}) }))
 
 // 使用篩選功能
 const { filteredImages } = useImageFilter(images, filterQuery)
