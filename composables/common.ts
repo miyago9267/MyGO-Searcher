@@ -10,7 +10,7 @@ export const copyToClipboard = (content: string) => {
             });
             const jpegBlob = await jpegImageResponse.blob();
 
-            return await new Promise<Blob>((resolve, reject) => {
+            return new Promise<Blob>((resolve, reject) => {
                 const img = new Image();
                 img.onload = () => {
                     try {
@@ -28,7 +28,7 @@ export const copyToClipboard = (content: string) => {
                         reject(e);
                     }
                 };
-                img.onerror = () => reject;
+                img.onerror = reject;
                 img.src = URL.createObjectURL(jpegBlob);
             });
         };
