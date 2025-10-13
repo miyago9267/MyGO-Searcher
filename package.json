@@ -1,13 +1,16 @@
 {
-  "name": "watsuki-official-site",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "name": "mygo-searcher",
+  "version": "2.0.1",
   "scripts": {
     "test": "nuxt test",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix --max-warnings 0",
     "dev": "nuxt dev --dotenv ./.env.development",
     "build": "nuxt build --dotenv ./.env.production",
+    "build:docker": "./scripts/docker-run.sh",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
