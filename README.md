@@ -77,4 +77,5 @@ MyGO 搜尋器，滿足你上網戰鬥的各種圖戰需求！
 
 ## 特別銘謝
 
-靈感來源於[lekoOwO](https://github.com/lekoOwO)大大製作之[海綿寶寶高清貼圖搜尋器](https://sb.leko.moe/#!)
+- 靈感來源於[lekoOwO](https://github.com/lekoOwO)大大製作之[海綿寶寶高清貼圖搜尋器](https://sb.leko.moe/#!)
+- 感謝 @ShiriNmi1520 協作解決Safari的複製協議問題
