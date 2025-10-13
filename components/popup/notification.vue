@@ -24,29 +24,15 @@
         </div>
         
         <div class="mb-6">
-          <h3 class="m-0 mb-3 text-4 font-600 text-white">Feature</h3>
+          <h3 class="m-0 mb-3 text-4 font-600 text-white">Fixed</h3>
           <ul class="list-none p-0 m-0">
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">重新設計API路由，統一使用RESTful格式</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">加入篩選器功能，可選擇MyGO集數、AveMujica集數和人物（人物分類尚在製作中）</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">加入排序功能，可選擇四種排序方式</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">加入更新提示</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">正式加入AveMujica圖包</li>
-          </ul>
-        </div>
-
-        <div class="mb-6">
-          <h3 class="m-0 mb-3 text-4 font-600 text-white">Change</h3>
-          <ul class="list-none p-0 m-0">
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">重新設計前端Component及Nuxt後端架構</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">更新前端載入邏輯，從全部圖片載入改為動態滾動載入</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">優化SSR效能</li>
-            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">連線MongoDB</li>
+            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">修正Safari剪貼簿調用的同異步問題（感謝 @ShiriNmi1520 協助）</li>
           </ul>
         </div>
 
         <div class="bg-[#3a3a3a] border-l-4 border-l-[#667eea] p-4 rounded-lg mb-6">
           <p class="m-0 text-3.5 text-[#e0e0e0] leading-6">
-            <strong>重要提醒：</strong>新版本API已上線，舊版API將逐步淘汰，建議開發者儘早遷移至新版API，詳見文檔。
+            <strong>重要提醒：</strong>舊版API已過時，建議開發者儘早遷移至新版API，詳見文檔。
           </p>
         </div>
       </div>
@@ -67,7 +53,7 @@
 import { ref, onMounted } from 'vue'
 
 // 當前版本號 - 從 package.json 獲取
-const currentVersion = '2.0.0'
+const currentVersion = '2.0.1'
 
 // 控制通知顯示的響應式變數
 const showNotification = ref(false)

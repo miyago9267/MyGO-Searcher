@@ -4,7 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Version 2.0.0] - 2025-XX-XX
+## [Version 2.0.1] - 2025-10-13
+
+### Fixed (Version 2.0.1)
+
+- 修正Safari剪貼簿調用的同異步問題（感謝 @ShiriNmi1520 協助）
+
+### Todo （Version 2.0.1）
+
+- 完善人物分類
+- 增加暗色模式
+- 實裝人氣排序
+- 語意化嵌入模型測試
+
+
+## [Version 2.0.0] - 2025-08-06
 
 ### Features (Version 2.0.0)
 
