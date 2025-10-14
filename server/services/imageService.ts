@@ -112,6 +112,7 @@ export class ImageService {
         filename: item.filename,
         tags: item.tags || [],
         popularity: item.popularity || 0,
+        description: item.description || '',
       }))
     }
     catch {
@@ -126,6 +127,7 @@ export class ImageService {
         filename: item.filename,
         tags: item.tags || [],
         popularity: item.popularity || 0,
+        description: item.description || '',
       }))
     }
   }
