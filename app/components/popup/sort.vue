@@ -1,35 +1,40 @@
 <template>
-  <!-- 全屏背景層，用於捕獲外部點擊 -->
+  <!-- 全屏背景層,用於捕獲外部點擊 -->
   <div
     v-if="show"
-    class="fixed inset-0 z-40"
+    class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
     @click="handleOutsideClick"
   />
 
   <!-- 彈出框內容 -->
   <div
     v-if="show"
-    class="absolute top-full right-0 mt-2 w-48 bg-[--bg-sub] rounded-xl shadow-lg border z-50"
+    class="absolute top-full right-0 mt-3 w-56 bg-[--bg-popup-color] rounded-2xl shadow-2xl border border-[--border] z-50 overflow-hidden animate-fade-in"
     @click.stop
   >
-    <div class="p-4">
-      <h3 class="text-lg font-medium border-gray-300 m-2">
+    <div class="p-5">
+      <h3 class="text-base font-bold text-[--font-default] mb-4 pb-3 border-b border-[--outline]">
         排序方式
       </h3>
-      <div class="space-y-2">
+      <div class="space-y-1.5">
         <label
           v-for="option in sortOptions"
           :key="option.value"
-          class="flex items-center cursor-pointer hover:bg-gray-500 p-2 rounded"
+          class="flex items-center cursor-pointer hover:bg-[--bg-hover] p-3 rounded-xl transition-all duration-200 group"
         >
           <input
             v-model="selectedSort"
             type="radio"
             :value="option.value"
-            class="mr-3 text-blue-600"
+            class="w-4 h-4 mr-3 accent-[--brand] cursor-pointer"
             @change="handleSortChange"
           >
-          <span class="border-gray-300">{{ option.label }}</span>
+          <span 
+            class="text-sm font-medium transition-colors duration-200"
+            :class="selectedSort === option.value ? 'text-[--brand]' : 'text-[--font-default] group-hover:text-[--brand]'"
+          >
+            {{ option.label }}
+          </span>
         </label>
       </div>
     </div>

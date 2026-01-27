@@ -24,11 +24,13 @@
     "@nuxt/test-utils": "3.19.2",
     "@nuxt/ui": "^3.3.3",
     "@unocss/nuxt": "^66.4.2",
+    "@unocss/preset-wind3": "^66.4.2",
     "better-sqlite3": "^12.2.0",
     "element-plus": "^2.11.1",
     "mongodb": "^6.20.0",
     "nuxt": "^4.0.1",
     "opencc-js": "^1.0.5",
+    "unocss": "^66.4.2",
     "vue": "^3.5.22",
     "vue-lazyload": "^3.0.0",
     "vue-router": "^4.5.1"
