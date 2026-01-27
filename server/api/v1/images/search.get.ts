@@ -42,6 +42,7 @@ export default defineEventHandler(async (event) => {
       page,
       limit,
       order,
+      semantic: query.semantic === 'true' || query.semantic === true,
     }
 
     const result = await searchService.search(params)

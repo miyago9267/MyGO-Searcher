@@ -4,7 +4,9 @@
     <div class="p-10">
       <search-bar
         class="mb-5"
+        :semantic-enabled="isSemantic"
         @update:search="handleSearch"
+        @update:semantic="isSemantic = $event"
       />
       <div class="flex w-full justify-end">
         <button-sort
@@ -21,6 +23,7 @@
         :search-query="searchQuery"
         :filter-query="filterQuery"
         :sort-order="sortOrder"
+        :semantic-enabled="isSemantic"
       />
     </div>
     <Footer class="" />
@@ -37,6 +40,7 @@ import { createEmptyFilters } from '~/types'
 const searchQuery = ref<string>('')
 const sortOrder = ref<string>('id')
 const filterQuery = ref<FilterOptions>(createEmptyFilters())
+const isSemantic = ref(false)
 
 // 處理搜尋更新
 const handleSearch = (newSearch: string) => {

@@ -32,6 +32,7 @@ export interface RandomMeta {
 export interface SearchParams extends Record<string, string | number | boolean | undefined> {
   q: string
   fuzzy?: boolean
+  semantic?: boolean
   page?: number
   limit?: number
   order?: string

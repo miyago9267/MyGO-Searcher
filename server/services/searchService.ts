@@ -1,7 +1,8 @@
 import { SearchEngine } from '../utils/search/searchEngine'
 import { sortImages, type SortOrder } from '../utils/sorting'
 import { FileRepository } from '../repositories/fileRepository'
-import type { SearchParams, SearchResponse, SearchResponseItem } from '../types/'
+import type { SearchParams, SearchResponse, SearchResponseItem, SearchResult } from '../types/'
+import { SemanticSearchService } from './semanticSearchService'
 
 /**
  * 搜索服務類
@@ -23,12 +24,26 @@ export class SearchService {
     // 初始化搜索引擎
     const searchEngine = new SearchEngine(this.baseURL, this.customKeyMap)
 
-    // 執行搜索
-    const searchResults = await searchEngine.searchInData(
-      data,
-      params.query,
-      params.fuzzy,
-    )
+    let searchResults: SearchResult[] = []
+
+    if (params.semantic) {
+      // 實驗性：語義搜尋
+      try {
+        const semanticService = SemanticSearchService.getInstance()
+        searchResults = await semanticService.search(params.query, data)
+      } catch (error) {
+        console.error('Semantic search failed, falling back to keyword search:', error)
+        // Fallback to normal search
+        searchResults = await searchEngine.searchInData(data, params.query, params.fuzzy)
+      }
+    } else {
+      // 一般關鍵字搜尋
+      searchResults = await searchEngine.searchInData(
+        data,
+        params.query,
+        params.fuzzy,
+      )
+    }
 
     // 排序結果
     const sortedResults = await sortImages(searchResults, params.order as SortOrder)

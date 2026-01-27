@@ -12,6 +12,7 @@ export function useImages(options: UseImagesOptions = {}) {
     initialQuery = '',
     pageSize = 20,
     fuzzySearch = false,
+    semanticSearch = false,
     sortOrder = 'id',
   } = options
 
@@ -26,6 +27,7 @@ export function useImages(options: UseImagesOptions = {}) {
   // Search state
   const searchQuery = ref(initialQuery)
   const isFuzzyEnabled = ref(fuzzySearch)
+  const isSemanticEnabled = ref(semanticSearch)
   const currentSortOrder = ref(sortOrder)
 
   // Infinite scroll state
@@ -45,6 +47,7 @@ export function useImages(options: UseImagesOptions = {}) {
       const params: SearchParams = {
         q: query,
         fuzzy: isFuzzyEnabled.value,
+        semantic: isSemanticEnabled.value,
         page,
         limit: pageSize,
         order: currentSortOrder.value,
@@ -99,6 +102,14 @@ export function useImages(options: UseImagesOptions = {}) {
    */
   const toggleFuzzy = async () => {
     isFuzzyEnabled.value = !isFuzzyEnabled.value
+    await fetchImages(searchQuery.value, 1, false)
+  }
+
+  /**
+   * Toggle semantic search
+   */
+  const toggleSemantic = async () => {
+    isSemanticEnabled.value = !isSemanticEnabled.value
     await fetchImages(searchQuery.value, 1, false)
   }
 
@@ -217,12 +228,14 @@ export function useImages(options: UseImagesOptions = {}) {
     totalCount: readonly(totalCount),
     searchQuery,
     isFuzzyEnabled: readonly(isFuzzyEnabled),
+    isSemanticEnabled: readonly(isSemanticEnabled),
 
     // Actions
     search,
     fetchImages,
     loadMore,
     toggleFuzzy,
+    toggleSemantic,
     setSortOrder,
     getRandomImages,
     reset,

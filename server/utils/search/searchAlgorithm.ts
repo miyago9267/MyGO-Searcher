@@ -149,7 +149,7 @@ export function calculateMatchScore(
     if (fuzzy && variant.length > 2 && lowerText.length > 2) {
       const dist = leven_distance(variant, lowerText)
       const ratio = (variant.length - dist) / variant.length
-      if (dist <= 2 && ratio >= 0.5) {
+      if (dist <= 2 && ratio >= 0.8) {
         matches.push({
           text: text,
           startIndex: 0,

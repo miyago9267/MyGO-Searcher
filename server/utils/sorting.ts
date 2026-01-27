@@ -9,7 +9,7 @@ export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'populari
  * @returns Promise<ImageData[]> - 排序後的圖片陣列
  */
 
-export async function sortImages(allImages: ImageData[] | SearchResult[], order: SortOrder = 'id'): Promise<ImageData[]> {
+export async function sortImages<T extends ImageData | SearchResult>(allImages: T[], order: SortOrder = 'id'): Promise<T[]> {
   return new Promise((resolve) => {
     const sortedImages = allImages.sort((a, b) => {
       if (order === 'id') {
@@ -31,7 +31,7 @@ export async function sortImages(allImages: ImageData[] | SearchResult[], order:
           if (!match) return { series: 'zzz', number: 0 } // 未知的放最後
           return {
             series: match[1] === 'mygo' ? 'a' : 'b', // mygo 優先
-            number: parseInt(match[2]),
+            number: parseInt(match![2]!),
           }
         }
 
@@ -61,6 +61,6 @@ export async function sortImages(allImages: ImageData[] | SearchResult[], order:
       }
     })
 
-    resolve(sortedImages as ImageData[])
+    resolve(sortedImages as T[])
   })
 }

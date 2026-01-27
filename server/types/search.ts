@@ -23,6 +23,7 @@ export interface SearchParams {
   page: number
   limit: number
   order: string
+  semantic?: boolean
 }
 
 export interface SearchResponseItem {
