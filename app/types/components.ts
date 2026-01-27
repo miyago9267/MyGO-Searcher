@@ -1,19 +1,24 @@
-// Component props and interfaces
-// Re-export filter options from image types
-import type { FilterOptions } from './image'
-
-export interface UseImagesOptions {
-  initialQuery?: string
-  pageSize?: number
-  fuzzySearch?: boolean
-  sortOrder?: string
+export interface SortOption {
+  label: string
+  value: string
 }
 
-// Component emits
-export interface SearchBarEmits {
-  (event: 'update:search' | 'search', value: string): void
+export interface SortPopupProps {
+  show: boolean
+  modelValue: string
 }
 
-export interface FilterEmits {
-  (event: 'update:filter', value: FilterOptions): void
+export interface PopupBaseProps {
+  modelValue?: boolean
+}
+
+export interface PopupBaseEmits {
+  'update:modelValue': [value: boolean]
+  'close': []
+}
+
+export interface ButtonIconProps {
+  icon?: string
+  label?: string
+  ariaLabel?: string
 }

@@ -43,6 +43,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
+import { useSort } from '~/composables/useSort'
 
 // Props 定義
 const props = defineProps<{
@@ -59,14 +60,8 @@ const emit = defineEmits<{
 // 響應式數據
 const selectedSort = ref(props.modelValue)
 
-// 排序選項
-const sortOptions = ref([
-  { label: '預設排序', value: 'id' },
-  { label: '隨機排序', value: 'random' },
-  { label: '按集數排序', value: 'episode' },
-  { label: '按字典序排序', value: 'alphabetical' },
-  // { label: '按人氣排序', value: 'popularity' },
-])
+// 使用 composable 獲取排序選項
+const { sortOptions } = useSort()
 
 // 方法
 const handleSortChange = () => {

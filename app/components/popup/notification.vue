@@ -89,38 +89,29 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import { useLocalStorage } from '~/composables/useLocalStorage'
+import { usePopup } from '~/composables/usePopup'
 
 // 當前版本號 - 從 package.json 獲取
 const currentVersion = '2.0.0'
 
-// 控制通知顯示的響應式變數
-const showNotification = ref(false)
-
 // LocalStorage 鍵名
 const NOTIFICATION_KEY = 'mygo-searcher-notification-seen'
 
+// 使用 composables
+const { isOpen: showNotification, open: openNotification, close: closeNotificationState } = usePopup()
+const { get: getSeenVersion, set: setSeenVersion } = useLocalStorage<string>(NOTIFICATION_KEY)
+
 // 檢查是否需要顯示通知
 const checkShouldShowNotification = (): boolean => {
-  try {
-    const seenVersion = localStorage.getItem(NOTIFICATION_KEY)
-    return seenVersion !== currentVersion
-  }
-  catch (error) {
-    console.warn('無法讀取 localStorage:', error)
-    return true // 如果無法讀取，預設顯示通知
-  }
+  const seenVersion = getSeenVersion()
+  return seenVersion !== currentVersion
 }
 
 // 關閉通知並記錄到 localStorage
 const closeNotification = (): void => {
-  showNotification.value = false
-
-  try {
-    localStorage.setItem(NOTIFICATION_KEY, currentVersion)
-  }
-  catch (error) {
-    console.warn('無法寫入 localStorage:', error)
-  }
+  closeNotificationState()
+  setSeenVersion(currentVersion)
 }
 
 // 組件掛載時檢查是否需要顯示通知
@@ -128,7 +119,7 @@ onMounted(() => {
   // 延遲一點時間顯示，讓頁面完全載入
   setTimeout(() => {
     if (checkShouldShowNotification()) {
-      showNotification.value = true
+      openNotification()
     }
   }, 1000)
 })
