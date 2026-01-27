@@ -6,6 +6,7 @@
   >
     <NuxtLoadingIndicator />
     <NuxtPage />
+    <PopupNotification />
   </ColorScheme>
 </template>
 
