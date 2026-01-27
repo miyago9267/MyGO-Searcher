@@ -1,4 +1,4 @@
-name: Lint && Test (Yarn)
+name: Lint, Typecheck && Test
 
 on:
   push:
@@ -6,35 +6,40 @@ on:
       - main
       - dev
   pull_request:
-    branches:
-      - main
-      - dev
 
 jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Run TypeScript type checking
+        run: bun typecheck
+
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20'
-          cache: 'yarn'
+          bun-version: latest
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Run ESLint
-        run: yarn lint
+        run: bun lint
 
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20'
-          cache: 'yarn'
+          bun-version: latest
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Run tests
-        run: yarn test
+        run: bun test
