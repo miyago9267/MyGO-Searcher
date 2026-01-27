@@ -8,4 +8,5 @@ export interface ImageData {
   episode?: string
   tags?: string[]
   popularity?: number
+  description?: string
 }

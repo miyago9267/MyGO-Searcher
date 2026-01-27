@@ -1,29 +1,34 @@
 <template>
   <div
-    class="fixed inset-0 flex items-center justify-center rounded-xl bg-opacity-50 z-50 bg-black/80 backdrop-blur-2"
+    class="fixed inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-md animate-fade-in"
     @click.self="handleClose"
   >
-    <div class="bg-[--bg-sub] border rounded-lg border-[--font-default] shadow-lg p-6 w-120 relative">
+    <div class="bg-[--bg-popup-color] border border-[--border] rounded-2xl shadow-2xl p-6 max-w-[90vw] relative animate-scale-in">
       <!-- 關閉按鈕 -->
       <button
-        class="absolute top-4 right-4 bg-transparent border-none text-6 text-[--font-default] cursor-pointer p-0 w-8 h-8 flex items-center justify-center rounded-2 transition-all duration-200 hover:bg-[#404040] hover:text-white leading-none"
+        class="absolute top-4 right-4 bg-transparent border-none text-xl text-[--font-gray] cursor-pointer p-0 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:bg-[--bg-hover] hover:text-[--font-default] hover:rotate-90 leading-none"
         @click="handleClose"
       >
         ×
       </button>
 
-      <!-- 篩選器內容 -->
-      <div class="flex justify-around">
+      <!-- 標題 -->
+      <h2 class="text-xl font-bold text-[--font-default] mb-5 pr-10">
+        篩選選項
+      </h2>
+
+      <!-- 篩選器內容 - 橫向併排 -->
+      <div class="flex gap-6">
         <div
           v-for="[categoryKey, options] in filterEntries"
           :key="categoryKey"
-          class="border-b border-gray-300 pb-8"
+          class="flex-1 min-w-[140px]"
         >
-          <h3 class="mb-2 text-lg font-bold">
+          <h3 class="mb-3 text-sm font-bold text-[--font-default] flex items-center gap-2">
+            <span class="w-0.5 h-4 bg-[--brand] rounded-full" />
             {{ categoryKey === FilterCategoryKey.Characters ? `${categoryKey} (WIP)` : categoryKey }}
           </h3>
-          <div class="h-px bg-gray-300 mb-3" />
-          <div class="grid grid-cols-1 gap-2">
+          <div class="flex flex-col gap-2">
             <div
               v-for="option in options"
               :key="option.value"
@@ -34,17 +39,12 @@
                 type="checkbox"
                 :value="option.value"
                 :checked="localSelectedFilters?.[categoryKey]?.includes(option.value)"
-                class="sr-only"
+                class="sr-only peer"
                 @change="handleFilterChange(categoryKey, option.value, $event)"
               >
               <label
                 :for="`${categoryKey}-${option.value}`"
-                :class="[
-                  'text-sm cursor-pointer select-none flex-1 pl-2 py-[4px] rounded-md border transition-all duration-20 font-bold',
-                  localSelectedFilters?.[categoryKey]?.includes(option.value)
-                    ? 'text-[--font-default] border-blue-500'
-                    : 'text-gray-500 border-gray-300 hover:bg-gray-400',
-                ]"
+                class="text-xs cursor-pointer select-none w-full px-3 py-2 rounded-lg border-2 transition-all duration-200 font-medium text-center peer-checked:bg-[--brand] peer-checked:border-[--brand] peer-checked:text-white peer-checked:shadow-md peer-checked:shadow-[--brand]/30 hover:border-[--brand] hover:bg-[--bg-hover] border-[--outline] text-[--font-default]"
               >
                 {{ option.label }}
               </label>
@@ -54,12 +54,18 @@
       </div>
 
       <!-- 操作按鈕 -->
-      <div class="flex gap-2 mt-4">
+      <div class="flex gap-3 mt-5 pt-5 border-t border-[--outline]">
         <button
-          class="flex-1 p-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+          class="flex-1 px-5 py-2.5 bg-[--bg-sub] text-[--font-default] rounded-lg text-sm font-medium hover:bg-[--bg-hover] transition-all duration-200 border border-[--border] hover:border-[--brand]"
           @click="handleReset"
         >
-          重置
+          重置篩選
+        </button>
+        <button
+          class="flex-1 px-5 py-2.5 bg-[--brand] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-200 shadow-md shadow-[--brand]/30"
+          @click="handleClose"
+        >
+          確認
         </button>
       </div>
     </div>

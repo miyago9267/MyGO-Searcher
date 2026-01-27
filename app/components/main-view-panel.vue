@@ -7,6 +7,10 @@
         :key="image.id ?? image.url"
         :url="image.url"
         :alt="image.alt"
+        :author="image.author"
+        :episode="image.episode"
+        :tags="image.tags"
+        :description="image.description"
         class="image"
       />
     </div>

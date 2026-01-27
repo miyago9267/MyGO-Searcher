@@ -9,6 +9,9 @@
       <div
         class="absolute top-[10px] right-[10px] inset-0 flex gap-[10px] items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
+        <card-preview-button
+          @preview="openPreview"
+        />
         <card-download-button
           :id="actionId"
           :alt="props.alt"
@@ -26,10 +29,17 @@
       :url="props.url"
     />
   </div>
+  <card-preview-panel
+    v-model="isPreviewOpen"
+    :alt="props.alt"
+    :image-url="encodedUrl"
+  >
+    {{ previewDescription }}
+  </card-preview-panel>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { ImageItem } from '../types'
 
 const props = defineProps<ImageItem>()
@@ -38,6 +48,39 @@ const actionId = computed(() => {
   const { id } = props
   return id === undefined || id === null ? undefined : String(id)
 })
+
+const isPreviewOpen = ref(false)
+
+const previewDescription = computed(() => {
+  const { alt, author, episode, tags, description } = props
+  const parts: string[] = []
+
+  if (episode) {
+    parts.push(`出處：${episode}`)
+  }
+
+  if (description) {
+    parts.push(`介紹：${description}`)
+  }
+
+  if (author) {
+    parts.push(`作者：${author}`)
+  }
+
+  if (tags?.length) {
+    parts.push(`標籤：${tags.join(', ')}`)
+  }
+
+  if (!parts.length) {
+    parts.push(alt)
+  }
+
+  return parts.join('\n')
+})
+
+const openPreview = () => {
+  isPreviewOpen.value = true
+}
 </script>
 
 <style scoped>

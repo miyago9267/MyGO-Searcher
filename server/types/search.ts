@@ -6,6 +6,7 @@ export interface SearchResult {
   episode?: string
   score: number
   popularity?: number
+  description?: string
 }
 
 export interface SearchParams {
