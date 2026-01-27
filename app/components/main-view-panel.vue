@@ -11,6 +11,7 @@
         :episode="image.episode"
         :tags="image.tags"
         :description="image.description"
+        :matches="image.matches"
         class="image"
       />
     </div>

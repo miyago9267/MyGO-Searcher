@@ -28,7 +28,7 @@ export class SearchEngine {
 
     // 主要搜索邏輯
     data.forEach((item, index) => {
-      const totalScore = calculateTotalScore(item.alt, keywords, fuzzy)
+      const { score: totalScore, matches } = calculateTotalScore(item.alt, keywords, fuzzy)
 
       const imageItem: SearchResult = {
         id: index.toString(),
@@ -37,6 +37,7 @@ export class SearchEngine {
         author: item.author,
         episode: item.episode,
         score: totalScore,
+        matches: matches.length > 0 ? matches : undefined,
       }
 
       // 評分匹配

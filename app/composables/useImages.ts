@@ -168,7 +168,7 @@ export function useImages(options: UseImagesOptions = {}) {
     observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
-        if (entry.isIntersecting && hasMore.value && !loading.value) {
+        if (entry?.isIntersecting && hasMore.value && !loading.value) {
           console.log('觸發自動載入更多')
           loadMore()
         }

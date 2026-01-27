@@ -41,6 +41,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { usePopup } from '~/composables/usePopup'
 import { FilterCategoryKey, createEmptyFilters } from '~/types'
 import type { FilterCategory, FilterOptions } from '~/types'
 
@@ -50,7 +51,7 @@ const emit = defineEmits<{
 }>()
 
 // 響應式數據
-const showFilter = ref(false)
+const { isOpen: showFilter, toggle: toggleFilter, close: closeFilter } = usePopup()
 
 // 篩選器配置
 const filters = ref<FilterCategory>({
@@ -102,10 +103,6 @@ const filters = ref<FilterCategory>({
 const selectedFilters = ref<FilterOptions>(createEmptyFilters())
 
 // 方法
-const toggleFilter = () => {
-  showFilter.value = !showFilter.value
-}
-
 const handleFilterUpdate = (newFilters: FilterOptions) => {
   const normalizedFilters = { ...createEmptyFilters(), ...newFilters }
 
@@ -115,6 +112,6 @@ const handleFilterUpdate = (newFilters: FilterOptions) => {
 }
 
 const handleFilterClose = () => {
-  showFilter.value = false
+  closeFilter()
 }
 </script>

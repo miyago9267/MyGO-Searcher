@@ -1,6 +1,6 @@
 <template>
   <button
-    class="back-to-top flex justify-center items-center"
+    class="p-3 cursor-pointer opacity-70 transition-opacity duration-300 bg-gray-600 rounded-full border border-gray-800 flex justify-center items-center hover:opacity-100 focus:outline-none"
     @click="backToTop"
   >
     <svg
@@ -24,21 +24,10 @@ const backToTop = () => {
 </script>
 
 <style scoped>
-.back-to-top {
-    padding: 0.75rem;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    background-color: rgb(75 85 99);
-    border-radius: 9999px;
-    border-width: 1px;
-    border-color: rgb(31 41 55) !important;
-}
-.back-to-top:hover {
-  opacity: 1;
-}
-button:focus,
-button:focus-visible {
-  outline: none;
-}
+/* 
+所有樣式已轉換為 UnoCSS：
+.back-to-top -> p-3 cursor-pointer opacity-70 transition-opacity bg-gray-600 rounded-full border border-gray-800
+.back-to-top:hover -> hover:opacity-100
+button:focus -> focus:outline-none
+*/
 </style>

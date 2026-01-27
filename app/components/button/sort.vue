@@ -48,6 +48,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { usePopup } from '~/composables/usePopup'
 
 // Emits 定義
 const emit = defineEmits<{
@@ -55,20 +56,16 @@ const emit = defineEmits<{
 }>()
 
 // 響應式數據
-const showSort = ref(false)
+const { isOpen: showSort, toggle: toggleSort, close: closeSort } = usePopup()
 const selectedSort = ref('id')
 
 // 方法
-const toggleSort = () => {
-  showSort.value = !showSort.value
-}
-
 const handleSortUpdate = (value: string) => {
   selectedSort.value = value
   emit('update:sort', value)
 }
 
 const handleSortClose = () => {
-  showSort.value = false
+  closeSort()
 }
 </script>

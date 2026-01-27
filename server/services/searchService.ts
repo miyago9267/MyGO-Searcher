@@ -47,6 +47,7 @@ export class SearchService {
         alt: item.alt,
         author: item.author,
         episode: item.episode,
+        matches: item.matches,
       })),
       meta: {
         query: params.query,

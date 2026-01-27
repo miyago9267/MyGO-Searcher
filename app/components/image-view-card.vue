@@ -27,6 +27,7 @@
     <card-alt-description
       :alt="props.alt"
       :url="props.url"
+      :matches="props.matches"
     />
   </div>
   <card-preview-panel
