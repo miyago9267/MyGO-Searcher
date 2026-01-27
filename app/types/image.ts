@@ -1,4 +1,11 @@
 // Image related types
+export interface MatchInfo {
+  text: string
+  startIndex: number
+  endIndex: number
+  matchType: 'exact' | 'fuzzy' | 'variant'
+}
+
 export interface ImageItem {
   url: string
   alt: string
@@ -9,6 +16,14 @@ export interface ImageItem {
   tags?: string[]
   popularity?: number
   description?: string
+  matches?: MatchInfo[]
+}
+
+export interface UseImagesOptions {
+  initialQuery?: string
+  pageSize?: number
+  fuzzySearch?: boolean
+  sortOrder?: string
 }
 
 // Re-export FilterOptions from filter.ts to maintain compatibility
