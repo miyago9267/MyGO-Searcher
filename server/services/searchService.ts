@@ -31,12 +31,14 @@ export class SearchService {
       try {
         const semanticService = SemanticSearchService.getInstance()
         searchResults = await semanticService.search(params.query, data)
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Semantic search failed, falling back to keyword search:', error)
         // Fallback to normal search
         searchResults = await searchEngine.searchInData(data, params.query, params.fuzzy)
       }
-    } else {
+    }
+    else {
       // 一般關鍵字搜尋
       searchResults = await searchEngine.searchInData(
         data,

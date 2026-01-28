@@ -29,7 +29,7 @@
             class="w-4 h-4 mr-3 accent-[--brand] cursor-pointer"
             @change="handleSortChange"
           >
-          <span 
+          <span
             class="text-sm font-medium transition-colors duration-200"
             :class="selectedSort === option.value ? 'text-[--brand]' : 'text-[--font-default] group-hover:text-[--brand]'"
           >

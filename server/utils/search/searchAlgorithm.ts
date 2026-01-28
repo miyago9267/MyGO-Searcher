@@ -51,19 +51,19 @@ export function processSearchKeyword(queryKeyword: string): string[] {
   // 生成繁簡兩個版本
   const twVersion = converterToTW(queryKeyword) as string
   const cnVersion = converterToCN(queryKeyword) as string
-  
+
   // 合併並去重
   const keywords = new Set<string>()
-  
+
   // 添加原始關鍵字
   queryKeyword.split(' ').filter((k: string) => k.trim()).forEach((k: string) => keywords.add(k))
-  
+
   // 添加繁體版本
   twVersion.split(' ').filter((k: string) => k.trim()).forEach((k: string) => keywords.add(k))
-  
+
   // 添加簡體版本
   cnVersion.split(' ').filter((k: string) => k.trim()).forEach((k: string) => keywords.add(k))
-  
+
   return Array.from(keywords)
 }
 
@@ -77,18 +77,18 @@ export function findMatches(
 ): MatchInfo[] {
   const matches: MatchInfo[] = []
   const lowerText = text.toLowerCase()
-  
+
   for (const keyword of keywords) {
     const lowerKeyword = keyword.toLowerCase()
     const variants = fuzzy ? generateFuzzyVariants(lowerKeyword) : new Set([lowerKeyword])
-    
+
     for (const variant of variants) {
       // 尋找所有出現位置
       let startIndex = 0
       while (startIndex < lowerText.length) {
         const index = lowerText.indexOf(variant, startIndex)
         if (index === -1) break
-        
+
         const matchType = variant === lowerKeyword ? 'exact' : 'variant'
         matches.push({
           text: text.substring(index, index + variant.length),
@@ -96,21 +96,21 @@ export function findMatches(
           endIndex: index + variant.length,
           matchType,
         })
-        
+
         startIndex = index + 1
       }
     }
   }
-  
+
   // 去重並排序
   const uniqueMatches = new Map<string, MatchInfo>()
-  matches.forEach(match => {
+  matches.forEach((match) => {
     const key = `${match.startIndex}-${match.endIndex}`
     if (!uniqueMatches.has(key)) {
       uniqueMatches.set(key, match)
     }
   })
-  
+
   return Array.from(uniqueMatches.values()).sort((a, b) => a.startIndex - b.startIndex)
 }
 
@@ -137,7 +137,7 @@ export function calculateMatchScore(
         endIndex: index + variant.length,
         matchType: variant === lowerKeyword ? 'exact' : 'variant',
       })
-      
+
       return {
         score: variant.length >= 2 ? 10 : 5,
         matched: true,
@@ -156,7 +156,7 @@ export function calculateMatchScore(
           endIndex: text.length,
           matchType: 'fuzzy',
         })
-        
+
         return {
           score: 3,
           matched: true,
@@ -192,7 +192,7 @@ export function calculateTotalScore(
 
   // 去重匹配
   const uniqueMatches = new Map<string, MatchInfo>()
-  allMatches.forEach(match => {
+  allMatches.forEach((match) => {
     const key = `${match.startIndex}-${match.endIndex}`
     if (!uniqueMatches.has(key)) {
       uniqueMatches.set(key, match)

@@ -1,11 +1,9 @@
-import { pipeline, env } from '@huggingface/transformers'
+import { pipeline } from '@huggingface/transformers'
 import type { ImageData, SearchResult } from '../types'
 import { processSearchKeyword, findMatches } from '../utils/search/searchAlgorithm'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve, join } from 'node:path'
 import { createHash } from 'node:crypto'
-
-
 
 /**
  * 實驗性語義搜尋服務
@@ -13,9 +11,10 @@ import { createHash } from 'node:crypto'
  */
 export class SemanticSearchService {
   private static instance: SemanticSearchService
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private extractor: any = null
   private modelId = 'onnx-community/embeddinggemma-300m-ONNX'
-  private index: { id: string; embedding: number[]; item: ImageData }[] = []
+  private index: { id: string, embedding: number[], item: ImageData }[] = []
   private isInitialized = false
   private isBuildingIndex = false
   private cacheDir = resolve(process.cwd(), 'node_modules/.cache')
@@ -38,7 +37,7 @@ export class SemanticSearchService {
 
     console.log('[SemanticSearch] Loading model:', this.modelId)
     this.extractor = await pipeline('feature-extraction', this.modelId, {
-      dtype: 'q8', 
+      dtype: 'q8',
     })
     console.log('[SemanticSearch] Model loaded')
     this.isInitialized = true
@@ -50,8 +49,6 @@ export class SemanticSearchService {
   private async computeEmbedding(text: string): Promise<number[]> {
     if (!this.extractor) await this.initialize()
 
-
-
     const output = await this.extractor(text, { pooling: 'mean', normalize: true })
     return Array.from(output.data)
   }
@@ -61,21 +58,22 @@ export class SemanticSearchService {
    */
   public async buildIndex(data: ImageData[]) {
     if (this.isBuildingIndex || this.index.length === data.length) return
-    
+
     const dataHash = this.computeDataHash(data)
-    
+
     try {
       if (existsSync(this.cacheFile)) {
         const cacheRaw = readFileSync(this.cacheFile, 'utf-8')
         const cache = JSON.parse(cacheRaw)
-        
+
         if (cache.hash === dataHash && Array.isArray(cache.index)) {
           console.log('[SemanticSearch] Loading index from cache')
           this.index = cache.index
           return
         }
       }
-    } catch (e) {
+    }
+    catch (e) {
       console.warn('[SemanticSearch] Failed to load cache', e)
     }
 
@@ -94,13 +92,13 @@ export class SemanticSearchService {
         if (!item) continue
 
         const textContent = `${item.alt} ${item.description || ''} ${item.tags?.join(' ') || ''}`.trim()
-        
+
         const input = prefixes.document + textContent
-        
+
         const embedding = await this.computeEmbedding(input)
-        
+
         this.index.push({
-          id: String(i), 
+          id: String(i),
           embedding,
           item,
         })
@@ -111,23 +109,25 @@ export class SemanticSearchService {
       }
 
       console.log('[SemanticSearch] Index built successfully')
-      
+
       try {
         if (!existsSync(this.cacheDir)) {
           mkdirSync(this.cacheDir, { recursive: true })
         }
         writeFileSync(this.cacheFile, JSON.stringify({
           hash: dataHash,
-          index: this.index
+          index: this.index,
         }))
         console.log('[SemanticSearch] Index cached')
-      } catch (e) {
+      }
+      catch (e) {
         console.warn('[SemanticSearch] Failed to save cache', e)
       }
-
-    } catch (error) {
+    }
+    catch (error) {
       console.error('[SemanticSearch] Failed to build index:', error)
-    } finally {
+    }
+    finally {
       this.isBuildingIndex = false
     }
   }
@@ -155,7 +155,7 @@ export class SemanticSearchService {
       return []
     }
 
-    const prefixes = { query: 'task: search result | query: ' } 
+    const prefixes = { query: 'task: search result | query: ' }
     const queryInput = prefixes.query + query
     const queryEmbedding = await this.computeEmbedding(queryInput)
 
@@ -167,16 +167,16 @@ export class SemanticSearchService {
     const searchKeywords = processSearchKeyword(query)
 
     const results = scored
-      .filter((entry) => entry.score >= minScore) 
+      .filter(entry => entry.score >= minScore)
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
       .map((entry) => {
         const { item, score } = entry
-        
+
         const matches = findMatches(
-          `${item.alt} ${item.description || ''}`, 
-          searchKeywords, 
-          true 
+          `${item.alt} ${item.description || ''}`,
+          searchKeywords,
+          true,
         )
 
         return {
@@ -186,7 +186,7 @@ export class SemanticSearchService {
           author: item.author,
           episode: item.episode,
           score: score,
-          matches: matches.length > 0 ? matches : undefined
+          matches: matches.length > 0 ? matches : undefined,
         } as SearchResult
       })
 
@@ -201,7 +201,7 @@ export class SemanticSearchService {
     let normA = 0
     let normB = 0
     const len = Math.min(a.length, b.length)
-    
+
     for (let i = 0; i < len; i++) {
       const valA = a[i] ?? 0
       const valB = b[i] ?? 0
@@ -209,7 +209,7 @@ export class SemanticSearchService {
       normA += valA * valA
       normB += valB * valB
     }
-    
+
     if (normA === 0 || normB === 0) return 0
     return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
   }

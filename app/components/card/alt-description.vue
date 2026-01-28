@@ -1,6 +1,9 @@
 <template>
   <span class="font-bold text-[--font-default] text-center">
-    <HighlightText :text="props.alt" :matches="props.matches" />
+    <HighlightText
+      :text="props.alt"
+      :matches="props.matches"
+    />
   </span>
 </template>
 

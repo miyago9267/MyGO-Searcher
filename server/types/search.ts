@@ -1,8 +1,8 @@
 export interface MatchInfo {
-  text: string           // 匹配的文字片段
-  startIndex: number     // 開始位置
-  endIndex: number       // 結束位置
-  matchType: 'exact' | 'fuzzy' | 'variant'  // 匹配類型
+  text: string // 匹配的文字片段
+  startIndex: number // 開始位置
+  endIndex: number // 結束位置
+  matchType: 'exact' | 'fuzzy' | 'variant' // 匹配類型
 }
 
 export interface SearchResult {
@@ -14,7 +14,7 @@ export interface SearchResult {
   score: number
   popularity?: number
   description?: string
-  matches?: MatchInfo[]  // 匹配資訊
+  matches?: MatchInfo[] // 匹配資訊
 }
 
 export interface SearchParams {
@@ -32,7 +32,7 @@ export interface SearchResponseItem {
   alt: string
   author?: string
   episode?: string
-  matches?: MatchInfo[]  // 匹配資訊
+  matches?: MatchInfo[] // 匹配資訊
 }
 
 export interface SearchResponse {
