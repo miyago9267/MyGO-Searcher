@@ -3,6 +3,9 @@ FROM oven/bun:latest AS build-stage
 WORKDIR /app
 
 COPY package.json bun.lock yarn.lock ./
+
+RUN apt-get update && apt-get install -y python3 make g++
+
 RUN bun install
 
 COPY . .
