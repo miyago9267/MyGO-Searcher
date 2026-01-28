@@ -1,4 +1,4 @@
-FROM bun:latest AS build-stage
+FROM oven/bun:latest AS build-stage
 
 WORKDIR /app
 
