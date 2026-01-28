@@ -31,19 +31,19 @@
           </h3>
           <ul class="list-none p-0 m-0">
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              重新設計API路由，統一使用RESTful格式
+              新增實驗性語義搜尋功能 (AI)，這意味著你現在可以使用自然語言搜尋表情包了！
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              加入篩選器功能，可選擇MyGO集數、AveMujica集數和人物（人物分類尚在製作中）
+              引入 Transformers.js 進行本地端模型推論，保護你的隱私
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              加入排序功能，可選擇四種排序方式
+              關鍵字高亮顯示與模糊搜尋支援，打錯字也能找到結果
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              加入更新提示
+              新增圖片預覽面板，點擊即可快速預覽大圖
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              正式加入AveMujica圖包
+              新 UI 設計：優化篩選器與排序選單介面，操作更直覺
             </li>
           </ul>
         </div>
@@ -54,24 +54,21 @@
           </h3>
           <ul class="list-none p-0 m-0">
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              重新設計前端Component及Nuxt後端架構
+              專案架構優化：全面升級至 Nuxt 4，引入 ESLint 與單元測試環境 (Vitest)
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              更新前端載入邏輯，從全部圖片載入改為動態滾動載入
+              開發體驗升級：CI/CD 遷移至 Bun，並導入嚴格型別檢查
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              優化SSR效能
+              效能優化：重構 Composables 與組件架構，提升運行效率
             </li>
             <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
-              連線MongoDB
+              更新前端載入邏輯，改為動態滾動載入並優化 SSR 效能
+            </li>
+            <li class="py-2 pl-6 relative text-[#e0e0e0] leading-6 before:content-['•'] before:absolute before:left-2 before:text-[#667eea] before:font-bold">
+              修正通知視窗顯示位置與多處潛在問題
             </li>
           </ul>
-        </div>
-
-        <div class="bg-[#3a3a3a] border-l-4 border-l-[#667eea] p-4 rounded-lg mb-6">
-          <p class="m-0 text-3.5 text-[#e0e0e0] leading-6">
-            <strong>重要提醒：</strong>新版本API已上線，舊版API將逐步淘汰，建議開發者儘早遷移至新版API，詳見文檔。
-          </p>
         </div>
       </div>
 
@@ -80,7 +77,7 @@
           class="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white border-none px-8 py-3 rounded-2 text-4 font-500 cursor-pointer transition-all duration-200 shadow-[0_4px_12px_rgba(102,126,234,0.3)] hover:translate-y--0.5 hover:shadow-[0_6px_20px_rgba(102,126,234,0.4)] active:translate-y-0"
           @click="closeNotification"
         >
-          開始體驗新版本
+          開始體驗
         </button>
       </div>
     </div>
@@ -93,7 +90,7 @@ import { useLocalStorage } from '~/composables/useLocalStorage'
 import { usePopup } from '~/composables/usePopup'
 
 // 當前版本號 - 從 package.json 獲取
-const currentVersion = '2.0.0'
+const currentVersion = '2.1.0'
 
 // LocalStorage 鍵名
 const NOTIFICATION_KEY = 'mygo-searcher-notification-seen'
