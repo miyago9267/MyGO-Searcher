@@ -3,7 +3,7 @@ FROM oven/bun:latest AS build-stage
 WORKDIR /app
 
 COPY package.json bun.lock yarn.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install
 
 COPY . .
 RUN bun run nuxt prepare \
