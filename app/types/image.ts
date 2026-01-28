@@ -23,6 +23,7 @@ export interface UseImagesOptions {
   initialQuery?: string
   pageSize?: number
   fuzzySearch?: boolean
+  semanticSearch?: boolean
   sortOrder?: string
 }
 

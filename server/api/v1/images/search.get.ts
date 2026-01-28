@@ -42,6 +42,7 @@ export default defineEventHandler(async (event) => {
       page,
       limit,
       order,
+      semantic: query.semantic === 'true' || query.semantic === true,
     }
 
     const result = await searchService.search(params)
@@ -50,12 +51,12 @@ export default defineEventHandler(async (event) => {
   }
   catch (error: unknown) {
     console.error('Error in /api/v1/images/search:', error)
-    
+
     // 如果已經是 H3 錯誤,直接拋出
     if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
-    
+
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to search images',

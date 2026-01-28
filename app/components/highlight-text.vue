@@ -1,6 +1,9 @@
 <template>
   <span class="highlight-text">
-    <template v-for="(segment, index) in segments" :key="index">
+    <template
+      v-for="(segment, index) in segments"
+      :key="index"
+    >
       <mark
         v-if="segment.isMatch"
         class="highlight-mark"

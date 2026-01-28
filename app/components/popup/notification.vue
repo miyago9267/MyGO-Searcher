@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useLocalStorage } from '~/composables/useLocalStorage'
 import { usePopup } from '~/composables/usePopup'
 

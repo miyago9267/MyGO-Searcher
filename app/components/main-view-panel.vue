@@ -60,12 +60,14 @@ interface Props {
   sortOrder?: string
   searchQuery?: string
   filterQuery?: FilterOptions
+  semanticEnabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   sortOrder: 'id',
   searchQuery: '',
   filterQuery: () => createEmptyFilters(),
+  semanticEnabled: false,
 })
 
 // 使用 useImages 組合式函數
@@ -79,11 +81,14 @@ const {
   setSortOrder,
   initInfiniteScroll,
   cleanupInfiniteScroll,
+  toggleSemantic,
+  isSemanticEnabled,
 } = useImages({
   initialQuery: props.searchQuery,
   sortOrder: props.sortOrder || 'id',
   pageSize: 20,
   fuzzySearch: false,
+  semanticSearch: props.semanticEnabled,
 })
 
 // 將 filterQuery 轉換為 ref
@@ -101,6 +106,13 @@ watch(() => props.searchQuery, (newQuery) => {
     search(newQuery)
   }
 }, { immediate: true })
+
+// 監聽語義搜尋開關變化
+watch(() => props.semanticEnabled, (newVal) => {
+  if (newVal !== isSemanticEnabled.value) {
+    toggleSemantic()
+  }
+})
 
 // 監聽排序方式變化
 watch(() => props.sortOrder, async (newSortOrder) => {

@@ -3,7 +3,7 @@ import type { SortOption } from '~/types'
 
 export function useSort(initialSort = 'id') {
   const selectedSort = ref(initialSort)
-  
+
   const sortOptions = ref<SortOption[]>([
     { label: '預設排序', value: 'id' },
     { label: '隨機排序', value: 'random' },
