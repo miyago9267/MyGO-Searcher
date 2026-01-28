@@ -1,15 +1,15 @@
-FROM node:20.19.5 AS build-stage
+FROM bun:latest AS build-stage
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json bun.lock yarn.lock ./
+RUN bun install --frozen-lockfile
 
 COPY . .
-RUN yarn nuxt prepare \
-  && yarn build
+RUN bun run nuxt prepare \
+  && bun run build
 
-FROM node:20.19.5 AS production-stage
+FROM node:22 AS production-stage
 
 WORKDIR /app
 

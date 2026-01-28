@@ -45,6 +45,7 @@
     "happy-dom": "^18.0.1",
     "stylelint": "^16.23.1",
     "stylelint-config-standard": "^39.0.0",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   }
 }
