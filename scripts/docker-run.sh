@@ -13,6 +13,7 @@ docker run \
 	-u $(id -u):$(id -g) \
 	--name $name \
     --network bridge \
+    --env-file .env.production \
     -p $port:3000 \
 	--restart=always \
 	$user/$name:latest
