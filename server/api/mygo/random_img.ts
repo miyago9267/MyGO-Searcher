@@ -2,7 +2,7 @@ import { defineEventHandler, getQuery } from 'h3'
 import { getJsonData } from '../../utils/dataLoader'
 import type { ImageData } from '../../types'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 
 export const getRandomPic = async (amount: number) => {
   try {

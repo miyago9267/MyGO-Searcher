@@ -2,7 +2,7 @@ import { defineEventHandler, getQuery, createError } from 'h3'
 import { SearchService } from '../../../services'
 import type { SearchParams } from '../../../types'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 const customKeyMap = {} // 可以從設定檔載入自定義關鍵字映射
 
 /**

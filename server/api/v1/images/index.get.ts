@@ -2,7 +2,7 @@ import { defineEventHandler, getQuery, createError } from 'h3'
 import { ImageService } from '../../../services'
 import type { SortOrder } from '../../../utils/sorting'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 
 /**
  * GET /api/v1/images

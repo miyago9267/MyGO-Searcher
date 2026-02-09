@@ -3,7 +3,7 @@ import { leven_distance } from '../../algo/levenshtein'
 import * as OpenCC from 'opencc-js'
 import { defineEventHandler } from 'h3'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 const custom_keymap = customKeyMap
 const converter = OpenCC.Converter({ from: 'cn', to: 'tw' })
 
@@ -20,7 +20,7 @@ function generateFuzzyVariants(keyword: string): Set<string> {
   const variants = new Set<string>([keyword])
   for (let i = 0; i < keyword.length; i++) {
     const char = keyword[i]
-    if (fuzzyReplacements[char]) {
+    if (char && fuzzyReplacements[char]) {
       for (const replacement of fuzzyReplacements[char]) {
         const newVariant = keyword.substring(0, i) + replacement + keyword.substring(i + 1)
         variants.add(newVariant)
