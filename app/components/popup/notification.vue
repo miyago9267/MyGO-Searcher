@@ -26,7 +26,11 @@
         </div>
 
         <div v-if="changelog && changelog.sections">
-          <div v-for="(items, sectionName) in changelog.sections" :key="sectionName" class="mb-6">
+          <div
+            v-for="(items, sectionName) in changelog.sections"
+            :key="sectionName"
+            class="mb-6"
+          >
             <h3 class="m-0 mb-3 text-4 font-600 text-white">
               {{ sectionName }}
             </h3>
@@ -41,12 +45,18 @@
             </ul>
           </div>
         </div>
-        
-        <div v-else-if="status === 'pending'" class="text-white text-center py-4">
+
+        <div
+          v-else-if="status === 'pending'"
+          class="text-white text-center py-4"
+        >
           載入更新資訊中...
         </div>
-        
-        <div v-else class="text-white text-center py-4">
+
+        <div
+          v-else
+          class="text-white text-center py-4"
+        >
           暫無更新資訊
         </div>
       </div>
@@ -118,8 +128,8 @@ watch(status, (newStatus) => {
   if (newStatus === 'success') {
     // 如果資料載入完成且視窗尚未開啟 (避免重複開啟)
     if (!showNotification.value && checkShouldShowNotification()) {
-       // 這裡不自動開啟，維持 onMounted 的延遲邏輯，或是由 onMounted 控制
-       // 但如果是 CSR，onMounted 時可能 data 還是 null
+      // 這裡不自動開啟，維持 onMounted 的延遲邏輯，或是由 onMounted 控制
+      // 但如果是 CSR，onMounted 時可能 data 還是 null
     }
   }
 })

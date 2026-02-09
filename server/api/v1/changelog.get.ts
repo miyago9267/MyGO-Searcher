@@ -13,15 +13,15 @@ export default defineEventHandler(async () => {
 
     const content = fs.readFileSync(changelogPath, 'utf-8')
     const lines = content.split('\n')
-    
+
     // 解析最新版本
     // 格式範例: ## [Version 2.0.0] - 2025-XX-XX
     const versionRegex = /^## \[Version (\d+\.\d+\.\d+)\]/
-    
+
     let currentVersion = ''
     let isParsingLatest = false
     let currentSection = ''
-    
+
     const result: {
       version: string
       sections: Record<string, string[]>
@@ -38,16 +38,16 @@ export default defineEventHandler(async () => {
       if (!trimmedLine) continue
 
       const versionMatch = line.match(versionRegex)
-      
+
       // 遇到版本標題
       if (versionMatch) {
         // 如果已經在解析最新版本，遇到下一個版本標題就停止 (只抓最新的一個版本)
         if (foundFirstVersion) {
-            break
+          break
         }
-        
+
         // 找到最新版本，開始解析
-        currentVersion = versionMatch[1]
+        currentVersion = versionMatch[1] || ''
         result.version = currentVersion
         foundFirstVersion = true
         isParsingLatest = true
@@ -64,7 +64,7 @@ export default defineEventHandler(async () => {
         let sectionName = sectionMatch[1].trim()
         // 移除括號內容，例如 "Features (Version 2.0.0)" -> "Features"
         sectionName = sectionName.replace(/\s*\(.*\)/, '').trim()
-        
+
         currentSection = sectionName
         result.sections[currentSection] = []
         continue
@@ -74,26 +74,27 @@ export default defineEventHandler(async () => {
       // 支援 "- item" 或 "  - subitem"
       const listItemMatch = line.match(/^(\s*)-\s+(.+)/)
       if (listItemMatch && currentSection) {
-        const indent = listItemMatch[1]
+        // const indent = listItemMatch[1] // Unused variable removed
         const text = listItemMatch[2].trim()
-        
+
         // 如果有縮排，視為子項目，這裡我們簡單地保留縮排視覺效果或直接顯示
         // 為了簡單起見，我們直接儲存文字，但如果是子項目，可以在前端處理或這裡加前綴
         // 這裡我們只儲存內容
-        
+
         if (!result.sections[currentSection]) {
           result.sections[currentSection] = []
         }
-        result.sections[currentSection].push(text)
+        result.sections[currentSection]!.push(text)
       }
     }
 
     if (!result.version) {
-        console.warn('No version found in CHANGELOG.md')
+      console.warn('No version found in CHANGELOG.md')
     }
 
     return result
-  } catch (error) {
+  }
+  catch (error) {
     console.error('Error parsing changelog:', error)
     throw createError({
       statusCode: 500,
