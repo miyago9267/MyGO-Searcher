@@ -1,17 +1,9 @@
-import fs from 'node:fs'
-import path from 'node:path'
+// @ts-expect-error import raw
+import changelogContent from '~/CHANGELOG.md?raw'
 
 export default defineEventHandler(async () => {
   try {
-    const changelogPath = path.resolve(process.cwd(), 'CHANGELOG.md')
-    if (!fs.existsSync(changelogPath)) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: 'CHANGELOG.md not found',
-      })
-    }
-
-    const content = fs.readFileSync(changelogPath, 'utf-8')
+    const content = changelogContent
     const lines = content.split('\n')
 
     // 解析最新版本
