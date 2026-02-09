@@ -181,7 +181,7 @@ export class SemanticSearchService {
 
         return {
           id: entry.id,
-          url: (process.env.NUXT_IMG_BASE_URL || '') + (item.filename || item.file_name || ''),
+          url: (item.filename || item.file_name || ''),
           alt: item.alt,
           author: item.author,
           episode: item.episode,

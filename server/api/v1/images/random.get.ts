@@ -2,7 +2,7 @@ import { getJsonData } from '../../../utils/dataLoader'
 import { defineEventHandler, getQuery, createError } from 'h3'
 import type { ImageData } from '../../../types'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 
 /**
  * GET /api/v1/images/random

@@ -2,7 +2,7 @@ import { defineEventHandler } from 'h3'
 import { getJsonData } from '../../utils/dataLoader'
 import type { ImageData } from '../../types'
 
-const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL
+const baseURL = ''
 
 export const getPicList = async () => {
   try {

@@ -7,7 +7,7 @@ function processImageRecord(item: ImageData): ImageData {
   }
 
   const processedEpisode = episode.replace(/_/g, '/')
-  const processedFilename = `/${processedEpisode}/${filename}`
+  const processedFilename = `/images/${processedEpisode}/${filename}`
 
   return {
     ...item,
