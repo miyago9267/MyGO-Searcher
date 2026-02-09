@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { SemanticSearchService } from '../../../server/services/semanticSearchService'
 import { existsSync, writeFileSync } from 'node:fs'
 
@@ -12,11 +12,8 @@ vi.mock('@huggingface/transformers', () => ({
   env: {},
 }))
 
-vi.mock('node:fs', async () => {
-  const actual = await vi.importActual('node:fs')
+vi.mock('node:fs', () => {
   return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...actual as any,
     existsSync: vi.fn(),
     mkdirSync: vi.fn(),
     readFileSync: vi.fn(),
@@ -47,10 +44,10 @@ describe('SemanticSearchService', () => {
     const mockData: any[] = [
       { alt: 'Test Image 1', description: 'Description 1' },
       { alt: 'Test Image 2', description: 'Description 2' },
-    ]
+    ];
 
     // Mock fs to simulate no cache
-    vi.mocked(existsSync).mockReturnValue(false)
+    (existsSync as unknown as Mock).mockReturnValue(false)
 
     await service.buildIndex(mockData)
 
@@ -68,8 +65,8 @@ describe('SemanticSearchService', () => {
     const mockData: any[] = [
       { alt: 'Find Me', description: 'Target' },
       { alt: 'Ignore Me', description: 'Noise' },
-    ]
-    vi.mocked(existsSync).mockReturnValue(false)
+    ];
+    (existsSync as unknown as Mock).mockReturnValue(false)
     await service.buildIndex(mockData)
 
     const results = await service.search('Find', mockData)
