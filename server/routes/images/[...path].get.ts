@@ -11,8 +11,6 @@ import { defineEventHandler, getQuery, proxyRequest, createError } from 'h3'
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
-  // 從 URL 中取得完整路徑
-  // event.context.params.path 是一個陣列,例如 ['mygo', '11', '真不敢相信.jpg']
   const pathArray = event.context.params?.path
   if (!pathArray || (Array.isArray(pathArray) && pathArray.length === 0)) {
     throw createError({
@@ -21,11 +19,9 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 將路徑陣列拼接成完整路徑
   const path = Array.isArray(pathArray) ? pathArray.join('/') : pathArray
   const query = getQuery(event)
 
-  // 建構完整的圖床 URL
   const cdnBaseUrl = config.imageCdnBaseUrl || ''
   if (!cdnBaseUrl) {
     throw createError({
@@ -34,7 +30,6 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // path 已經包含完整路徑 (例如 mygo/11/真不敢相信.jpg),直接拼接即可
   const cdnUrl = `${cdnBaseUrl}/${path}`
   const queryString = new URLSearchParams(query as Record<string, string>).toString()
   const fullUrl = queryString ? `${cdnUrl}?${queryString}` : cdnUrl
@@ -43,16 +38,13 @@ export default defineEventHandler(async (event) => {
   console.log('[Image Proxy] Full URL:', fullUrl)
 
   try {
-    // 使用 proxyRequest 直接轉發請求，支援串流
     return await proxyRequest(event, fullUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
         'Referer': config.imageCdnBaseUrl || '',
       },
       onResponse(response) {
-        // 確保設定正確的 Cache-Control
         response.headers.set('Cache-Control', 'public, max-age=31536000')
-        // 如果來源沒有 contentType，嘗試自己判斷
         if (!response.headers.get('content-type')) {
           const contentType = getContentType(path)
           response.headers.set('Content-Type', contentType)
@@ -62,7 +54,14 @@ export default defineEventHandler(async (event) => {
   }
   catch (error: unknown) {
     console.error('[Image Proxy] Error fetching image:', error)
-    const status = (error as any)?.response?.status || 500
+    
+    interface FetchError {
+      response?: {
+        status?: number
+      }
+    }
+    
+    const status = (error as FetchError)?.response?.status || 500
     throw createError({
       statusCode: status,
       statusMessage: 'Failed to fetch image',
