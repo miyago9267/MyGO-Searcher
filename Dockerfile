@@ -16,6 +16,9 @@ FROM node:22 AS production-stage
 
 WORKDIR /app
 
+ENV NUXT_IMAGE_CDN_BASE_URL=""
+
 COPY --from=build-stage /app/.output ./
+COPY --from=build-stage /app/CHANGELOG.md ./
 
 CMD ["node", "server/index.mjs"]
