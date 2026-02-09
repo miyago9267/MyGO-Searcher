@@ -40,9 +40,9 @@ export default defineEventHandler(async () => {
 
       if (versionMatch) {
         if (foundFirstVersion) {
-            break
+          break
         }
-        
+
         currentVersion = versionMatch[1] || ''
         result.version = currentVersion
         foundFirstVersion = true
@@ -56,7 +56,7 @@ export default defineEventHandler(async () => {
       if (sectionMatch) {
         let sectionName = sectionMatch[1].trim()
         sectionName = sectionName.replace(/\s*\(.*\)/, '').trim()
-        
+
         currentSection = sectionName
         result.sections[currentSection] = []
         continue
@@ -65,11 +65,12 @@ export default defineEventHandler(async () => {
       const listItemMatch = line.match(/^(\s*)-\s+(.+)/)
       if (listItemMatch && currentSection) {
         const text = listItemMatch[2].trim()
-        
+
         const sectionList = result.sections[currentSection]
         if (sectionList) {
           sectionList.push(text)
-        } else {
+        }
+        else {
           result.sections[currentSection] = [text]
         }
       }

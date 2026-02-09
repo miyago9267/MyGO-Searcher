@@ -54,13 +54,13 @@ export default defineEventHandler(async (event) => {
   }
   catch (error: unknown) {
     console.error('[Image Proxy] Error fetching image:', error)
-    
+
     interface FetchError {
       response?: {
         status?: number
       }
     }
-    
+
     const status = (error as FetchError)?.response?.status || 500
     throw createError({
       statusCode: status,
