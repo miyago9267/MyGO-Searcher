@@ -19,7 +19,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/mygo.svg' },
       ],
       noscript: [{ innerHTML: 'Javascript is required.' }],
-      title: 'Caryolite - Official',
+      title: 'MyGO搜尋器 - 和我一輩子MyGO嗎？',
     },
     keepalive: true,
     baseURL: process.env.BASE_URL || '/',
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
   runtimeConfig: { // 私有配置 (僅服務器端可用)
     mongodbConnectUrl: process.env.MONGODB_CONNECT_URL,
     mongodbCollection: process.env.MONGODB_COLLECTION,
+    imageCdnBaseUrl: process.env.IMAGE_CDN_BASE_URL,
 
     // 公共配置 (客戶端和服務器端都可用)
     NUXT_IMG_BASE_URL: process.env.NUXT_IMG_BASE_URL,
