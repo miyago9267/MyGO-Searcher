@@ -3,7 +3,12 @@
     <input
       v-model="search"
       type="text"
-      class="flex w-full h-8 rounded-md border-[#505050] border-solid border-1 px-4 bg-[--bg-default] text-[--font-default] pr-20"
+      class="flex w-full h-10 rounded-md border-[#505050] border-solid border-1 px-4 bg-[--bg-default] text-[--font-default] pr-20 focus:outline-none transition-shadow duration-200"
+      :class="[
+        'shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
+        'hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]',
+        'focus:shadow-[0_4px_16px_rgba(139,92,246,0.2)]',
+      ]"
       placeholder="搜尋表情包"
       @input="handleInput"
     >

@@ -2,7 +2,13 @@
   <div class="relative flex justify-end">
     <button
       data-sort-button
-      class="p-2 bg-[--bg-default] border-[--border] dark:border-[--bg-default] text-[--font-default] rounded-full flex items-center gap-2"
+      class="p-2 bg-[--bg-default] text-[--font-default] rounded-full flex items-center gap-2 transition-all duration-200"
+      :class="[
+        'shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
+        'hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]',
+        'hover:-translate-y-0.5',
+        'active:translate-y-0'
+      ]"
       @click="toggleSort"
     >
       <svg

@@ -3,7 +3,8 @@
     <div
       v-if="message"
       :class="[
-        'fixed bottom-6 left-1/2 -translate-x-1/2 z-[10000] px-6 py-3 rounded-lg shadow-lg border min-w-[200px] max-w-[500px] text-center overflow-hidden',
+        'fixed bottom-6 left-1/2 -translate-x-1/2 z-[10000] px-6 py-3 rounded-lg min-w-[200px] max-w-[500px] text-center overflow-hidden',
+        'shadow-[0_10px_40px_rgba(0,0,0,0.25)]',
         toastClasses,
       ]"
     >
@@ -50,14 +51,14 @@ watch(message, (newMessage) => {
 const toastClasses = computed(() => {
   switch (type.value) {
     case 'success':
-      return 'bg-green-500 dark:bg-green-600 text-white border-green-600 dark:border-green-700'
+      return 'bg-green-500 dark:bg-green-600 text-white'
     case 'error':
-      return 'bg-red-500 dark:bg-red-600 text-white border-red-600 dark:border-red-700'
+      return 'bg-red-500 dark:bg-red-600 text-white'
     case 'warning':
-      return 'bg-yellow-500 dark:bg-yellow-600 text-white border-yellow-600 dark:border-yellow-700'
+      return 'bg-yellow-500 dark:bg-yellow-600 text-white'
     case 'info':
     default:
-      return 'bg-blue-500 dark:bg-blue-600 text-white border-blue-600 dark:border-blue-700'
+      return 'bg-blue-500 dark:bg-blue-600 text-white'
   }
 })
 </script>
