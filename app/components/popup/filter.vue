@@ -48,7 +48,7 @@
                 :class="[
                   localSelectedFilters?.[categoryKey]?.includes(option.value)
                     ? 'bg-[--brand] text-white shadow-[0_4px_12px_rgba(139,92,246,0.3)]'
-                    : 'bg-[--bg-sub] text-[--font-default] hover:bg-[--bg-hover] hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
+                    : 'bg-[--bg-sub] text-[--font-default] hover:bg-[--bg-hover] hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
                 ]"
               >
                 {{ option.label }}
@@ -64,7 +64,7 @@
           class="flex-1 px-5 py-2.5 bg-[--bg-sub] text-[--font-default] rounded-lg text-sm font-medium transition-all duration-200"
           :class="[
             'hover:bg-[--bg-hover]',
-            'hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
+            'hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
           ]"
           @click="handleReset"
         >
