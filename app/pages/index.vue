@@ -27,7 +27,7 @@
       />
     </div>
     <Footer class="" />
-    <button-top class="fixed bottom-5 right-5" />
+    <button-top class="fixed bottom-5 right-5 z-50" />
   </div>
 </template>
 

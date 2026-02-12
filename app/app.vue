@@ -7,6 +7,7 @@
     <NuxtLoadingIndicator />
     <NuxtPage />
     <PopupNotification />
+    <Toast />
   </ColorScheme>
 </template>
 

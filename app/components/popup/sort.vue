@@ -9,11 +9,12 @@
   <!-- 彈出框內容 -->
   <div
     v-if="show"
-    class="absolute top-full right-0 mt-3 w-56 bg-[--bg-popup-color] rounded-2xl shadow-2xl border border-[--border] z-50 overflow-hidden animate-fade-in"
+    class="absolute top-full right-0 mt-3 w-56 bg-[--bg-popup-color] rounded-2xl z-50 overflow-hidden animate-fade-in"
+    :class="'shadow-[0_20px_40px_rgba(0,0,0,0.15)]'"
     @click.stop
   >
     <div class="p-5">
-      <h3 class="text-base font-bold text-[--font-default] mb-4 pb-3 border-b border-[--outline]">
+      <h3 class="text-base font-bold text-[--font-default] mb-4 pb-3">
         排序方式
       </h3>
       <div class="space-y-1.5">

@@ -3,7 +3,7 @@
     class="fixed inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-md animate-fade-in"
     @click.self="handleClose"
   >
-    <div class="bg-[--bg-popup-color] border border-[--border] rounded-2xl shadow-2xl p-6 max-w-[90vw] relative animate-scale-in">
+    <div class="bg-[--bg-popup-color] rounded-2xl p-6 max-w-[90vw] relative animate-scale-in shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
       <!-- 關閉按鈕 -->
       <button
         class="absolute top-4 right-4 bg-transparent border-none text-xl text-[--font-gray] cursor-pointer p-0 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:bg-[--bg-hover] hover:text-[--font-default] hover:rotate-90 leading-none"
@@ -44,7 +44,12 @@
               >
               <label
                 :for="`${categoryKey}-${option.value}`"
-                class="text-xs cursor-pointer select-none w-full px-3 py-2 rounded-lg border-2 transition-all duration-200 font-medium text-center peer-checked:bg-[--brand] peer-checked:border-[--brand] peer-checked:text-white peer-checked:shadow-md peer-checked:shadow-[--brand]/30 hover:border-[--brand] hover:bg-[--bg-hover] border-[--outline] text-[--font-default]"
+                class="text-xs cursor-pointer select-none w-full px-3 py-2 rounded-lg transition-all duration-200 font-medium text-center"
+                :class="[
+                  localSelectedFilters?.[categoryKey]?.includes(option.value)
+                    ? 'bg-[--brand] text-white shadow-[0_4px_12px_rgba(139,92,246,0.3)]'
+                    : 'bg-[--bg-sub] text-[--font-default] hover:bg-[--bg-hover] hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
+                ]"
               >
                 {{ option.label }}
               </label>
@@ -54,15 +59,19 @@
       </div>
 
       <!-- 操作按鈕 -->
-      <div class="flex gap-3 mt-5 pt-5 border-t border-[--outline]">
+      <div class="flex gap-3 mt-5 pt-5">
         <button
-          class="flex-1 px-5 py-2.5 bg-[--bg-sub] text-[--font-default] rounded-lg text-sm font-medium hover:bg-[--bg-hover] transition-all duration-200 border border-[--border] hover:border-[--brand]"
+          class="flex-1 px-5 py-2.5 bg-[--bg-sub] text-[--font-default] rounded-lg text-sm font-medium transition-all duration-200"
+          :class="[
+            'hover:bg-[--bg-hover]',
+            'hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
+          ]"
           @click="handleReset"
         >
           重置篩選
         </button>
         <button
-          class="flex-1 px-5 py-2.5 bg-[--brand] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-200 shadow-md shadow-[--brand]/30"
+          class="flex-1 px-5 py-2.5 bg-[--brand] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-200 shadow-[0_4px_12px_rgba(139,92,246,0.3)]"
           @click="handleClose"
         >
           確認
