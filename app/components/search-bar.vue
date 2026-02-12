@@ -12,7 +12,7 @@
         class="p-0 border-0 cursor-pointer flex items-center justify-center bg-transparent transition-colors duration-200"
         :class="semanticEnabled ? 'text-[--brand]' : 'text-[--font-gray]'"
         title="實驗性語義搜尋 (AI)"
-        @click="$emit('update:semantic', !semanticEnabled)"
+        @click="handleSemanticToggle"
       >
         <span class="i-lucide-sparkles text-lg" />
       </button>
@@ -30,13 +30,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAppToast } from '~/composables/useToast'
 
-defineProps<{
+const props = defineProps<{
   semanticEnabled?: boolean
 }>()
 
 const search = ref('')
 const emit = defineEmits(['update:search', 'update:semantic'])
+const { showToast } = useAppToast()
 
 const handleInput = () => {
   emit('update:search', search.value)
@@ -45,5 +47,18 @@ const handleInput = () => {
 const clearSearch = () => {
   search.value = ''
   emit('update:search', search.value)
+}
+
+const handleSemanticToggle = () => {
+  const newState = !props.semanticEnabled
+  const enablePrompt = '已啟用語義搜尋功能 (實驗性功能，可能不穩定)'
+  const disablePrompt = '已關閉語義搜尋功能'
+  emit('update:semantic', newState)
+
+  showToast(
+    newState ? enablePrompt : disablePrompt,
+    'info',
+    3000,
+  )
 }
 </script>
