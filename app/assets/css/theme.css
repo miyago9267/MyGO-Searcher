@@ -1,19 +1,23 @@
 :root {
-  --bg-default: #f5f6fb;
-  --bg-sub: #eceffd;
+  --bg-default: #ffffff;
+  --bg-sub: #f9fafb;
   --bg-popup-color: #ffffff;
-  --bg-hover: #e4e9fb;
-  --font-default: #1b1221; /* 字體顏色 */
-  --font-gray: #5f5b67;
-  --font-white: #fdfdff;
+  --bg-hover: #f3f4f6;
+  --font-default: #111827;
+  --font-gray: #6b7280;
+  --font-white: #ffffff;
   --white: #ffffff;
-  --gray: #8c8f9c;
+  --gray: #9ca3af;
   --surface: #ffffff;
-  --border: #d9dceb;
-  --outline: #c8cde0;
-  --brand: #7153ff;
-  --pink: #d95f8b;
-  --magenta: #ee1161;
+  --border: #e5e7eb;
+  --outline: #d1d5db;
+  --brand: #8b5cf6;
+  --pink: #ec4899;
+  --magenta: #e11d48;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 html.dark {
@@ -28,6 +32,10 @@ html.dark {
   --border: #505050;
   --outline: #3f3f3f;
   --brand: #a78bfa;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
 }
 
 * {

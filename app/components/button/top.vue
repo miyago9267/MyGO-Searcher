@@ -1,16 +1,23 @@
 <template>
   <button
-    class="p-3 cursor-pointer opacity-70 transition-opacity duration-300 bg-gray-600 rounded-full border border-gray-800 flex justify-center items-center hover:opacity-100 focus:outline-none"
+    class="w-14 h-14 cursor-pointer transition-all duration-300 rounded-full flex justify-center items-center focus:outline-none"
+    style="background: var(--bg-popup-color); color: var(--brand); border: none;"
+    :class="[
+      'shadow-[0_4px_16px_rgba(0,0,0,0.15)]',
+      'hover:shadow-[0_8px_24px_rgba(139,92,246,0.25)]',
+      'hover:-translate-y-1',
+      'active:translate-y-0',
+    ]"
     @click="backToTop"
   >
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
-      fill="white"
-      width="24"
-      height="24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M12 2l-10 10h6v10h8v-10h6z" />
+      <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z" />
     </svg>
   </button>
 </template>
@@ -18,16 +25,10 @@
 <script setup lang="ts">
 const backToTop = () => {
   if (typeof window !== 'undefined') {
-    window.scrollTo(0, 0)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
   }
 }
 </script>
-
-<style scoped>
-/*
-所有樣式已轉換為 UnoCSS：
-.back-to-top -> p-3 cursor-pointer opacity-70 transition-opacity bg-gray-600 rounded-full border border-gray-800
-.back-to-top:hover -> hover:opacity-100
-button:focus -> focus:outline-none
-*/
-</style>
