@@ -1,8 +1,9 @@
 <template>
     <div class="flex flex-col w-full justify-center">
         <div class="image-row">
-            <image-view-card v-for="image in filteredImages" :key="image.id" :id="String(image.id)" :url="image.url" :alt="image.alt"
-                class="image" />
+            <template v-for="image in filteredImages" :key="image.id">
+                <image-view-card :id="String(image.id)" :url="image.url" :alt="image.alt" class="image" />
+            </template>
         </div>
 
         <!-- 載入狀態 -->

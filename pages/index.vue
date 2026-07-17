@@ -4,7 +4,7 @@
         <Header class="outline outline-offset-0 outline-tggray-300 outline-2" />
         <div class="p-10">
             <search-bar class="mb-5" @update:search="handleSearch"/>
-            <div class="flex w-full justify-end">
+            <div class="flex w-full justify-end gap-2">
               <button-sort class="mb-5" @update:sort="handleSort"/>
               <button-filter class="mb-5" @update:filter="handleFilter"/>
             </div>
@@ -12,7 +12,7 @@
         </div>
         <Footer class=""/>
     </div>
-    <button-top class="fixed bottom-5 right-5"/>
+    <button-top />
 </template>
 
 <script setup lang="ts">
