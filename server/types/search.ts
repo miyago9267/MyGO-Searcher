@@ -1,11 +1,11 @@
 export interface SearchResult {
   id: string;
-  url: string;
   alt: string;
   author?: string;
   episode?: string;
   score: number;
   popularity?: number;
+  image: ImageData;
 }
 
 export interface SearchParams {
@@ -39,8 +39,11 @@ export interface SearchResponse {
 }
 
 export interface ImageData {
-  id?: number;
+  id?: string | number;
   alt: string;
+  description?: string;
+  url?: string;
+  storagePath?: string;
   file_name?: string;
   filename?: string;
   author?: string;

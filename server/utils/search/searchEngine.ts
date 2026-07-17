@@ -1,110 +1,85 @@
-import type { SearchResult, ImageData } from '../../types';
-import { storageHref } from '../dataProcessing';
-import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm';
+import type { ImageData, SearchResult } from '../../types'
+import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm'
 
-/**
- * 搜索引擎類
- */
+type CustomKeyMap = Record<string, { value?: string[] }>
+
+/** Pure metadata search. Data loading and URL resolution belong to the service layer. */
 export class SearchEngine {
-	private baseURL: string;
-	private customKeyMap: any;
+  constructor(private readonly customKeyMap: CustomKeyMap = {}) {}
 
-	constructor(baseURL: string, customKeyMap: any) {
-		this.baseURL = baseURL;
-		this.customKeyMap = customKeyMap;
-	}
+  async searchInData(
+    data: ImageData[],
+    queryKeyword: string,
+    fuzzy = false
+  ): Promise<SearchResult[]> {
+    const keywords = processSearchKeyword(queryKeyword)
+    const results: SearchResult[] = []
 
-	/**
-	 * 在數據中搜索匹配項
-	 */
-	async searchInData(
-		data: ImageData[], 
-		queryKeyword: string, 
-		fuzzy: boolean = false
-	): Promise<SearchResult[]> {
-		const keywords = processSearchKeyword(queryKeyword);
-		const scoredResults: SearchResult[] = [];
-		const fullMatchResults: SearchResult[] = [];
-		const customKeymapResults: SearchResult[] = [];
+    data.forEach((item, index) => {
+      const score = this.calculateMetadataScore(item, keywords, fuzzy)
+      const result = this.toResult(item, index, score)
 
-		// 主要搜索邏輯
-		data.forEach((item, index) => {
-			const totalScore = calculateTotalScore(item.alt, keywords, fuzzy);
-			
-			const imageItem: SearchResult = {
-				id: index.toString(),
-				url: this.baseURL + storageHref(item),
-				alt: item.alt,
-				author: item.author,
-				episode: item.episode,
-				score: totalScore
-			};
+      if (score > 0) {
+        results.push(result)
+      }
 
-			// 評分匹配
-			if (totalScore > 0) {
-				scoredResults.push(imageItem);
-			}
+      if (isExactMatch(item.alt, keywords)) {
+        results.push({ ...result, score: Math.max(score, 60) })
+      }
+    })
 
-			// 精準匹配
-			if (isExactMatch(item.alt, keywords)) {
-				fullMatchResults.push({ ...imageItem, score: 15 });
-			}
-		});
+    results.push(...this.searchCustomKeyMap(data, queryKeyword))
+    return this.mergeAndDeduplicateResults(results)
+  }
 
-		// 自定義關鍵字映射 - 使用原始查詢關鍵詞
-		const customResults = this.searchCustomKeyMap(data, queryKeyword);
-		customKeymapResults.push(...customResults);
+  private calculateMetadataScore(item: ImageData, keywords: string[], fuzzy: boolean): number {
+    const weightedFields = [
+      { value: item.alt, weight: 10 },
+      { value: item.description, weight: 2 },
+      { value: item.author, weight: 2 },
+      { value: item.tags?.join(' '), weight: 2 },
+      { value: item.episode, weight: 1 }
+    ]
 
-		// 合併結果並去重
-		return this.mergeAndDeduplicateResults([
-			...scoredResults, 
-			...fullMatchResults, 
-			...customKeymapResults
-		]);
-	}
+    return weightedFields.reduce((score, field) => {
+      if (!field.value) return score
+      return score + calculateTotalScore(field.value, keywords, fuzzy) * field.weight
+    }, 0)
+  }
 
-	/**
-	 * 搜索自定義關鍵字映射
-	 */
-	private searchCustomKeyMap(data: ImageData[], queryKeyword: string): SearchResult[] {
-		// 使用原始查詢關鍵詞，而不是處理過的關鍵詞
-		if (!this.customKeyMap.hasOwnProperty(queryKeyword)) {
-			return [];
-		}
+  private searchCustomKeyMap(data: ImageData[], queryKeyword: string): SearchResult[] {
+    if (!Object.hasOwn(this.customKeyMap, queryKeyword)) {
+      return []
+    }
 
-		const keywordValue = this.customKeyMap[queryKeyword]?.value || [];
-		const results: SearchResult[] = [];
+    const mappedNames = this.customKeyMap[queryKeyword]?.value || []
+    return data.flatMap((item, index) => mappedNames.includes(item.alt)
+      ? [{ ...this.toResult(item, index, 60) }]
+      : [])
+  }
 
-		data.forEach((item, index) => {
-			if (keywordValue.includes(item.alt)) {
-				results.push({
-					id: index.toString(),
-					url: this.baseURL + storageHref(item),
-					alt: item.alt,
-					author: item.author,
-					episode: item.episode,
-					score: 15,
-				});
-			}
-		});
+  private toResult(item: ImageData, index: number, score: number): SearchResult {
+    return {
+      id: item.id?.toString() || index.toString(),
+      alt: item.alt,
+      author: item.author,
+      episode: item.episode,
+      popularity: item.popularity,
+      score,
+      image: item
+    }
+  }
 
-		return results;
-	}
+  private mergeAndDeduplicateResults(results: SearchResult[]): SearchResult[] {
+    const uniqueResults = new Map<string, SearchResult>()
 
-	/**
-	 * 合併結果並去重
-	 */
-	private mergeAndDeduplicateResults(results: SearchResult[]): SearchResult[] {
-		const combinedResultsMap = new Map<string, SearchResult>();
-		
-		results.forEach((result) => {
-			const existing = combinedResultsMap.get(result.url);
-			if (!existing || result.score > existing.score) {
-				combinedResultsMap.set(result.url, result);
-			}
-		});
+    results.forEach((result) => {
+      const existing = uniqueResults.get(result.id)
+      if (!existing || result.score > existing.score) {
+        uniqueResults.set(result.id, result)
+      }
+    })
 
-		return Array.from(combinedResultsMap.values())
-			.sort((a, b) => b.score - a.score);
-	}
+    return Array.from(uniqueResults.values()).sort((a, b) => b.score - a.score)
+  }
 }

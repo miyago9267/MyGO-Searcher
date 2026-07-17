@@ -2,6 +2,7 @@ import { defineEventHandler, getQuery, createError } from 'h3';
 import { SearchService } from '../../../services/searchService';
 import { customKeyMap } from '../../../utils/dataLoader';
 import type { SearchParams } from '../../../types/search';
+import { createImageUrlResolver } from '../../../utils/imageUrlResolver';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
 
@@ -34,7 +35,10 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const searchService = new SearchService(baseURL, customKeyMap);
+    const searchService = new SearchService({
+      customKeyMap,
+      resolveImageUrl: createImageUrlResolver(baseURL)
+    });
     return await searchService.search(searchParams);
 
   } catch (error: any) {

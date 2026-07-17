@@ -9,7 +9,7 @@
                 <card-copy-button :id="props.id" :alt="props.alt" :url="props.url" />
             </div>
         </div>
-        <card-alt-description :alt="props.alt" :url="props.url" />
+        <card-alt-description :alt="props.alt" />
     </div>
 </template>
 <script setup lang="ts">

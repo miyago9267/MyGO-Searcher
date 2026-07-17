@@ -9,11 +9,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { ImageItem } from '~/types';
 import { copyToClipboard } from '~/composables/common';
 import { usePopularity } from '~/composables/usePopularity';
 
-const props = defineProps<ImageItem>();
+const props = defineProps<{
+    id?: string
+    url: string
+    alt?: string
+}>();
 
 // 使用人氣統計組合式函數
 const { recordCopy } = usePopularity();
