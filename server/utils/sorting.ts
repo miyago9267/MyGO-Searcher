@@ -1,6 +1,11 @@
-import type { ImageItem } from '~/types';
-
 export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'popularity';
+
+interface SortableImage {
+	id?: string | number;
+	alt?: string;
+	episode?: string;
+	popularity?: number;
+}
 
 /**
  * 對圖片陣列進行排序
@@ -9,12 +14,20 @@ export type SortOrder = 'id' | 'random' | 'episode' | 'alphabetical' | 'populari
  * @returns Promise<ImageItem[]> - 排序後的圖片陣列
  */
 
-export async function sortImages(allImages: ImageItem[], order: SortOrder = 'id'): Promise<ImageItem[]> {
+export async function sortImages<T extends SortableImage>(allImages: T[], order: SortOrder = 'id'): Promise<T[]> {
 	return new Promise((resolve) => {
 		const sortedImages = allImages.sort((a, b) => {
 			if (order === 'id') {
-				// ID 排序：轉換為數字進行比較
-				return parseInt(a.id ?? '') - parseInt(b.id ?? '');
+				const aId = String(a.id ?? '')
+				const bId = String(b.id ?? '')
+				const aNumber = Number(aId)
+				const bNumber = Number(bId)
+
+				if (Number.isFinite(aNumber) && Number.isFinite(bNumber)) {
+					return aNumber - bNumber
+				}
+
+				return aId.localeCompare(bId, 'en', { numeric: true })
 			} else if (order === 'random') {
 				// 隨機排序
 				return Math.random() - 0.5;

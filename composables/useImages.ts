@@ -1,6 +1,7 @@
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { ImagesApi, searchImages } from '~/apis/images'
 import type { ImageItem, SearchParams, FilterOptions, UseImagesOptions } from '~/types'
+import { filterImages } from '~/utils/filterImages'
 
 /**
  * Composable for managing image search and filtering
@@ -234,24 +235,7 @@ export function useImages(options: UseImagesOptions = {}) {
  */
 export function useImageFilter(images: Ref<ImageItem[]>, filters: Ref<FilterOptions>) {
 	const filteredImages = computed(() => {
-		if (!filters.value.MyGO集數?.length &&
-			!filters.value.AveMujica集數?.length &&
-			!filters.value.人物?.length) {
-			return images.value
-		}
-
-		return images.value.filter((image) => {
-			const matchesMyGOEpisode = !filters.value.MyGO集數?.length ||
-				filters.value.MyGO集數.includes(image.episode || '')
-
-			const matchesAveMujicaEpisode = !filters.value.AveMujica集數?.length ||
-				filters.value.AveMujica集數.includes(image.episode || '')
-
-			const matchesCharacter = !filters.value.人物?.length ||
-				filters.value.人物.includes(image.author || '')
-
-			return matchesMyGOEpisode && matchesAveMujicaEpisode && matchesCharacter
-		})
+		return filterImages(images.value, filters.value)
 	})
 
 	const filteredCount = computed(() => filteredImages.value.length)
