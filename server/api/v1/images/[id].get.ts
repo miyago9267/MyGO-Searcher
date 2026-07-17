@@ -1,4 +1,5 @@
 import { getJsonData } from '../../../utils/dataLoader';
+import { storageHref } from '../../../utils/dataProcessing';
 import { defineEventHandler, getRouterParam, createError } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
@@ -35,7 +36,7 @@ export default defineEventHandler(async (event) => {
     return {
       data: {
         id: imageItem.id,
-        url: baseURL + imageItem.filename,
+        url: baseURL + storageHref(imageItem),
         alt: imageItem.alt,
         author: imageItem.author,
         episode: imageItem.episode,

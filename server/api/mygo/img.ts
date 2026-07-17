@@ -1,4 +1,5 @@
 import { getJsonData, customKeyMap } from '../../utils/dataLoader';
+import { storageHref } from '../../utils/dataProcessing';
 import { leven_distance }  from '../../algo/levenshtein';
 import * as OpenCC from 'opencc-js';
 import { defineEventHandler } from 'h3';
@@ -75,12 +76,12 @@ export default defineEventHandler(async (event) => {
     }
 
     if (totalScore > 0) {
-      scoredResults.push({ url: baseURL + item.filename, alt: item.alt, score: totalScore });
+      scoredResults.push({ url: baseURL + storageHref(item), alt: item.alt, score: totalScore });
     }
 
     // 保留精準匹配（不重複）
     if (keywords.some(k => name.includes(k))) {
-      fullMatchResults.push({ url: baseURL + item.filename, alt: item.alt, score: 15 });
+      fullMatchResults.push({ url: baseURL + storageHref(item), alt: item.alt, score: 15 });
     }
   }
 
@@ -90,7 +91,7 @@ export default defineEventHandler(async (event) => {
       ...data_mapping
         .filter((item) => keywordValue.includes(item.alt))
         .map((item) => ({
-          url: baseURL + item.filename,
+          url: baseURL + storageHref(item),
           alt: item.alt,
           score: 15,
         }))

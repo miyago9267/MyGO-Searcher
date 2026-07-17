@@ -1,4 +1,5 @@
 import { sortImages, type SortOrder } from '../utils/sorting';
+import { storageHref } from '../utils/dataProcessing';
 import { MongoRepository } from '../repositories/mongoRepository';
 import { FileRepository } from '../repositories/fileRepository';
 
@@ -104,7 +105,7 @@ export class ImageService {
       const mongoImages = await this.mongoRepo.getImages();
       return mongoImages.map((item: any) => ({
         id: item.id,
-        url: this.baseURL + item.filename,
+        url: this.baseURL + storageHref(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode,
@@ -117,7 +118,7 @@ export class ImageService {
       const fileImages = await this.fileRepo.getImages();
       return fileImages.map((item: any) => ({
         id: item.id,
-        url: this.baseURL + item.filename,
+        url: this.baseURL + storageHref(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode,

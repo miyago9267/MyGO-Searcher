@@ -20,6 +20,8 @@ export class MongoRepository {
       author: item.author,
       episode: item.episode,
       filename: item.filename,
+      // 定址欄位必須通過這層白名單，下游 imageService 才組得出 URL
+      storagePath: item.storagePath,
       tags: item.tags || [],
       popularity: item.popularity || 0
     }));

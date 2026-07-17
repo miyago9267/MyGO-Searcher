@@ -1,4 +1,5 @@
 import { getJsonData } from '../../../utils/dataLoader';
+import { storageHref } from '../../../utils/dataProcessing';
 import { defineEventHandler, getQuery, createError } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
@@ -34,7 +35,7 @@ export default defineEventHandler(async(event) => {
       .slice(0, count)
       .map((item: any) => ({
         id: item.id,
-        url: baseURL + item.filename,
+        url: baseURL + storageHref(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode

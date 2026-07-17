@@ -1,4 +1,5 @@
 import type { SearchResult, ImageData } from '../../types';
+import { storageHref } from '../dataProcessing';
 import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm';
 
 /**
@@ -32,7 +33,7 @@ export class SearchEngine {
 			
 			const imageItem: SearchResult = {
 				id: index.toString(),
-				url: this.baseURL + (item.filename || item.file_name || ''),
+				url: this.baseURL + storageHref(item),
 				alt: item.alt,
 				author: item.author,
 				episode: item.episode,
@@ -78,7 +79,7 @@ export class SearchEngine {
 			if (keywordValue.includes(item.alt)) {
 				results.push({
 					id: index.toString(),
-					url: this.baseURL + (item.filename || item.file_name || ''),
+					url: this.baseURL + storageHref(item),
 					alt: item.alt,
 					author: item.author,
 					episode: item.episode,

@@ -1,4 +1,5 @@
 import { getJsonData } from '../../utils/dataLoader'
+import { storageHref } from '../../utils/dataProcessing';
 import { defineEventHandler } from 'h3';
 
 const baseURL = useRuntimeConfig().NUXT_IMG_BASE_URL;
@@ -11,7 +12,7 @@ export const getRandomPic = async (amount: number) => {
 		}
 		const rngPics = data_mapping.sort(() => 0.5 - Math.random()).slice(0, amount);
 		const picFiles = rngPics.map((item: any) => ({
-			url: baseURL + item.filename,
+			url: baseURL + storageHref(item),
 			alt: item.name,
 		}));
 		return { statusCode: 200, urls: picFiles };
