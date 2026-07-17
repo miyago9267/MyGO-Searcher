@@ -1,3 +1,5 @@
+import type { ImageData } from './image'
+
 export interface MatchInfo {
   text: string // 匹配的文字片段
   startIndex: number // 開始位置
@@ -7,7 +9,7 @@ export interface MatchInfo {
 
 export interface SearchResult {
   id: string
-  url: string
+  image: ImageData
   alt: string
   author?: string
   episode?: string
@@ -32,6 +34,9 @@ export interface SearchResponseItem {
   alt: string
   author?: string
   episode?: string
+  tags?: string[]
+  popularity?: number
+  description?: string
   matches?: MatchInfo[] // 匹配資訊
 }
 

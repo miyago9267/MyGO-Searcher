@@ -2,8 +2,8 @@ import { getJsonData, customKeyMap } from '../../utils/dataLoader'
 import { leven_distance } from '../../algo/levenshtein'
 import * as OpenCC from 'opencc-js'
 import { defineEventHandler } from 'h3'
+import { createImageUrlResolver } from '../../utils/imageUrlResolver'
 
-const baseURL = ''
 const custom_keymap = customKeyMap
 const converter = OpenCC.Converter({ from: 'cn', to: 'tw' })
 
@@ -32,6 +32,7 @@ function generateFuzzyVariants(keyword: string): Set<string> {
 
 export default defineEventHandler(async (event) => {
   const data_mapping = await getJsonData()
+  const resolveImageUrl = createImageUrlResolver(useRuntimeConfig(event).NUXT_IMG_BASE_URL)
   const query = getQuery(event)
   const queryKeyword: string = query.keyword as string ?? ''
   const keyword = converter(queryKeyword)
@@ -75,12 +76,12 @@ export default defineEventHandler(async (event) => {
     }
 
     if (totalScore > 0) {
-      scoredResults.push({ url: baseURL + item.filename, alt: item.alt, score: totalScore })
+      scoredResults.push({ url: resolveImageUrl(item), alt: item.alt, score: totalScore })
     }
 
     // 保留精準匹配（不重複）
     if (keywords.some(k => name.includes(k))) {
-      fullMatchResults.push({ url: baseURL + item.filename, alt: item.alt, score: 15 })
+      fullMatchResults.push({ url: resolveImageUrl(item), alt: item.alt, score: 15 })
     }
   }
 
@@ -90,7 +91,7 @@ export default defineEventHandler(async (event) => {
       ...data_mapping
         .filter(item => keywordValue.includes(item.alt))
         .map(item => ({
-          url: baseURL + item.filename,
+          url: resolveImageUrl(item),
           alt: item.alt,
           score: 15,
         })),

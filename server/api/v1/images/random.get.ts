@@ -1,8 +1,7 @@
 import { getJsonData } from '../../../utils/dataLoader'
 import { defineEventHandler, getQuery, createError } from 'h3'
 import type { ImageData } from '../../../types'
-
-const baseURL = ''
+import { createImageUrlResolver } from '../../../utils/imageUrlResolver'
 
 /**
  * GET /api/v1/images/random
@@ -30,12 +29,13 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    const resolveImageUrl = createImageUrlResolver(useRuntimeConfig(event).NUXT_IMG_BASE_URL)
     const randomImages = dataMapping
       .sort(() => 0.5 - Math.random())
       .slice(0, count)
       .map(item => ({
         id: item.id,
-        url: baseURL + item.filename,
+        url: resolveImageUrl(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode,

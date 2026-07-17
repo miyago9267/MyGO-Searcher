@@ -3,7 +3,8 @@
     <div class="mb-2 mx-2 flex flex-col group">
       <div class="relative">
         <img
-          :src="encodedUrl"
+          :src="props.url"
+          :alt="props.alt"
           loading="lazy"
           class="w-full aspect-[334/187.88] rounded-lg mb-2 outline outline-1 outline-[--outline] group-hover:opacity-50 transition-opacity duration-300"
         >
@@ -27,14 +28,13 @@
       </div>
       <card-alt-description
         :alt="props.alt"
-        :url="props.url"
         :matches="props.matches"
       />
     </div>
     <card-preview-panel
       v-model="isPreviewOpen"
       :alt="props.alt"
-      :image-url="encodedUrl"
+      :image-url="props.url"
     >
       {{ previewDescription }}
     </card-preview-panel>
@@ -46,7 +46,6 @@ import { computed, ref } from 'vue'
 import type { ImageItem } from '../types'
 
 const props = defineProps<ImageItem>()
-const encodedUrl = computed(() => props.url + '?t=' + new Date().getTime())
 const actionId = computed(() => {
   const { id } = props
   return id === undefined || id === null ? undefined : String(id)

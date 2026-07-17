@@ -1,77 +1,64 @@
 <template>
-  <div class="relative flex justify-end">
-    <button
-      data-sort-button
-      class="p-2 bg-[--bg-default] text-[--font-default] rounded-full flex items-center gap-2 transition-all duration-200"
-      :class="[
-        'shadow-[0_2px_8px_rgba(0,0,0,0.08)]',
-        'hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]',
-        'hover:-translate-y-0.5',
-        'active:translate-y-0',
-      ]"
+  <div class="control-wrapper">
+    <ButtonControl
+      label="排序"
+      :active="selectedSort !== 'id'"
+      :expanded="showSort"
+      :detail="selectedSort !== 'id' ? selectedSortLabel : ''"
       @click="toggleSort"
     >
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="text-[--font-default]"
-      >
-        <path
-          d="M3 6C3 5.44772 3.44772 5 4 5H20C20.5523 5 21 5.44772 21 6C21 6.55228 20.5523 7 20 7H4C3.44772 7 3 6.55228 3 6Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M9 18C9 17.4477 9.44772 17 10 17H14C14.5523 17 15 17.4477 15 18C15 18.5523 14.5523 19 14 19H10C9.44772 19 9 18.5523 9 18Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 9L18 7M18 7L20 9M18 7V21"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-      排序
-    </button>
+      <template #icon>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 7H14M4 12H11M4 17H8M16 5V19M13 16L16 19L19 16"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </template>
+    </ButtonControl>
 
-    <!-- 使用抽離的排序彈出視窗 -->
-    <popup-sort
-      v-model="selectedSort"
+    <PopupSort
       :show="showSort"
-      @close="handleSortClose"
+      :model-value="selectedSort"
+      @close="closeSort"
       @update:model-value="handleSortUpdate"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { usePopup } from '~/composables/usePopup'
 
-// Emits 定義
 const emit = defineEmits<{
   'update:sort': [sortValue: string]
 }>()
 
-// 響應式數據
 const { isOpen: showSort, toggle: toggleSort, close: closeSort } = usePopup()
 const selectedSort = ref('id')
+const sortLabels: Record<string, string> = {
+  random: '隨機',
+  episode: '集數',
+  alphabetical: '字序',
+  popularity: '熱門',
+}
+const selectedSortLabel = computed(() => sortLabels[selectedSort.value] || '')
 
-// 方法
 const handleSortUpdate = (value: string) => {
   selectedSort.value = value
   emit('update:sort', value)
 }
-
-const handleSortClose = () => {
-  closeSort()
-}
 </script>
+
+<style scoped>
+.control-wrapper {
+  position: relative;
+}
+</style>
