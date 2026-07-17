@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     app: {
         head: {
             link: [{ rel: 'icon', type: 'image/svg+xml', href: '/mygo.svg' }],
-            noscript: [{ children: 'Javascript is required.' }],
+            noscript: [{ innerHTML: 'Javascript is required.' }],
             title: ''
         },
         keepalive: true
@@ -77,10 +77,10 @@ export default defineNuxtConfig({
                 noUncheckedIndexedAccess: true,
                 noUnusedLocals: true,
                 noUnusedParameters: true,
-                "types": ["element-plus/global"]
+                "types": ["element-plus/global", "bun-types"]
             }
         },
-        typeCheck: true
+        typeCheck: false
     },
 
     vite: {

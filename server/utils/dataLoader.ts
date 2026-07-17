@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { getImagesCollection, isMongoConfigured, collectionExists } from '../config/database';
+import { getImagesCollection, getImagesCollectionName, isMongoConfigured, collectionExists } from '../config/database';
 import { getProcessedImageData, getProcessedImageDataSync } from './dataProcessing';
 
 // 從 MongoDB 載入資料
@@ -13,7 +13,7 @@ export const loadFromMongoDB = async (): Promise<any[]> => {
 		console.log('Attempting to connect to MongoDB...');
 		
 		// 檢查集合是否存在
-		const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || '';
+		const MONGODB_COLLECTION = getImagesCollectionName();
 		const exists = await collectionExists(MONGODB_COLLECTION);
 		if (!exists) {
 			console.warn(`Collection '${MONGODB_COLLECTION}' does not exist`);

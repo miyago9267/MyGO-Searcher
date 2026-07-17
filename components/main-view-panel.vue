@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col w-full justify-center">
         <div class="image-row">
-            <image-view-card v-for="image in filteredImages" :id="image.id" :url="image.url" :alt="image.alt"
+            <image-view-card v-for="image in filteredImages" :key="image.id" :id="String(image.id)" :url="image.url" :alt="image.alt"
                 class="image" />
         </div>
 
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { watch, ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
+import { ImagesApi } from '~/apis/images'
 import { useImages, useImageFilter } from '~/composables/useImages'
 import type { FilterOptions } from '~/types'
 
@@ -47,6 +48,21 @@ const props = withDefaults(defineProps<Props>(), {
     })
 })
 
+const { data: initialResponse } = await useAsyncData(
+    `main-images:${props.searchQuery}:${props.sortOrder}`,
+    () => props.searchQuery.trim()
+        ? ImagesApi.search({
+            q: props.searchQuery,
+            fuzzy: false,
+            page: 1,
+            limit: 20,
+            order: props.sortOrder
+        })
+        : ImagesApi.getAll({ page: 1, limit: 20, order: props.sortOrder })
+)
+
+const initialMeta = initialResponse.value?.meta
+
 // 使用 useImages 組合式函數
 const {
     images,
@@ -60,6 +76,9 @@ const {
     cleanupInfiniteScroll
 } = useImages({
     initialQuery: props.searchQuery,
+    initialImages: initialResponse.value?.data || [],
+    initialTotalCount: initialMeta && 'total' in initialMeta ? initialMeta.total : 0,
+    initialHasMore: initialMeta && 'hasNext' in initialMeta ? initialMeta.hasNext : false,
     sortOrder: props.sortOrder || 'id',
     pageSize: 20,
     fuzzySearch: false
@@ -83,7 +102,7 @@ watch(() => props.searchQuery, (newQuery) => {
     if (newQuery !== undefined) {
         search(newQuery)
     }
-}, { immediate: true })
+})
 
 // 監聽排序方式變化
 watch(() => props.sortOrder, async (newSortOrder) => {
@@ -121,10 +140,6 @@ watch(loading, (newLoading) => {
 
 // 初始載入
 onMounted(async () => {
-    if (!props.searchQuery) {
-        await fetchImages('', 1, false)
-    }
-
     // 等待DOM更新後設置無限滾動
     await nextTick()
     if (hasMore.value && loadMoreTrigger.value) {

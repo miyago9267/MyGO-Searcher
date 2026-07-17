@@ -8,18 +8,21 @@ import type { ImageItem, SearchParams, FilterOptions, UseImagesOptions } from '~
 export function useImages(options: UseImagesOptions = {}) {
 	const {
 		initialQuery = '',
+		initialImages = [],
+		initialTotalCount = initialImages.length,
+		initialHasMore = false,
 		pageSize = 20,
 		fuzzySearch = false,
 		sortOrder = 'id'
 	} = options
 
 	// State
-	const images = ref<ImageItem[]>([])
+	const images = ref<ImageItem[]>(initialImages)
 	const loading = ref(false)
 	const error = ref<string | null>(null)
-	const hasMore = ref(false)
+	const hasMore = ref(initialHasMore)
 	const currentPage = ref(1)
-	const totalCount = ref(0)
+	const totalCount = ref(initialTotalCount)
 
 	// Search state
 	const searchQuery = ref(initialQuery)

@@ -1,7 +1,7 @@
 <template>
     <div class="mb-2 mx-2 flex flex-col group">
         <div class="relative">
-            <img v-lazy="encodedUrl"
+            <img :src="props.url" :alt="props.alt" loading="lazy" decoding="async"
                 class="w-full aspect-[334/187.88] rounded-lg mb-2 outline outline-1 outline-tggray-300 group-hover:opacity-50 transition-opacity duration-300" />
             <div
                 class="absolute top-[10px] right-[10px] inset-0 flex gap-[10px] items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -13,12 +13,13 @@
     </div>
 </template>
 <script setup lang="ts">
+interface Props {
+    id?: string | number
+    url: string
+    alt: string
+}
 
-import { computed } from 'vue';
-import type { ImageItem } from '../types';
-
-const props = defineProps<ImageItem>();
-const encodedUrl = computed(() => props.url + '?t=' + new Date().getTime());
+const props = defineProps<Props>();
 
 </script>
 

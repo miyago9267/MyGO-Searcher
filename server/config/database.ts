@@ -83,6 +83,13 @@ export async function getCollection<T extends Document = Document>(collectionNam
  * 獲取圖片集合
  */
 export async function getImagesCollection(): Promise<Collection> {
+  const MONGODB_COLLECTION = getImagesCollectionName();
+
+  process.stderr.write(`[INFO] [MongoDB] Using collection: ${MONGODB_COLLECTION}\n`);
+  return getCollection(MONGODB_COLLECTION);
+}
+
+export function getImagesCollectionName(): string {
   const config = useRuntimeConfig();
   const MONGODB_COLLECTION = config.mongodbCollection;
   
@@ -92,8 +99,7 @@ export async function getImagesCollection(): Promise<Collection> {
     throw new Error(errorMsg);
   }
   
-  process.stderr.write(`[INFO] [MongoDB] Using collection: ${MONGODB_COLLECTION}\n`);
-  return getCollection(MONGODB_COLLECTION);
+  return MONGODB_COLLECTION;
 }
 
 /**

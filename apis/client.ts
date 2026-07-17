@@ -1,4 +1,4 @@
-import { useRuntimeConfig } from 'nuxt/app'
+import { useRequestURL, useRuntimeConfig } from 'nuxt/app'
 import type { ApiResponse, ApiError } from '~/types/api'
 
 class ApiClient {
@@ -33,9 +33,16 @@ class ApiClient {
     const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
     
     if (process.server) {
-      // 在服務器端 SSR 時，使用完整的內部 URL，包含 baseUrl
       const fullPath = `${this.baseUrl}${normalizedEndpoint}`
-      const url = `http://localhost:3000${fullPath}`
+      let origin: string
+
+      try {
+        origin = useRequestURL().origin
+      } catch {
+        origin = `http://127.0.0.1:${process.env.PORT || '3000'}`
+      }
+
+      const url = `${origin}${fullPath}`
       
       process.stderr.write(`[ApiClient] SSR URL construction - baseUrl: ${this.baseUrl}, endpoint: ${normalizedEndpoint}, full URL: ${url}\n`)
       
