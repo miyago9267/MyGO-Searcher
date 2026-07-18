@@ -33,7 +33,7 @@ MyGO 搜尋器，滿足你上網戰鬥的各種圖戰需求！
 4. 複製環境變數範本並配置
 
     ```bash
-    cp .env.example .env.development
+    cp .env.development.example .env.development
     ```
 
 5. 啟動及部署Nuxt
