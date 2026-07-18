@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Version 2.2.1] - 2026-07-19
+
+### Fixed (Version 2.2.1)
+
+- 修正 iPhone 窄版面下亮暗色切換按鈕換行問題
+- 優化手機版排序與篩選按鈕的 icon-only layout、搜尋框 focus 展開動畫與垂直置中
+- 修正桌面版搜尋列與排序／篩選控制列的垂直間距
+- 補強排序／篩選按鈕的 badge 顯示與無障礙狀態描述
+
 ## [Version 2.2.0] - 2026-07-18
 
 ### Features (Version 2.2.0)
