@@ -3,7 +3,7 @@
     type="button"
     :class="['toolbar-control', { 'toolbar-control--active': active }]"
     :aria-expanded="expanded"
-    :aria-label="label"
+    :aria-label="accessibilityLabel"
     @click="emit('click')"
   >
     <span
@@ -23,7 +23,9 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
+import { computed } from 'vue'
+
+const props = withDefaults(defineProps<{
   label: string
   active?: boolean
   expanded?: boolean
@@ -34,6 +36,12 @@ withDefaults(defineProps<{
   expanded: false,
   count: 0,
   detail: '',
+})
+
+const accessibilityLabel = computed(() => {
+  if (props.count) return `${props.label}，已套用 ${props.count} 個篩選`
+  if (props.detail) return `${props.label}，目前${props.detail}`
+  return props.label
 })
 
 const emit = defineEmits<{ click: [] }>()

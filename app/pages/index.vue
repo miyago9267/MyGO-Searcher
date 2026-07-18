@@ -66,6 +66,7 @@ const handleSort = (newSort: string) => {
   justify-content: flex-end;
   gap: 8px;
   margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 @media (max-width: 480px) {
@@ -78,6 +79,7 @@ const handleSort = (newSort: string) => {
   .search-toolbar__search {
     min-width: 0;
     flex: 1 1 auto;
+    margin-bottom: 0;
   }
 
   .search-toolbar__controls {
@@ -86,7 +88,7 @@ const handleSort = (newSort: string) => {
     flex: 0 0 84px;
     gap: 4px;
     margin-bottom: 0;
-    overflow: hidden;
+    overflow: visible;
     opacity: 1;
     transform: translateX(0);
     transition: max-width 220ms ease, flex-basis 220ms ease, opacity 160ms ease, transform 220ms ease, gap 220ms ease, visibility 0s linear 0s;
@@ -103,6 +105,7 @@ const handleSort = (newSort: string) => {
     flex-basis: 0;
     gap: 0;
     opacity: 0;
+    overflow: hidden;
     transform: translateX(8px);
     transition: max-width 220ms ease, flex-basis 220ms ease, opacity 160ms ease, transform 220ms ease, gap 220ms ease, visibility 0s linear 220ms;
     visibility: hidden;
