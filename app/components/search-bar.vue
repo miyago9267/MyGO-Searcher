@@ -10,6 +10,8 @@
         'focus:shadow-[0_4px_16px_rgba(139,92,246,0.2)]',
       ]"
       placeholder="搜尋表情包"
+      @focus="emit('focus')"
+      @blur="emit('blur')"
       @input="handleInput"
     >
     <div class="py-0 absolute right-3 h-full flex justify-center items-center gap-2">
@@ -42,7 +44,7 @@ const props = defineProps<{
 }>()
 
 const search = ref('')
-const emit = defineEmits(['update:search', 'update:semantic'])
+const emit = defineEmits(['update:search', 'update:semantic', 'focus', 'blur'])
 const { showToast } = useAppToast()
 
 const handleInput = () => {
