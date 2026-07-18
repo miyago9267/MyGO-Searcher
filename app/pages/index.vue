@@ -88,7 +88,9 @@ const handleSort = (newSort: string) => {
     flex: 0 0 84px;
     gap: 4px;
     margin-bottom: 0;
+    padding-top: 0;
     overflow: visible;
+    align-items: center;
     opacity: 1;
     transform: translateX(0);
     transition: max-width 220ms ease, flex-basis 220ms ease, opacity 160ms ease, transform 220ms ease, gap 220ms ease, visibility 0s linear 0s;
