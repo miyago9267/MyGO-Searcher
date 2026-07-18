@@ -2,7 +2,7 @@
 
 ## 系統架構概覽
 
-MyGO Searcher 是一個基於 Nuxt 3 的全端應用。
+MyGO Searcher 是一個基於 Nuxt 4 的全端應用。
 
 以下是技術架構文檔，我叫Claude寫的，怎樣我就懶得寫文檔嘛。
 
@@ -10,23 +10,23 @@ MyGO Searcher 是一個基於 Nuxt 3 的全端應用。
 
 ### 前端
 
-- **框架**: Vue 3 + Nuxt 3
+- **框架**: Vue 3 + Nuxt 4
 - **樣式**: UnoCSS + 自定義主題
-- **UI組件**: Element Plus
-- **狀態管理**: Nuxt 3 Composables
+- **UI組件**: Nuxt UI + Element Plus
+- **狀態管理**: Vue Composables
 - **類型系統**: TypeScript
 
 ### 後端
 
-- **運行時**: Nuxt 3 Server (基於 H3)
+- **運行時**: Nuxt 4 Nitro Server (基於 H3)
 - **資料庫**: MongoDB (可選) + 本地JSON文件
-- **搜尋引擎**: 自定義實現 (Levenshtein距離算法)
-- **快取**: 內存快取 + 檔案快取
+- **搜尋引擎**: metadata 關鍵字搜尋、Levenshtein 模糊搜尋與實驗性語義搜尋
+- **快取**: 語義搜尋索引檔案快取
 
 ### 部署
 
 - **容器化**: Docker
-- **靜態資源**: 本地檔案系統
+- **圖片儲存**: Cloudflare R2
 - **環境配置**: 環境變數管理
 - **資料庫**: MongoDB (可選，支援本地文件fallback)
 
@@ -34,16 +34,13 @@ MyGO Searcher 是一個基於 Nuxt 3 的全端應用。
 
 ```tree
 MyGO-Searcher/
-├── apis/                   # 前端API客戶端
-│   ├── base.ts            # 基礎API調用
-│   └── client.ts          # HTTP客戶端封裝
-├── components/            # Vue組件
-│   ├── popup/             # 彈窗組件
-│   ├── card/              # 卡片組件
-│   └── *.vue              # 其他通用組件
-├── composables/           # Vue Composables
-│   └── common.ts          # 通用邏輯
-├── pages/                 # 頁面路由
+├── app/                    # Nuxt前端應用
+│   ├── apis/              # API客戶端
+│   ├── components/        # Vue組件
+│   ├── composables/       # Vue Composables
+│   ├── pages/             # 頁面路由
+│   ├── types/             # 前端類型定義
+│   └── utils/             # 前端篩選等工具函數
 ├── server/                # 後端服務
 │   ├── api/               # API路由
 │   │   ├── v1/            # 新版API (RESTful)
@@ -54,10 +51,9 @@ MyGO-Searcher/
 │   ├── types/             # 後端類型定義
 │   ├── utils/             # 工具函數
 │   └── algo/              # 演算法實現
-├── types/                 # 前端類型定義
-├── styles/                # 樣式文件
 ├── public/                # 靜態資源
-│   └── data/              # 圖片資料
+│   └── data/              # 圖片metadata與關鍵字映射
+├── tests/                 # 測試
 └── docs/                  # 文檔
 ```
 
@@ -65,7 +61,7 @@ MyGO-Searcher/
 
 ### 1. 展示層 (Presentation Layer)
 
-**位置**: `components/`, `pages/`
+**位置**: `app/components/`, `app/pages/`
 **職責**:
 
 - 用戶介面渲染
@@ -74,10 +70,10 @@ MyGO-Searcher/
 
 **主要組件**:
 
-- `SearchBar.vue`: 搜尋功能
-- `Filter.vue`: 篩選功能  
-- `ViewPanel.vue`: 圖片展示
-- `ImageView.vue`: 單張圖片組件
+- `search-bar.vue`: 搜尋功能
+- `popup/filter.vue`: 篩選功能
+- `main-view-panel.vue`: 圖片列表
+- `image-view-card.vue`: 單張圖片卡片
 
 ### 2. API層 (API Layer)
 
@@ -155,13 +151,15 @@ graph TD;
 
 ### 搜尋引擎
 
-**實現**: `server/algo/levenshtein.ts`
+**實現**: `server/utils/search/`、`server/algo/levenshtein.ts`
 **特性**:
 
 - 中文繁簡體轉換 (OpenCC)
 - 模糊匹配算法
 - 相似度評分
 - 自定義關鍵字映射
+- 台詞、描述、人物、標籤與集數 metadata 搜尋
+- 可選的 Transformers.js 語義搜尋
 
 ### 圖片管理系統
 
@@ -170,5 +168,5 @@ graph TD;
 
 - 分頁支援
 - 多種排序方式
-- 快取優化
-- 篩選功能
+- MongoDB 與本地 JSON fallback
+- UUID Object Key 與 R2 CDN URL 解析
