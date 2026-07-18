@@ -2,6 +2,7 @@ import { sortImages, type SortOrder } from '../utils/sorting'
 import { MongoRepository } from '../repositories/mongoRepository'
 import { FileRepository } from '../repositories/fileRepository'
 import type { ImageData } from '../types'
+import { createImageUrlResolver, type ImageUrlResolver } from '../utils/imageUrlResolver'
 
 /**
  * 圖片服務類，處理所有圖片相關的業務邏輯
@@ -9,10 +10,10 @@ import type { ImageData } from '../types'
 export class ImageService {
   private mongoRepo = new MongoRepository()
   private fileRepo = new FileRepository()
-  private baseURL: string
+  private resolveImageUrl: ImageUrlResolver
 
   constructor(baseURL?: string) {
-    this.baseURL = baseURL || ''
+    this.resolveImageUrl = createImageUrlResolver(baseURL)
   }
 
   /**
@@ -57,7 +58,7 @@ export class ImageService {
       const popularityStats = await this.getPopularityStats()
       allImages = allImages.map(image => ({
         ...image,
-        popularity: image.id !== undefined ? (popularityStats[image.id] ?? image.popularity ?? 0) : (image.popularity ?? 0),
+        popularity: image.id !== undefined ? (popularityStats[String(image.id)] ?? image.popularity ?? 0) : (image.popularity ?? 0),
       }))
     }
 
@@ -105,7 +106,7 @@ export class ImageService {
       const mongoImages = await this.mongoRepo.getImages()
       return mongoImages.map((item: ImageData) => ({
         id: item.id,
-        url: this.baseURL + (item.filename ?? ''),
+        url: this.resolveImageUrl(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode,
@@ -120,7 +121,7 @@ export class ImageService {
       const fileImages = await this.fileRepo.getImages()
       return fileImages.map((item: ImageData) => ({
         id: item.id,
-        url: this.baseURL + (item.filename ?? ''),
+        url: this.resolveImageUrl(item),
         alt: item.alt,
         author: item.author,
         episode: item.episode,

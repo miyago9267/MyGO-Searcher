@@ -95,7 +95,8 @@ export const searchImages = async (
 ): Promise<{ images: ImageItem[], meta: SearchMeta | undefined }> => {
   try {
     const response = await ImagesApi.search({ q: query, fuzzy, page, limit })
-    return { images: response.data, meta: response.meta }
+    const meta = response.meta && 'query' in response.meta ? response.meta : undefined
+    return { images: response.data, meta }
   }
   catch (error) {
     console.error('Error searching images:', error)

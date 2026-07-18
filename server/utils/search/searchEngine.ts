@@ -1,110 +1,100 @@
-import type { SearchResult, ImageData } from '../../types'
+import type { ImageData, MatchInfo, SearchResult } from '../../types'
 import { calculateTotalScore, isExactMatch, processSearchKeyword } from './searchAlgorithm'
 
-/**
- * 搜索引擎類
- */
+type CustomKeyMap = Record<string, { value?: string[] }>
+
+/** Pure metadata search. Data loading and URL resolution belong to the service layer. */
 export class SearchEngine {
-  private baseURL: string
-  private customKeyMap: Record<string, { value: string[] }>
+  constructor(private readonly customKeyMap: CustomKeyMap = {}) {}
 
-  constructor(baseURL: string, customKeyMap: Record<string, { value: string[] }>) {
-    this.baseURL = baseURL
-    this.customKeyMap = customKeyMap
-  }
-
-  /**
-   * 在數據中搜索匹配項
-  */
   async searchInData(
     data: ImageData[],
     queryKeyword: string,
-    fuzzy: boolean = false,
+    fuzzy = false,
   ): Promise<SearchResult[]> {
     const keywords = processSearchKeyword(queryKeyword)
-    const scoredResults: SearchResult[] = []
-    const fullMatchResults: SearchResult[] = []
-    const customKeymapResults: SearchResult[] = []
-
-    // 主要搜索邏輯
-    data.forEach((item, index) => {
-      const { score: totalScore, matches } = calculateTotalScore(item.alt, keywords, fuzzy)
-
-      const imageItem: SearchResult = {
-        id: index.toString(),
-        url: this.baseURL + (item.filename || item.file_name || ''),
-        alt: item.alt,
-        author: item.author,
-        episode: item.episode,
-        score: totalScore,
-        matches: matches.length > 0 ? matches : undefined,
-      }
-
-      // 評分匹配
-      if (totalScore > 0) {
-        scoredResults.push(imageItem)
-      }
-
-      // 精準匹配
-      if (isExactMatch(item.alt, keywords)) {
-        fullMatchResults.push({ ...imageItem, score: 15 })
-      }
-    })
-
-    // 自定義關鍵字映射 - 使用原始查詢關鍵詞
-    const customResults = this.searchCustomKeyMap(data, queryKeyword)
-    customKeymapResults.push(...customResults)
-
-    // 合併結果並去重
-    return this.mergeAndDeduplicateResults([
-      ...scoredResults,
-      ...fullMatchResults,
-      ...customKeymapResults,
-    ])
-  }
-
-  /**
-   * 搜索自定義關鍵字映射
-   */
-  private searchCustomKeyMap(data: ImageData[], queryKeyword: string): SearchResult[] {
-    // 使用原始查詢關鍵詞，而不是處理過的關鍵詞
-    if (!Object.prototype.hasOwnProperty.call(this.customKeyMap, queryKeyword)) {
-      return []
-    }
-
-    const keywordValue = this.customKeyMap[queryKeyword]?.value || []
     const results: SearchResult[] = []
 
     data.forEach((item, index) => {
-      if (keywordValue.includes(item.alt)) {
-        results.push({
-          id: index.toString(),
-          url: this.baseURL + (item.filename || item.file_name || ''),
-          alt: item.alt,
-          author: item.author,
-          episode: item.episode,
-          score: 15,
-        })
+      const { score, matches } = this.calculateMetadataScore(item, keywords, fuzzy)
+      const result = this.toResult(item, index, score, matches)
+
+      if (score > 0) {
+        results.push(result)
+      }
+
+      if (isExactMatch(item.alt, keywords)) {
+        results.push({ ...result, score: Math.max(score, 60) })
       }
     })
 
-    return results
+    results.push(...this.searchCustomKeyMap(data, queryKeyword))
+    return this.mergeAndDeduplicateResults(results)
   }
 
-  /**
-   * 合併結果並去重
-  */
+  private calculateMetadataScore(
+    item: ImageData,
+    keywords: string[],
+    fuzzy: boolean,
+  ): { score: number, matches?: MatchInfo[] } {
+    const primary = calculateTotalScore(item.alt, keywords, fuzzy)
+    const secondaryFields = [
+      { value: item.description, weight: 2 },
+      { value: item.author, weight: 2 },
+      { value: item.tags?.join(' '), weight: 2 },
+      { value: item.episode, weight: 1 },
+    ]
+    const secondaryScore = secondaryFields.reduce((score, field) => {
+      if (!field.value) return score
+      return score + calculateTotalScore(field.value, keywords, fuzzy).score * field.weight
+    }, 0)
+
+    return {
+      score: primary.score * 10 + secondaryScore,
+      matches: primary.matches.length ? primary.matches : undefined,
+    }
+  }
+
+  private searchCustomKeyMap(data: ImageData[], queryKeyword: string): SearchResult[] {
+    if (!Object.hasOwn(this.customKeyMap, queryKeyword)) {
+      return []
+    }
+
+    const mappedNames = this.customKeyMap[queryKeyword]?.value || []
+    return data.flatMap((item, index) => mappedNames.includes(item.alt)
+      ? [this.toResult(item, index, 60)]
+      : [])
+  }
+
+  private toResult(
+    item: ImageData,
+    index: number,
+    score: number,
+    matches?: MatchInfo[],
+  ): SearchResult {
+    return {
+      id: item.id?.toString() || index.toString(),
+      image: item,
+      alt: item.alt,
+      author: item.author,
+      episode: item.episode,
+      popularity: item.popularity,
+      description: item.description,
+      score,
+      matches,
+    }
+  }
+
   private mergeAndDeduplicateResults(results: SearchResult[]): SearchResult[] {
-    const combinedResultsMap = new Map<string, SearchResult>()
+    const uniqueResults = new Map<string, SearchResult>()
 
     results.forEach((result) => {
-      const existing = combinedResultsMap.get(result.url)
+      const existing = uniqueResults.get(result.id)
       if (!existing || result.score > existing.score) {
-        combinedResultsMap.set(result.url, result)
+        uniqueResults.set(result.id, result)
       }
     })
 
-    return Array.from(combinedResultsMap.values())
-      .sort((a, b) => b.score - a.score)
+    return Array.from(uniqueResults.values()).sort((a, b) => b.score - a.score)
   }
 }

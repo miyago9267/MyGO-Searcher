@@ -1,8 +1,7 @@
 import { defineEventHandler, getQuery } from 'h3'
 import { getJsonData } from '../../utils/dataLoader'
 import type { ImageData } from '../../types'
-
-const baseURL = ''
+import { createImageUrlResolver } from '../../utils/imageUrlResolver'
 
 export const getRandomPic = async (amount: number) => {
   try {
@@ -14,8 +13,9 @@ export const getRandomPic = async (amount: number) => {
 
     const shuffled = [...dataMapping].sort(() => Math.random() - 0.5)
     const selected = shuffled.slice(0, amount)
+    const resolveImageUrl = createImageUrlResolver(useRuntimeConfig().NUXT_IMG_BASE_URL)
     const picFiles = selected.map((item: ImageData) => ({
-      url: baseURL + (item.filename ?? ''),
+      url: resolveImageUrl(item),
       alt: item.alt,
     }))
 

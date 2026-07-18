@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import { join } from 'path'
-import { getProcessedImageData } from '../utils'
+import { getProcessedImageData } from '../utils/dataProcessing'
 import type { ImageData } from '../types'
 
 export class FileRepository {
