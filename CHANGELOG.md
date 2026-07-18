@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Version 2.2.0] - 2026-07-18
+
+### Features (Version 2.2.0)
+
+- 將圖片來源切換至 Cloudflare R2，使用 UUID Object Key 映射並支援外部圖源 URL
+- 重新設計篩選與排序介面，統一入口按鈕、選取狀態與響應式彈出視窗
+- 優化搜尋功能，可搜尋台詞、描述、人物、標籤及集數，並保留語義搜尋與關鍵字高亮
+
+### Changed (Version 2.2.0)
+
+- 解耦圖片儲存位置與作品集數分類，搜尋器不再強依賴特定圖床路徑格式
+- 調整篩選邏輯，MyGO 與 Ave Mujica 集數可跨作品複選，人物可比對作者與標籤
+- 優化返回頂端按鈕，新增捲動顯示、平滑回頂與 reduced motion 支援
+- 調整 SSR API URL 建構方式，自動使用目前請求來源及開發環境連接埠
+
+### Fixed (Version 2.2.0)
+
+- 修正篩選器版面溢出及 Sort、Filter 入口樣式不一致問題
+- 修正彈出視窗關閉圖示未置中的問題
+- 修正字串型圖片 ID 無法正確排序及查詢的問題
+
 ## [Version 2.1.0] - 2026-02-09
 
 ### Features (Version 2.1.0)

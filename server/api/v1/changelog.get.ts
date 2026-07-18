@@ -54,7 +54,7 @@ export default defineEventHandler(async () => {
 
       const sectionMatch = line.match(/^###\s+([a-zA-Z\s]+)/)
       if (sectionMatch) {
-        let sectionName = sectionMatch[1].trim()
+        let sectionName = sectionMatch[1]?.trim() || ''
         sectionName = sectionName.replace(/\s*\(.*\)/, '').trim()
 
         currentSection = sectionName
@@ -64,7 +64,7 @@ export default defineEventHandler(async () => {
 
       const listItemMatch = line.match(/^(\s*)-\s+(.+)/)
       if (listItemMatch && currentSection) {
-        const text = listItemMatch[2].trim()
+        const text = listItemMatch[2]?.trim() || ''
 
         const sectionList = result.sections[currentSection]
         if (sectionList) {

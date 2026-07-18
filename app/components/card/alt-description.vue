@@ -10,5 +10,5 @@
 <script lang="ts" setup>
 import type { ImageItem } from '~/types'
 
-const props = defineProps<ImageItem>()
+const props = defineProps<Pick<ImageItem, 'alt' | 'matches'>>()
 </script>

@@ -1,8 +1,7 @@
 import { getJsonData } from '../../../utils/dataLoader'
 import { defineEventHandler, getRouterParam, createError } from 'h3'
 import type { ImageData } from '../../../types'
-
-const baseURL = ''
+import { createImageUrlResolver } from '../../../utils/imageUrlResolver'
 
 /**
  * GET /api/v1/images/{id}
@@ -21,7 +20,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // 查找圖片 (通過file_name去除副檔名比對ID)
-    const imageItem = dataMapping.find(item => item.id === Number(id))
+    const imageItem = dataMapping.find(item => String(item.id) === id)
 
     if (!imageItem) {
       throw createError({
@@ -30,10 +29,11 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    const resolveImageUrl = createImageUrlResolver(useRuntimeConfig(event).NUXT_IMG_BASE_URL)
     return {
       data: {
         id: imageItem.id,
-        url: baseURL + imageItem.filename,
+        url: resolveImageUrl(imageItem),
         alt: imageItem.alt,
         author: imageItem.author,
         episode: imageItem.episode,

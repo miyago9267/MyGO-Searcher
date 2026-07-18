@@ -180,11 +180,13 @@ export class SemanticSearchService {
         )
 
         return {
-          id: entry.id,
-          url: (item.filename || item.file_name || ''),
+          id: item.id?.toString() || entry.id,
+          image: item,
           alt: item.alt,
           author: item.author,
           episode: item.episode,
+          popularity: item.popularity,
+          description: item.description,
           score: score,
           matches: matches.length > 0 ? matches : undefined,
         } as SearchResult

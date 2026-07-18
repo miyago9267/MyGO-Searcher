@@ -1,14 +1,14 @@
 import { defineEventHandler } from 'h3'
 import { getJsonData } from '../../utils/dataLoader'
 import type { ImageData } from '../../types'
-
-const baseURL = ''
+import { createImageUrlResolver } from '../../utils/imageUrlResolver'
 
 export const getPicList = async () => {
   try {
     const dataMapping = await getJsonData()
+    const resolveImageUrl = createImageUrlResolver(useRuntimeConfig().NUXT_IMG_BASE_URL)
     const allFiles = dataMapping.map((item: ImageData) => ({
-      url: baseURL + (item.filename ?? ''),
+      url: resolveImageUrl(item),
       alt: item.alt,
       author: item.author,
       episode: item.episode,

@@ -1,69 +1,66 @@
+import { FileRepository } from '../repositories/fileRepository'
+import type { ImageData, SearchParams, SearchResponse, SearchResponseItem, SearchResult } from '../types'
+import type { ImageUrlResolver } from '../utils/imageUrlResolver'
 import { SearchEngine } from '../utils/search/searchEngine'
 import { sortImages, type SortOrder } from '../utils/sorting'
-import { FileRepository } from '../repositories/fileRepository'
-import type { SearchParams, SearchResponse, SearchResponseItem, SearchResult } from '../types/'
 import { SemanticSearchService } from './semanticSearchService'
 
-/**
- * 搜索服務類
- */
-export class SearchService {
-  private fileRepo = new FileRepository()
-  private baseURL: string
-  private customKeyMap: Record<string, { value: string[] }>
+export interface SearchDataSource {
+  getSearchData(): Promise<ImageData[]>
+}
 
-  constructor(baseURL: string, customKeyMap: Record<string, { value: string[] }>) {
-    this.baseURL = baseURL
-    this.customKeyMap = customKeyMap
+interface SearchServiceOptions {
+  resolveImageUrl: ImageUrlResolver
+  customKeyMap?: Record<string, { value?: string[] }>
+  dataSource?: SearchDataSource
+}
+
+export class SearchService {
+  private readonly dataSource: SearchDataSource
+  private readonly resolveImageUrl: ImageUrlResolver
+  private readonly customKeyMap: Record<string, { value?: string[] }>
+
+  constructor(options: SearchServiceOptions) {
+    this.dataSource = options.dataSource || new FileRepository()
+    this.resolveImageUrl = options.resolveImageUrl
+    this.customKeyMap = options.customKeyMap || {}
   }
 
   async search(params: SearchParams): Promise<SearchResponse> {
-    // 載入數據
-    const data = await this.fileRepo.getSearchData()
-
-    // 初始化搜索引擎
-    const searchEngine = new SearchEngine(this.baseURL, this.customKeyMap)
-
-    let searchResults: SearchResult[] = []
+    const data = await this.dataSource.getSearchData()
+    const searchEngine = new SearchEngine(this.customKeyMap)
+    let searchResults: SearchResult[]
 
     if (params.semantic) {
-      // 實驗性：語義搜尋
       try {
         const semanticService = SemanticSearchService.getInstance()
-        searchResults = await semanticService.search(params.query, data)
+        searchResults = await semanticService.search(params.query, data, data.length)
       }
       catch (error) {
         console.error('Semantic search failed, falling back to keyword search:', error)
-        // Fallback to normal search
         searchResults = await searchEngine.searchInData(data, params.query, params.fuzzy)
       }
     }
     else {
-      // 一般關鍵字搜尋
-      searchResults = await searchEngine.searchInData(
-        data,
-        params.query,
-        params.fuzzy,
-      )
+      searchResults = await searchEngine.searchInData(data, params.query, params.fuzzy)
     }
 
-    // 排序結果
     const sortedResults = await sortImages(searchResults, params.order as SortOrder)
-
-    // 分頁處理
     const totalCount = sortedResults.length
     const totalPages = Math.ceil(totalCount / params.limit)
     const offset = (params.page - 1) * params.limit
     const paginatedResults = sortedResults.slice(offset, offset + params.limit)
 
-    // 構建響應
     return {
       data: paginatedResults.map((item): SearchResponseItem => ({
-        id: String(item.id!),
-        url: item.url ?? '',
+        id: item.id,
+        url: this.resolveImageUrl(item.image),
         alt: item.alt,
         author: item.author,
         episode: item.episode,
+        tags: item.image.tags,
+        popularity: item.popularity,
+        description: item.description,
         matches: item.matches,
       })),
       meta: {

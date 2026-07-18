@@ -8,7 +8,7 @@
         @update:search="handleSearch"
         @update:semantic="isSemantic = $event"
       />
-      <div class="flex w-full justify-end">
+      <div class="flex w-full justify-end gap-2">
         <button-sort
           class="mb-5"
           @update:sort="handleSort"
@@ -27,7 +27,7 @@
       />
     </div>
     <Footer class="" />
-    <button-top class="fixed bottom-5 right-5 z-50" />
+    <button-top />
   </div>
 </template>
 

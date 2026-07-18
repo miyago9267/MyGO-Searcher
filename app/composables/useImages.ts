@@ -1,7 +1,7 @@
-import { ref, computed, watch, nextTick, readonly } from 'vue'
+import { ref, computed, nextTick, readonly } from 'vue'
 import { ImagesApi } from '~/apis/images'
 import type { ImageItem, SearchParams, FilterOptions, UseImagesOptions } from '~/types'
-import { FilterCategoryKey } from '~/types'
+import { filterImages } from '~/utils/filterImages'
 import type { Ref } from 'vue'
 
 /**
@@ -213,11 +213,6 @@ export function useImages(options: UseImagesOptions = {}) {
     }
   }
 
-  // Auto-search when query changes
-  watch(searchQuery, (newQuery) => {
-    fetchImages(newQuery, 1, false)
-  })
-
   return {
     // State
     images,
@@ -250,28 +245,7 @@ export function useImages(options: UseImagesOptions = {}) {
  * Composable for filtering images
  */
 export function useImageFilter(images: Ref<ImageItem[]>, filters: Ref<FilterOptions>) {
-  const filteredImages = computed(() => {
-    const mygoFilters = filters.value[FilterCategoryKey.MyGOEpisodes] ?? []
-    const aveMujicaFilters = filters.value[FilterCategoryKey.AveMujicaEpisodes] ?? []
-    const characterFilters = filters.value[FilterCategoryKey.Characters] ?? []
-
-    if (!mygoFilters.length && !aveMujicaFilters.length && !characterFilters.length) {
-      return images.value
-    }
-
-    return images.value.filter((image) => {
-      const matchesMyGOEpisode = !mygoFilters.length
-        || mygoFilters.includes(image.episode || '')
-
-      const matchesAveMujicaEpisode = !aveMujicaFilters.length
-        || aveMujicaFilters.includes(image.episode || '')
-
-      const matchesCharacter = !characterFilters.length
-        || characterFilters.includes(image.author || '')
-
-      return matchesMyGOEpisode && matchesAveMujicaEpisode && matchesCharacter
-    })
-  })
+  const filteredImages = computed(() => filterImages(images.value, filters.value))
 
   const filteredCount = computed(() => filteredImages.value.length)
 

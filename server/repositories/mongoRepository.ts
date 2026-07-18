@@ -1,5 +1,5 @@
 import { getImagesCollection, isMongoConfigured } from '../config/db'
-import { getProcessedImageData } from '../utils'
+import { getProcessedImageData } from '../utils/dataProcessing'
 import type { ImageData } from '../types'
 
 export class MongoRepository {
@@ -12,7 +12,7 @@ export class MongoRepository {
     const rawData = await collection.find({}).toArray()
 
     // 使用 getProcessedImageData 處理原始資料
-    const processedData = await getProcessedImageData(rawData)
+    const processedData = await getProcessedImageData(rawData as unknown as ImageData[])
 
     return processedData.map((item: ImageData) => ({
       id: item.id,
@@ -21,8 +21,11 @@ export class MongoRepository {
       author: item.author,
       episode: item.episode,
       filename: item.filename,
+      // 定址欄位必須通過這層白名單，下游 imageService 才組得出 URL
+      storagePath: item.storagePath,
       tags: item.tags || [],
       popularity: item.popularity || 0,
+      description: item.description || '',
     }))
   }
 
