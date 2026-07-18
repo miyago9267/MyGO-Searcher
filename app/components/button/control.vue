@@ -3,13 +3,14 @@
     type="button"
     :class="['toolbar-control', { 'toolbar-control--active': active }]"
     :aria-expanded="expanded"
+    :aria-label="label"
     @click="emit('click')"
   >
     <span
       class="control-icon"
       aria-hidden="true"
     ><slot name="icon" /></span>
-    <span>{{ label }}</span>
+    <span class="control-label">{{ label }}</span>
     <span
       v-if="count"
       class="control-badge"
@@ -43,6 +44,7 @@ const emit = defineEmits<{ click: [] }>()
   display: inline-flex;
   min-width: 104px;
   height: 40px;
+  position: relative;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -116,5 +118,45 @@ const emit = defineEmits<{ click: [] }>()
 .toolbar-control--active .control-detail {
   background: var(--brand);
   color: var(--font-white);
+}
+
+@media (max-width: 480px) {
+  .toolbar-control {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    gap: 0;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .toolbar-control:hover,
+  .toolbar-control:focus-visible {
+    border-color: transparent;
+    background: var(--bg-hover);
+  }
+
+  .toolbar-control--active {
+    border-color: transparent;
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+  }
+
+  .control-label,
+  .control-detail {
+    display: none;
+  }
+
+  .control-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border: 2px solid var(--bg-default);
+    border-radius: 999px;
+    font-size: 10px;
+  }
 }
 </style>
