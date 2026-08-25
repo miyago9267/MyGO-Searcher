@@ -1,7 +1,7 @@
 #!/bin/bash
 user="mygo"
 name="mygo-searcher"
-port="4001"
+port="12001"
 
 run_env_args=()
 if [ -f .env.production ]; then
@@ -9,6 +9,17 @@ if [ -f .env.production ]; then
     if [ -n "$image_base_url" ]; then
         # Nuxt runtimeConfig maps this key to NUXT_NUXT_IMG_BASE_URL.
         run_env_args+=(--env "NUXT_NUXT_IMG_BASE_URL=$image_base_url")
+    fi
+
+    mongodb_connect_url=$(sed -n 's/^MONGODB_CONNECT_URL=//p' .env.production | tail -n 1)
+    if [ -n "$mongodb_connect_url" ]; then
+        # Nuxt runtimeConfig requires the NUXT_ prefix for runtime overrides.
+        run_env_args+=(--env "NUXT_MONGODB_CONNECT_URL=$mongodb_connect_url")
+    fi
+
+    mongodb_collection=$(sed -n 's/^MONGODB_COLLECTION=//p' .env.production | tail -n 1)
+    if [ -n "$mongodb_collection" ]; then
+        run_env_args+=(--env "NUXT_MONGODB_COLLECTION=$mongodb_collection")
     fi
 fi
 
