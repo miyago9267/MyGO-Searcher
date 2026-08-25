@@ -1,4 +1,5 @@
 import { FileRepository } from '../repositories/fileRepository'
+import { MongoRepository } from '../repositories/mongoRepository'
 import type { ImageData, SearchParams, SearchResponse, SearchResponseItem, SearchResult } from '../types'
 import type { ImageUrlResolver } from '../utils/imageUrlResolver'
 import { SearchEngine } from '../utils/search/searchEngine'
@@ -19,9 +20,20 @@ export class SearchService {
   private readonly dataSource: SearchDataSource
   private readonly resolveImageUrl: ImageUrlResolver
   private readonly customKeyMap: Record<string, { value?: string[] }>
+  private readonly mongoRepo = new MongoRepository()
+  private readonly fileRepo = new FileRepository()
 
   constructor(options: SearchServiceOptions) {
-    this.dataSource = options.dataSource || new FileRepository()
+    this.dataSource = options.dataSource || {
+      getSearchData: async () => {
+        try {
+          return await this.mongoRepo.getImages()
+        }
+        catch {
+          return await this.fileRepo.getSearchData()
+        }
+      },
+    }
     this.resolveImageUrl = options.resolveImageUrl
     this.customKeyMap = options.customKeyMap || {}
   }

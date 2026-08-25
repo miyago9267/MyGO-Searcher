@@ -42,16 +42,18 @@ export class PopularityService {
       console.warn('MongoDB update failed:', error)
     }
 
-    try {
-      if (imageId !== undefined && imageId !== null) {
-        localUpdated = await this.fileRepo.updatePopularity(imageId)
-        if (localUpdated) {
-          results.push('local-file')
+    if (!mongoUpdated) {
+      try {
+        if (imageId !== undefined && imageId !== null) {
+          localUpdated = await this.fileRepo.updatePopularity(imageId)
+          if (localUpdated) {
+            results.push('local-file')
+          }
         }
       }
-    }
-    catch (error) {
-      console.warn('Local file update failed:', error)
+      catch (error) {
+        console.warn('Local file update failed:', error)
+      }
     }
 
     return {
