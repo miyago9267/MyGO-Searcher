@@ -1,5 +1,7 @@
-import { getJsonData } from '../../../utils/dataLoader'
 import { defineEventHandler, getRouterParam, createError } from 'h3'
+import { MongoRepository } from '../../../repositories/mongoRepository'
+import { PopularityService } from '../../../services/popularityService'
+import { getJsonData } from '../../../utils/dataLoader'
 import type { ImageData } from '../../../types'
 import { createImageUrlResolver } from '../../../utils/imageUrlResolver'
 
@@ -9,7 +11,6 @@ import { createImageUrlResolver } from '../../../utils/imageUrlResolver'
  */
 export default defineEventHandler(async (event) => {
   try {
-    const dataMapping: ImageData[] = await getJsonData()
     const id = getRouterParam(event, 'id')
 
     if (!id) {
@@ -19,8 +20,15 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // 查找圖片 (通過file_name去除副檔名比對ID)
-    const imageItem = dataMapping.find(item => String(item.id) === id)
+    let imageItem: ImageData | undefined
+    try {
+      const mongoImages = await new MongoRepository().getImages()
+      imageItem = mongoImages.find(item => String(item.id) === id)
+    }
+    catch {
+      const dataMapping: ImageData[] = await getJsonData()
+      imageItem = dataMapping.find(item => String(item.id) === id)
+    }
 
     if (!imageItem) {
       throw createError({
@@ -28,6 +36,11 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Image not found',
       })
     }
+
+    await new PopularityService().updatePopularity({
+      imageId: id,
+      action: 'exact-search',
+    })
 
     const resolveImageUrl = createImageUrlResolver(useRuntimeConfig(event).NUXT_IMG_BASE_URL)
     return {

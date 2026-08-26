@@ -13,7 +13,7 @@ export class PopularityService {
   async updatePopularity(params: {
     imageId?: string
     imageUrl?: string
-    action: 'copy' | 'download'
+    action: 'copy' | 'download' | 'exact-search'
   }): Promise<{
     success: boolean
     action: string
